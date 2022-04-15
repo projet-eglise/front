@@ -1,5 +1,5 @@
 <template>
-  <Tutorial />
+  <a href="/login">Go vers la page de login</a>
 </template>
 
 <script>
