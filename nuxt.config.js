@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'projet-eglise',
+    title: 'Projet d\'Eglise',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -12,7 +12,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -21,7 +21,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/vuetify'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -41,6 +41,18 @@ export default {
   pwa: {
     manifest: {
       lang: 'fr',
+    },
+  },
+
+  vuetify: {
+    defaultAssets: { icons: 'fa' },
+    theme: {
+      light: true,
+      themes: {
+        light: {
+          primary: "#08C5D1"
+        },
+      },
     },
   },
 
