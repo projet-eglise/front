@@ -3,7 +3,7 @@
     <v-img :src="require('@/static/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
     <v-form>
       <v-text-field solo label="Email" v-model="email" prepend-inner-icon="fa-at" />
-      <v-text-field solo v-model="password" label="Mot de passe" prepend-inner-icon="fa-lock" />
+      <v-text-field solo label="Mot de passe" v-model="password" prepend-inner-icon="fa-lock" />
       <v-btn color="primary" block> S'identifier </v-btn>
       <v-row class="mt-4 justify-center font-italic">
         <a href="">Inscription</a>
