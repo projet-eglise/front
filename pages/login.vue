@@ -2,8 +2,23 @@
   <v-col class="login-form ml-auto mr-auto">
     <v-img :src="require('@/static/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
     <v-form>
-      <v-text-field solo label="Email" v-model="email" prepend-inner-icon="fa-at" />
-      <v-text-field solo label="Mot de passe" v-model="password" prepend-inner-icon="fa-lock" />
+      <v-text-field
+        solo
+        label="Email"
+        v-model="email"
+        prepend-inner-icon="fa-at"
+        :rules="[rules.required, rules.email]"
+      />
+      <v-text-field
+        solo
+        label="Mot de passe"
+        v-model="password"
+        :rules="[rules.required]"
+        :type="showPassword ? 'text' : 'password'"
+        prepend-inner-icon="fa-lock"
+        :append-icon="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+        @click:append="showPassword = !showPassword"
+      />
       <v-btn color="primary" block> S'identifier </v-btn>
       <v-row class="mt-4 justify-center font-italic">
         <a href="">Inscription</a>
@@ -22,6 +37,15 @@ export default {
     return {
       email: '',
       password: '',
+      showPassword: false,
+      rules: {
+        required: (value) => !!value || 'Requis',
+        email: (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || "Format d'email incorrect."
+        },
+      },
     }
   },
 }
