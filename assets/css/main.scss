@@ -1,3 +1,9 @@
 i.theme--light.v-icon {
   color: #00353f;
 }
+
+@font-face {
+  font-family: "Neon";
+  src: local("Neon"),
+   url(~/assets/font/Neon.ttf) format("truetype");
+}

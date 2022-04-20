@@ -1,5 +1,5 @@
 <template>
-  <v-col class="login-form ml-auto mr-auto" height="100%">
+  <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%" v-if="!startWaitingPage">
     <v-img :src="require('@/static/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
     <v-form ref="form">
       <v-text-field
@@ -36,6 +36,9 @@
       >{{ this.error.message }}</v-alert
     >
   </v-col>
+  <v-col class="justify-center text-center" v-else>
+    <LoginLightningWelcome />
+  </v-col>
 </template>
 
 <script>
@@ -44,6 +47,7 @@ export default {
   layout: 'login',
   data() {
     return {
+      startWaitingPage: true,
       email: '',
       password: '',
       showPassword: false,
@@ -82,6 +86,15 @@ export default {
       }
     },
   },
+  mounted: function () {
+    setTimeout(
+      function () {
+        this.startWaitingPage = false
+        $ref['loginForm'].classList.value = ['hero']
+      }.bind(this),
+      4000
+    )
+  },
 }
 </script>
 
@@ -109,6 +122,21 @@ export default {
 @media (min-width: 480px) and (max-width: 768px) {
   .login-form {
     width: 70%;
+  }
+}
+
+.hero {
+  transition: hero 1s linear;
+}
+
+@keyframes hero {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>
