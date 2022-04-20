@@ -46,8 +46,8 @@ export default {
   layout: 'login',
   data() {
     return {
-      email: 'fgaconcamoz@gmail.com',
-      password: 'Florose03',
+      email: '',
+      password: '',
       showPassword: false,
       isLoading: false,
       error: {
