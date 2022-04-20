@@ -15,7 +15,7 @@ export default {
   css: ['~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/repositories.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -34,7 +34,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: process.env.API_BASE_URL || 'https://api-projet-eglise.herokuapp.com/',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -58,4 +58,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  router: {
+    middleware: ['authentication']
+  }
 }
