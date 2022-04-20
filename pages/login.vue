@@ -1,5 +1,5 @@
 <template>
-  <v-col class="login-form ml-auto mr-auto">
+  <v-col class="login-form ml-auto mr-auto" height="100%">
     <v-img :src="require('@/static/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
     <v-form ref="form">
       <v-text-field
@@ -31,10 +31,8 @@
       elevation="24"
       type="error"
       transition="scale-transition"
+      class="center-v-alert"
       :value="error.display"
-      absolute
-      top
-      right
       >{{ this.error.message }}</v-alert
     >
   </v-col>
@@ -77,7 +75,7 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.error.message = error
+          this.error.message = error.response.data.error
           this.error.display = true
           this.isLoading = false
         }
@@ -95,6 +93,11 @@ export default {
 
 .v-image {
   margin-bottom: 2em;
+}
+
+.center-v-alert {
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @media (max-width: 480px) {
