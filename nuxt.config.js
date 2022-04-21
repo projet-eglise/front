@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Projet d\'Eglise',
+    title: "Projet d'Eglise",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -15,7 +15,7 @@ export default {
   css: ['~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/repositories.js'],
+  plugins: ['~/plugins/repositories.js', '~/plugins/rules.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -50,7 +50,7 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: "#08C5D1"
+          primary: '#08C5D1',
         },
       },
     },
@@ -60,8 +60,8 @@ export default {
   build: {},
 
   router: {
-    middleware: ['authentication']
+    middleware: ['authentication'],
   },
 
-  pageTransition: "fade",
+  pageTransition: 'fade',
 }

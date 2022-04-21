@@ -8,13 +8,13 @@
           label="Email"
           v-model="email"
           prepend-inner-icon="fa-at fa-md"
-          :rules="[rules.required, rules.email]"
+          :rules="[$rules.required, $rules.email]"
         />
         <v-text-field
           solo
           label="Mot de passe"
           v-model="password"
-          :rules="[rules.required]"
+          :rules="[$rules.required]"
           :type="showPassword ? 'text' : 'password'"
           prepend-inner-icon="fa-lock fa-md"
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
@@ -53,14 +53,6 @@ export default {
       error: {
         message: 'Erreur ...',
         display: false,
-      },
-      rules: {
-        required: (value) => !!value || 'Requis',
-        email: (value) => {
-          const pattern =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || "Format d'email incorrect"
-        },
       },
     }
   },

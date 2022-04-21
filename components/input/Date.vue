@@ -2,16 +2,16 @@
   <v-text-field
     :prepend-inner-icon="prepend_inner_icon"
     :label="label"
-    solo
-    dense
-    style="width: 45%; margin-left: 10px"
+    :class="classes"
     v-model="date"
     @blur="blur"
     @focus="focus"
     @keyup="keyup"
     @keypress="preventDefault"
     @keydown="preventDefault"
-    :rules="[rules.required, rules.date]"
+    :rules="[$rules.required, $rules.date]"
+    solo
+    dense
   />
 </template>
 
@@ -23,9 +23,14 @@ export default {
       default: 'Date',
       required: false,
     },
-    'prepend_inner_icon': {
+    prepend_inner_icon: {
       type: String,
       default: 'fa-calendar fa-md',
+      required: false,
+    },
+    classes: {
+      type: String,
+      default: '',
       required: false,
     },
   },
@@ -33,13 +38,6 @@ export default {
     return {
       date: '',
       raw_date: '',
-      rules: {
-        required: (value) => !!value || 'Requis',
-        date: (value) => {
-          const pattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([12][0-9]{3})$/
-          return pattern.test(value) || 'Date incorecte ou incomplete'
-        },
-      },
     }
   },
   methods: {
