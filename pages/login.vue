@@ -1,32 +1,38 @@
 <template>
-<v-expand-transition >
   <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%" v-if="!startWaitingPage">
-    <v-img :lazy-src="require('@/assets/img/circled-logo.png')" :src="require('@/assets/img/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
-    <v-form ref="form">
-      <v-text-field
-        solo
-        label="Email"
-        v-model="email"
-        prepend-inner-icon="fa-at"
-        :rules="[rules.required, rules.email]"
-      />
-      <v-text-field
-        solo
-        label="Mot de passe"
-        v-model="password"
-        :rules="[rules.required]"
-        :type="showPassword ? 'text' : 'password'"
-        prepend-inner-icon="fa-lock"
-        :append-icon="showPassword ? 'fa-eye' : 'fa-eye-slash'"
-        @click:append="showPassword = !showPassword"
-      />
-      <v-btn color="primary" block @click="connect" :loading="isLoading"> S'identifier </v-btn>
-      <v-row class="mt-4 justify-center font-italic">
-        <NuxtLink to="/inscription">Inscription</NuxtLink>
-        <span class="ml-2 mr-2 primary--text">/</span>
-        <a href="">Mot de passe oublié</a>
-      </v-row>
-    </v-form>
+    <v-img
+      :src="require('@/assets/img/circled-logo.png')"
+      height="250"
+      width="250"
+      class="ml-auto mr-auto"
+    />
+    <v-fade-transition>
+      <v-form ref="form">
+        <v-text-field
+          solo
+          label="Email"
+          v-model="email"
+          prepend-inner-icon="fa-at"
+          :rules="[rules.required, rules.email]"
+        />
+        <v-text-field
+          solo
+          label="Mot de passe"
+          v-model="password"
+          :rules="[rules.required]"
+          :type="showPassword ? 'text' : 'password'"
+          prepend-inner-icon="fa-lock"
+          :append-icon="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+          @click:append="showPassword = !showPassword"
+        />
+        <v-btn color="primary" block @click="connect" :loading="isLoading"> S'identifier </v-btn>
+        <v-row class="mt-4 justify-center font-italic">
+          <NuxtLink to="/inscription">Inscription</NuxtLink>
+          <span class="ml-2 mr-2 primary--text">/</span>
+          <a href="">Mot de passe oublié</a>
+        </v-row>
+      </v-form>
+    </v-fade-transition>
     <v-alert
       dismissible
       elevation="24"
@@ -40,7 +46,6 @@
   <v-col class="justify-center text-center" v-else>
     <LoginLightningWelcome />
   </v-col>
-  </v-expand-transition>
 </template>
 
 <script>
