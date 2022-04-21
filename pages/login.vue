@@ -1,11 +1,6 @@
 <template>
   <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%" v-if="!startWaitingPage">
-    <v-img
-      :src="require('@/assets/img/circled-logo.png')"
-      height="250"
-      width="250"
-      class="ml-auto mr-auto"
-    />
+    <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
     <v-fade-transition>
       <v-form ref="form">
         <v-text-field
@@ -54,7 +49,6 @@ export default {
   layout: 'login',
   data() {
     return {
-      startWaitingPage: true,
       email: '',
       password: '',
       showPassword: false,
@@ -72,6 +66,11 @@ export default {
         },
       },
     }
+  },
+  computed: {
+    startWaitingPage: function () {
+      return this.$store.getters['main/displayWelcome']
+    },
   },
   methods: {
     connect: async function () {
@@ -96,7 +95,7 @@ export default {
   mounted: function () {
     setTimeout(
       function () {
-        this.startWaitingPage = false
+        this.$store.dispatch('main/welcomeDisplayed')
       }.bind(this),
       4000
     )
