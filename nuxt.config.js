@@ -61,5 +61,7 @@ export default {
 
   router: {
     middleware: ['authentication']
-  }
+  },
+
+  pageTransition: "fade",
 }

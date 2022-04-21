@@ -2,8 +2,40 @@ i.theme--light.v-icon {
   color: #00353f;
 }
 
+i.v-icon.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.08333em;
+  vertical-align: 0.125em;
+}
+
+i.v-icon.fa-sm {
+  font-size: .875em;
+  line-height: .07143em;
+  vertical-align: .05357em;
+}
+
+i.v-icon.fa-md, button.v-icon.fa-md {
+  font-size: 1em;
+  line-height: .6em;
+  vertical-align: -.01em;
+}
+
+i.v-icon.fa-lg {
+  font-size: 1.25em;
+  line-height: .05em;
+  vertical-align: -.075em;
+}
+
 @font-face {
-  font-family: "Neon";
-  src: local("Neon"),
-   url(~/assets/font/Neon.ttf) format("truetype");
+  font-family: 'Neon';
+  src: local('Neon'), url(~/assets/font/Neon.ttf) format('truetype');
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
