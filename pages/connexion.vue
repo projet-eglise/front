@@ -1,5 +1,5 @@
 <template>
-  <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%">
+  <v-col class="login-form ml-auto mr-auto" height="100%">
     <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
     <v-fade-transition>
       <v-form ref="form">
@@ -7,7 +7,7 @@
           solo
           label="Email"
           v-model="email"
-          prepend-inner-icon="fa-at"
+          prepend-inner-icon="fa-at fa-md"
           :rules="[rules.required, rules.email]"
         />
         <v-text-field
@@ -16,13 +16,13 @@
           v-model="password"
           :rules="[rules.required]"
           :type="showPassword ? 'text' : 'password'"
-          prepend-inner-icon="fa-lock"
-          :append-icon="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+          prepend-inner-icon="fa-lock fa-md"
+          :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
         <v-btn color="primary" block @click="connect" :loading="isLoading"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink to="{ name: 'signin' }">Inscription</NuxtLink>
+          <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
           <a href="">Mot de passe oublié</a>
         </v-row>
