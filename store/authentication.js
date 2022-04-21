@@ -1,4 +1,4 @@
-const unprotectedRoutes = ['/login', '/inscription']
+const unprotectedRoutes = ['/connexion', '/inscription']
 
 export const state = () => ({
   isConnected: false,
@@ -20,12 +20,12 @@ export const actions = {
 
     if (status === 200 && data.message && data.data) {
       commit('LOGIN')
-      this.$router.push("/dashboard")
+      this.$router.push('/dashboard')
     } else {
       commit('LOGOUT')
     }
 
-    return res;
+    return res
   },
   logout({ commit }) {
     commit('LOGOUT')
@@ -35,7 +35,7 @@ export const actions = {
       return route.path
     }
 
-    return '/login'
+    return '/connexion'
   },
 }
 

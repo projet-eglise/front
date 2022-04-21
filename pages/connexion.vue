@@ -1,5 +1,5 @@
 <template>
-  <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%" v-if="!startWaitingPage">
+  <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%">
     <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
     <v-fade-transition>
       <v-form ref="form">
@@ -22,7 +22,7 @@
         />
         <v-btn color="primary" block @click="connect" :loading="isLoading"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink to="/inscription">Inscription</NuxtLink>
+          <NuxtLink to="{ name: 'signin' }">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
           <a href="">Mot de passe oublié</a>
         </v-row>
@@ -37,9 +37,6 @@
       :value="error.display"
       >{{ this.error.message }}</v-alert
     >
-  </v-col>
-  <v-col class="justify-center text-center" v-else>
-    <LoginLightningWelcome />
   </v-col>
 </template>
 
@@ -67,11 +64,6 @@ export default {
       },
     }
   },
-  computed: {
-    startWaitingPage: function () {
-      return this.$store.getters['main/displayWelcome']
-    },
-  },
   methods: {
     connect: async function () {
       if (this.$refs.form.validate()) {
@@ -91,14 +83,6 @@ export default {
         }
       }
     },
-  },
-  mounted: function () {
-    setTimeout(
-      function () {
-        this.$store.dispatch('main/welcomeDisplayed')
-      }.bind(this),
-      4000
-    )
   },
 }
 </script>

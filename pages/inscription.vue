@@ -1,7 +1,7 @@
 <template>
   <v-col>
     <p>Inscription</p>
-    <NuxtLink to="/login">Retour à la page de connexion</NuxtLink>
+    <NuxtLink to="{ name: 'login' }">Retour à la page de connexion</NuxtLink>
   </v-col>
 </template>
 
