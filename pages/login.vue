@@ -1,6 +1,7 @@
 <template>
+<v-expand-transition >
   <v-col ref="loginForm" class="login-form ml-auto mr-auto" height="100%" v-if="!startWaitingPage">
-    <v-img :src="require('@/static/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
+    <v-img :lazy-src="require('@/assets/img/circled-logo.png')" :src="require('@/assets/img/circled-logo.png')" max-height="250" max-width="250" class="ml-auto mr-auto" />
     <v-form ref="form">
       <v-text-field
         solo
@@ -39,6 +40,7 @@
   <v-col class="justify-center text-center" v-else>
     <LoginLightningWelcome />
   </v-col>
+  </v-expand-transition>
 </template>
 
 <script>
@@ -90,7 +92,6 @@ export default {
     setTimeout(
       function () {
         this.startWaitingPage = false
-        $ref['loginForm'].classList.value = ['hero']
       }.bind(this),
       4000
     )
@@ -122,21 +123,6 @@ export default {
 @media (min-width: 480px) and (max-width: 768px) {
   .login-form {
     width: 70%;
-  }
-}
-
-.hero {
-  transition: hero 1s linear;
-}
-
-@keyframes hero {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
   }
 }
 </style>
