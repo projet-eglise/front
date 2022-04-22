@@ -1,3 +1,11 @@
+@import 'vue-phone-number-input/dist/vue-phone-number-input.css';
+.vue-phone-number-input .select-country-container {
+  flex: 0 0 95px !important;
+  min-width: 95px !important;
+  max-width: 95px !important;
+  width: 95px !important;
+}
+
 i.theme--light.v-icon {
   color: #00353f;
 }
@@ -9,21 +17,22 @@ i.v-icon.fa-xs {
 }
 
 i.v-icon.fa-sm {
-  font-size: .875em;
-  line-height: .07143em;
-  vertical-align: .05357em;
+  font-size: 0.875em;
+  line-height: 0.07143em;
+  vertical-align: 0.05357em;
 }
 
-i.v-icon.fa-md, button.v-icon.fa-md {
+i.v-icon.fa-md,
+button.v-icon.fa-md {
   font-size: 1em;
-  line-height: .6em;
-  vertical-align: -.01em;
+  line-height: 0.6em;
+  vertical-align: -0.01em;
 }
 
 i.v-icon.fa-lg {
   font-size: 1.25em;
-  line-height: .05em;
-  vertical-align: -.075em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
 }
 
 @font-face {
@@ -38,4 +47,8 @@ i.v-icon.fa-lg {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.width-45p {
+  width: 45%;
 }
