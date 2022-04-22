@@ -1,22 +1,45 @@
 <template>
-  <v-text-field
-    :prepend-inner-icon="prepend_inner_icon"
-    :label="label"
-    :class="classes"
-    v-model="date"
-    @blur="blur"
-    @focus="focus"
-    @keyup="keyup"
-    @keypress="preventDefault"
-    @keydown="preventDefault"
-    :rules="[$rules.required, $rules.date]"
-    solo
-    dense
-  />
+  <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
+    <template v-slot:activator="{ on, attrs }">
+      <v-text-field
+        :prepend-inner-icon="prepend_inner_icon"
+        :label="label"
+        :class="classes"
+        :value="formatedDate"
+        dense
+        solo
+        readonly
+        v-bind="attrs"
+        v-on="on"
+      />
+    </template>
+    <v-date-picker
+      v-model="date"
+      locale="fr-fr"
+      :active-picker.sync="activePicker"
+      :max="new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10)"
+    >
+      <v-spacer />
+      <v-btn text color="primary" class="text-uppercase" @click="modal = false"> Annuler </v-btn>
+      <v-btn text color="primary" class="text-uppercase" @click="save"> Valider </v-btn>
+    </v-date-picker>
+  </v-dialog>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
+  data: () => ({
+    date: '',
+    modal: false,
+    activePicker: null,
+  }),
+  watch: {
+    modal(val) {
+      val && setTimeout(() => (this.activePicker = 'YEAR'))
+    },
+  },
   props: {
     label: {
       type: String,
@@ -34,77 +57,15 @@ export default {
       required: false,
     },
   },
-  data: function () {
-    return {
-      date: '',
-      raw_date: '',
-    }
+  computed: {
+    formatedDate() {
+      moment.locale('fr')
+      return this.date ? moment(this.date).format('DD MMMM YYYY') : ''
+    },
   },
   methods: {
-    blur: function () {
-      if (this.date === 'jj/mm/aaaa') this.date = ''
-      this.notify()
-    },
-    focus: function () {
-      if (this.date === '') this.date = 'jj/mm/aaaa'
-      this.notify()
-    },
-    keyup: function (e) {
-      e.preventDefault()
-
-      if (e['key'] === 'Backspace' && this.raw_date.length > 0) {
-        let letter = ''
-        let index = 0
-
-        switch (this.raw_date.length) {
-          case 1:
-          case 2:
-            letter = 'j'
-            index = this.raw_date.length - 1
-            break
-          case 3:
-          case 4:
-            letter = 'm'
-            index = this.raw_date.length
-            break
-          case 5:
-          case 6:
-          case 7:
-          case 8:
-            letter = 'a'
-            index = this.raw_date.length + 1
-            break
-        }
-
-        this.raw_date = this.raw_date.substring(0, this.raw_date.length - 1)
-        this.date = this.date.substring(0, index) + letter + this.date.substring(index + 1)
-      } else {
-        if (!isNaN(parseInt(e['key'])) && this.raw_date.length < 8) {
-          this.raw_date += e['key']
-          switch (this.raw_date.length) {
-            case 1:
-            case 2:
-              this.date = this.date.replace('j', parseInt(e['key']))
-              break
-            case 3:
-            case 4:
-              this.date = this.date.replace('m', parseInt(e['key']))
-              break
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-              this.date = this.date.replace('a', parseInt(e['key']))
-              break
-          }
-        }
-      }
-      this.notify()
-    },
-    preventDefault: function (e) {
-      e.preventDefault()
-    },
-    notify() {
+    save() {
+      this.$refs.dialog.save(this.date)
       this.$emit('input', this.date)
     },
   },
