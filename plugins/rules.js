@@ -27,6 +27,10 @@ export default ({ app }, inject) => {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return pattern.test(value) || "Format d'email incorrect"
       },
+      password: (value) => {
+        const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        return pattern.test(value) || "Votre mot de passe ne contient pas les caractères nécessaires"
+      }
     })
   )
 }
