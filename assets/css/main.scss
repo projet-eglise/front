@@ -6,6 +6,14 @@
   width: 95px !important;
 }
 
+.text-capitalize input[type="text"] {
+  text-transform: capitalize;
+}
+
+.text-uppercase input[type="text"] {
+  text-transform: uppercase;
+}
+
 i.theme--light.v-icon {
   color: #00353f;
 }
