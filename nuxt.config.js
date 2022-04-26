@@ -21,7 +21,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/vuetify', ['@nuxtjs/moment', ['fr']]],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', ['@nuxtjs/moment', ['fr']]],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
