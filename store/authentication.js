@@ -1,4 +1,4 @@
-const unprotectedRoutes = ['/connexion', '/inscription']
+const unprotectedRoutes = ['/connexion', '/inscription', '/dashboard/choisir-mon-eglise']
 
 export const state = () => ({
   isConnected: false,
@@ -20,7 +20,7 @@ export const actions = {
 
     if (status === 200 && data.message && data.data) {
       commit('LOGIN')
-      this.$router.push('/dashboard')
+      this.$router.push('/dashboard/choisir-mon-eglise')
     } else {
       commit('LOGOUT')
     }
@@ -37,6 +37,19 @@ export const actions = {
 
     return '/connexion'
   },
+  async signin({ commit }, payload) {
+    const res = await this.$repositories.authentication.signin(payload)
+    const { status, data } = res
+
+    if (status === 200 && data.message && data.data) {
+      commit('LOGIN')
+      this.$router.push('/dashboard/choisir-mon-eglise')
+    } else {
+      commit('LOGOUT')
+    }
+
+    return res
+  }
 }
 
 export const getters = {
