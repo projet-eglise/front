@@ -64,4 +64,6 @@ export default {
   },
 
   pageTransition: 'fade',
+
+  mode: 'spa'
 }
