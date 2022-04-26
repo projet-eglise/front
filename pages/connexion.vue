@@ -4,23 +4,23 @@
     <v-fade-transition>
       <v-form ref="form">
         <v-text-field
+          v-model="email"
           solo
           label="Email"
-          v-model="email"
           prepend-inner-icon="fa-at fa-md"
           :rules="[$rules.required, $rules.email]"
         />
         <v-text-field
+          v-model="password"
           solo
           label="Mot de passe"
-          v-model="password"
           :rules="[$rules.required]"
           :type="showPassword ? 'text' : 'password'"
           prepend-inner-icon="fa-lock fa-md"
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn color="primary" block @click="connect" :loading="isLoading"> S'identifier </v-btn>
+        <v-btn color="primary" block :loading="isLoading" @click="connect"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
@@ -35,7 +35,7 @@
       transition="scale-transition"
       class="center-v-alert"
       :value="error.display"
-      >{{ this.error.message }}</v-alert
+      >{{ error.message }}</v-alert
     >
   </v-col>
 </template>
@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    connect: async function () {
+    async connect() {
       if (this.$refs.form.validate()) {
         this.error.display = false
         this.isLoading = true

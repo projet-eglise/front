@@ -1,8 +1,8 @@
 <template>
   <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
-    <template v-slot:activator="{ on, attrs }">
+    <template #activator="{ on, attrs }">
       <v-text-field
-        :prepend-inner-icon="prepend_inner_icon"
+        :prepend-inner-icon="prependInnerIcon"
         :label="label"
         :class="classes"
         :value="formatedDate"
@@ -30,23 +30,13 @@
 import moment from 'moment'
 
 export default {
-  data: () => ({
-    date: '',
-    modal: false,
-    activePicker: null,
-  }),
-  watch: {
-    modal(val) {
-      val && setTimeout(() => (this.activePicker = 'YEAR'))
-    },
-  },
   props: {
     label: {
       type: String,
       default: 'Date',
       required: false,
     },
-    prepend_inner_icon: {
+    prependInnerIcon: {
       type: String,
       default: 'fa-calendar fa-md',
       required: false,
@@ -57,10 +47,22 @@ export default {
       required: false,
     },
   },
+  data() {
+    return {
+      date: '',
+      modal: false,
+      activePicker: null,
+    }
+  },
   computed: {
     formatedDate() {
       moment.locale('fr')
       return this.date ? moment(this.date).format('DD MMMM YYYY') : ''
+    },
+  },
+  watch: {
+    modal(val) {
+      val && setTimeout(() => (this.activePicker = 'YEAR'))
     },
   },
   methods: {

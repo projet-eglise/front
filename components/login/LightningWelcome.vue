@@ -3,22 +3,22 @@
 </template>
 <script>
 export default {
-  mounted: function () {
+  mounted() {
     setTimeout(
       function () {
-        this.$refs['part1'].classList.value = ['neon']
+        this.$refs.part1.classList.value = ['neon']
       }.bind(this),
       200
     )
     setTimeout(
       function () {
-        this.$refs['part2'].classList.value = ['neon']
+        this.$refs.part2.classList.value = ['neon']
       }.bind(this),
       400
     )
     setTimeout(
       function () {
-        this.$refs['part3'].classList.value = ['neon']
+        this.$refs.part3.classList.value = ['neon']
       }.bind(this),
       700
     )
