@@ -1,11 +1,27 @@
 <template>
-  <v-col>
-    <p>Hello World !!</p>
+  <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
+    <v-btn color="primary" block>Administrateur</v-btn>
+    <v-btn color="primary" block>ADD Dijon</v-btn>
+    <v-btn color="primary" block>ADD Autun</v-btn>
+    <v-btn color="primary" block outlined> <i class="fas fa-add mr-2" /> Rejoindre une Eglise</v-btn>
   </v-col>
 </template>
 
 <script>
 export default {
+  name: 'ChooseMyChurchPage',
+  layout: 'login',
   meta: { protected: true },
 }
 </script>
+
+<style scoped>
+.choises {
+  width: 30%;
+  margin-bottom: 2em;
+}
+
+.v-btn {
+  margin: 2em 0px;
+}
+</style>
