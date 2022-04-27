@@ -1,4 +1,4 @@
-const unprotectedRoutes = ['/connexion', '/inscription', '/dashboard/choisir-mon-eglise']
+const unprotectedRoutes = ['/connexion', '/inscription']
 
 export const state = () => ({
   isConnected: false,
