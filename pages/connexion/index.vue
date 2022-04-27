@@ -44,6 +44,7 @@
 export default {
   name: 'LoginPage',
   layout: 'login',
+  meta: { protected: false },
   data() {
     return {
       email: '',

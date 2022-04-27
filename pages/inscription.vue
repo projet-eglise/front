@@ -100,6 +100,7 @@
 export default {
   name: 'SignInPage',
   layout: 'login',
+  meta: { protected: false },
   data() {
     return {
       lastname: '',

@@ -1,4 +1,4 @@
-const unprotectedRoutes = ['/connexion', '/inscription']
+// const unprotectedRoutes = ['/connexion', '/inscription']
 
 export const state = () => ({
   isConnected: false,
@@ -31,7 +31,7 @@ export const actions = {
     commit('LOGOUT')
   },
   checkRouteAccess({ state }, route) {
-    if (state.isConnected || unprotectedRoutes.includes(route.path)) {
+    if (state.isConnected || !route.meta[0].protected) {
       return route.path
     }
 

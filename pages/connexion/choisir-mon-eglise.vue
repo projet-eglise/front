@@ -1,10 +1,11 @@
 <template>
-  <a href="/login">Go vers la page de login</a>
+  <v-col>
+    <p>Hello World !!</p>
+  </v-col>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
   meta: { protected: true },
 }
 </script>
