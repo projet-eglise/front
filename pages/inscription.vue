@@ -1,24 +1,8 @@
 <template>
   <v-col class="signin-form ml-auto mr-auto justify-start" height="100%">
     <NuxtLink to="/connexion" class="return-link"><i class="fas fa-chevron-left"></i> Retour</NuxtLink>
-    <label for="avatar">
-      <div class="circle d-flex align-center justify-center mt-10 mb-10 ml-auto mr-auto">
-        <i v-if="image === null && !chargingImage" class="fas fa-user-edit user-icon ml-4" />
-        <v-progress-circular v-else-if="chargingImage" indeterminate color="primary" />
-        <v-img v-else class="image-preview" height="100%" :src="createImage()" />
-      </div>
-    </label>
     <v-form ref="form">
-      <v-file-input
-        id="avatar"
-        ref="avatar"
-        v-model="uploadedImage"
-        style="display: none"
-        name="avatar"
-        accept=".png, .jpg, .jpeg"
-        multiple
-        @change="displayImagePreview"
-      />
+      <WidgetAvatarEditor v-model="image" />
       <v-row>
         <v-text-field
           v-model="firstname"
@@ -113,8 +97,6 @@
 </template>
 
 <script>
-import imageCompression from 'browser-image-compression'
-
 export default {
   name: 'SignInPage',
   layout: 'login',
@@ -127,9 +109,7 @@ export default {
       birthdate: '',
       password: '',
       confirmPassword: '',
-      chargingImage: false,
       image: null,
-      uploadedImage: null,
       isLoading: false,
       error: {
         message: 'Erreur ...',
@@ -138,39 +118,6 @@ export default {
     }
   },
   methods: {
-    displayImagePreview(uploadedImage) {
-      const imageFile = uploadedImage[0]
-      this.chargingImage = true
-
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-      }
-
-      try {
-        imageCompression(imageFile, options).then(
-          function (compressedFile) {
-            const file = new File([compressedFile], compressedFile.name, {
-              type: compressedFile.type,
-              lastModified: new Date().getTime(),
-            })
-
-            const container = new DataTransfer()
-
-            container.items.add(file)
-
-            this.chargingImage = false
-            this.image = container.files[0]
-          }.bind(this)
-        )
-      } catch (error) {
-        this.chargingImage = false
-      }
-    },
-    createImage() {
-      return URL.createObjectURL(this.image)
-    },
     async sendRequest() {
       if (this.$refs.form.validate()) {
         this.error.display = false
@@ -201,7 +148,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .signin-form {
   width: 30%;
   margin-bottom: 4em;
@@ -212,31 +159,18 @@ export default {
   text-transform: uppercase;
 }
 
-.circle {
-  clip-path: circle(50%);
-  height: 100%;
-  width: 100%;
-  background-color: #dfe6ed;
+.row {
+  > .v-input {
+    width: 45%;
+  }
 
-  height: 8em;
-  width: 8em;
-}
+  > .v-input:first-child {
+    margin-right: 4px;
+  }
 
-.user-icon {
-  font-size: 5em;
-  color: #9fadba;
-}
-
-.row > .v-input {
-  width: 45%;
-}
-
-.row > .v-input:first-child {
-  margin-right: 4px;
-}
-
-.row > .v-input:last-child {
-  margin-left: 4px;
+  > .v-input:last-child {
+    margin-left: 4px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -244,16 +178,18 @@ export default {
     width: 90%;
   }
 
-  .row > .v-input {
-    width: 100%;
-  }
+  .row {
+    > .v-input {
+      width: 100%;
+    }
 
-  .row > .v-input:first-child {
-    margin-right: 0px;
-  }
+    > .v-input:first-child {
+      margin-right: 0px;
+    }
 
-  .row > .v-input:last-child {
-    margin-left: 0px;
+    > .v-input:last-child {
+      margin-left: 0px;
+    }
   }
 
   .width-45p {
