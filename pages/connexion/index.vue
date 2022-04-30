@@ -47,8 +47,8 @@ export default {
   meta: { protected: false },
   data() {
     return {
-      email: 'timothe@hofmann.fr',
-      password: 'LnVglh4^#',
+      email: '',
+      password: '',
       showPassword: true,
       isLoading: false,
       error: {

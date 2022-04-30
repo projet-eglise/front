@@ -16,6 +16,8 @@ export const mutations = {
 
     state.whoami = JSON.parse(jsonPayload)
     state.token = token
+
+    delete state.whoami.exp
   },
   LOGOUT(state) {
     state.isConnected = false
@@ -64,4 +66,5 @@ export const actions = {
 export const getters = {
   isConnected: (state) => state.isConnected,
   token: (state) => state.token,
+  whoami: (state) => state.whoami,
 }
