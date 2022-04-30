@@ -1,17 +1,15 @@
 <template>
   <v-col>
-    <p>Page de récapitulatif ^^</p>
+    <p>Page d'administration</p>
     <v-btn @click="goChoosePage">Retour au choix d'Eglise</v-btn>
   </v-col>
 </template>
 
 <script>
 export default {
-  name: 'DashboardIndexPage',
   meta: { protected: true },
   methods: {
-    goChoosePage(churchUid) {
-      this.$store.dispatch('church/clearChurch', churchUid)
+    goChoosePage() {
       this.$router.push('/connexion/choisir-mon-eglise')
     },
   },

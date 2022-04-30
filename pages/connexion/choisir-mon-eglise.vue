@@ -1,7 +1,11 @@
 <template>
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
-    <v-btn v-if="$store.getters['authentication/whoami'].user.is_admin" color="primary" block>Administrateur</v-btn>
-    <v-btn v-for="church in $store.getters['authentication/whoami'].churches" :key="church.uid" color="primary" block>{{ church.name }}</v-btn>
+    <NuxtLink v-if="$store.getters['authentication/whoami'].user.is_admin" to="/admin">
+      <v-btn color="primary" block>Administrateur</v-btn>
+    </NuxtLink>
+    <v-btn v-for="church in $store.getters['authentication/whoami'].churches" :key="church.uid" color="primary" block @click="chooseChurch(church.uid)">
+      {{ church.name }}
+    </v-btn>
     <v-btn color="primary" block outlined> <i class="fas fa-add mr-2" /> Rejoindre une Eglise</v-btn>
   </v-col>
 </template>
@@ -11,6 +15,12 @@ export default {
   name: 'ChooseMyChurchPage',
   layout: 'login',
   meta: { protected: true },
+  methods: {
+    chooseChurch(churchUid) {
+      this.$store.dispatch('church/setChurchWithUid', churchUid)
+      this.$router.push('/dashboard')
+    }
+  }
 }
 </script>
 

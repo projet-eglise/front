@@ -49,7 +49,7 @@ export default {
     return {
       email: '',
       password: '',
-      showPassword: true,
+      showPassword: false,
       isLoading: false,
       error: {
         message: 'Erreur ...',
