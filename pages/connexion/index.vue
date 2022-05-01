@@ -2,7 +2,7 @@
   <v-col class="login-form ml-auto mr-auto" height="100%">
     <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
     <v-fade-transition>
-      <v-form ref="form">
+      <v-form ref="form" @submit="connect">
         <v-text-field
           v-model="email"
           solo
@@ -20,7 +20,7 @@
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn color="primary" block :loading="isLoading" @click="connect"> S'identifier </v-btn>
+        <v-btn color="primary" type="submit" block :loading="isLoading"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
@@ -58,7 +58,10 @@ export default {
     }
   },
   methods: {
-    async connect() {
+    async connect(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
       if (this.$refs.form.validate()) {
         this.error.display = false
         this.isLoading = true
