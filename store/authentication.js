@@ -57,11 +57,6 @@ export const actions = {
       commit('LOGIN', this.$cookies.get('token'))
     }
 
-    if (route.path === '/deconnexion') {
-      commit('LOGOUT')
-      return '/connexion'
-    }
-
     if (state.isConnected || !route.meta[0].protected) {
       return route.path
     }

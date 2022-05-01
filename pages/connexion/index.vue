@@ -80,6 +80,9 @@ export default {
       }
     },
   },
+  mounted() {
+    this.$store.dispatch('authentication/logout')
+  },
 }
 </script>
 
