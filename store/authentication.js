@@ -8,19 +8,30 @@ export const mutations = {
   LOGIN(state, token) {
     state.isConnected = true
 
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const base64Url = token.split('.')[1]
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    const jsonPayload = process.client
+      ? decodeURIComponent(
+          atob(base64)
+            .split('')
+            .map(function (c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            })
+            .join('')
+        )
+      : Buffer.from(base64, 'base64').toString()
 
     state.whoami = JSON.parse(jsonPayload)
     state.token = token
+    this.$cookies.set('token', token)
 
     delete state.whoami.exp
   },
   LOGOUT(state) {
     state.isConnected = false
+    state.token = null
+    state.whoami = null
+    this.$cookies.remove('token')
   },
 }
 
@@ -41,7 +52,16 @@ export const actions = {
   logout({ commit }) {
     commit('LOGOUT')
   },
-  checkRouteAccess({ state }, route) {
+  checkRouteAccess({ state, commit }, route) {
+    if (!state.isConnected && this.$cookies.get('token') !== undefined) {
+      commit('LOGIN', this.$cookies.get('token'))
+    }
+
+    if (route.path === '/deconnexion') {
+      commit('LOGOUT')
+      return '/connexion'
+    }
+
     if (state.isConnected || !route.meta[0].protected) {
       return route.path
     }
