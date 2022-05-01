@@ -54,7 +54,7 @@ export const actions = {
 
     if (status === 200 && data.message && data.data) {
       commit('LOGIN')
-      this.$router.push('/connexion/choisir-mon-eglise')
+      this.$router.push('/eglise/creer-ou-rejoindre')
     } else {
       commit('LOGOUT')
     }

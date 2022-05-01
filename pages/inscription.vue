@@ -1,6 +1,8 @@
 <template>
   <v-col class="signin-form ml-auto mr-auto justify-start" height="100%">
-    <NuxtLink to="/connexion" class="return-link"><i class="fas fa-chevron-left"></i> Retour</NuxtLink>
+    <NuxtLink to="/connexion" class="text-decoration-none text-uppercase">
+      <i class="fas fa-chevron-left"></i> Retour
+    </NuxtLink>
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
       <v-row>
@@ -151,13 +153,7 @@ export default {
 
 <style scoped lang="scss">
 .signin-form {
-  width: 30%;
   margin-bottom: 4em;
-}
-
-.return-link {
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .row {
@@ -175,10 +171,6 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .signin-form {
-    width: 90%;
-  }
-
   .row {
     > .v-input {
       width: 100%;
@@ -198,12 +190,6 @@ export default {
     margin-right: 0px !important;
     margin-left: 0px !important;
     margin-bottom: 24px;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .signin-form {
-    width: 70%;
   }
 }
 </style>

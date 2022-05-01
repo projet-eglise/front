@@ -2,7 +2,7 @@
   <v-app>
     <v-main class="align-center justify-center">
       <v-container fluid>
-        <Nuxt v-if="!startWaitingPage"/>
+        <Nuxt v-if="!startWaitingPage" class="content"/>
         <v-col v-else class="justify-center text-center">
           <LoginLightningWelcome />
         </v-col>
@@ -35,5 +35,21 @@ body,
 .v-application {
   background-color: #00353f !important;
   overflow-y: hidden;
+}
+
+.content {
+  width: 30%;
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .content {
+    width: 70%;
+  }
 }
 </style>

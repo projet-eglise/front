@@ -82,7 +82,6 @@ export default {
 
 <style scoped>
 .login-form {
-  width: 30%;
   margin-bottom: 4em;
 }
 
@@ -93,17 +92,5 @@ export default {
 .center-v-alert {
   left: 50%;
   transform: translate(-50%, 0);
-}
-
-@media (max-width: 480px) {
-  .login-form {
-    width: 90%;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .login-form {
-    width: 70%;
-  }
 }
 </style>
