@@ -2,12 +2,13 @@
   <v-app>
     <v-main class="align-center justify-center">
       <v-container fluid>
-        <Nuxt v-if="!startWaitingPage" class="content"/>
+        <Nuxt v-if="!startWaitingPage" class="content" />
         <v-col v-else class="justify-center text-center">
           <LoginLightningWelcome />
         </v-col>
       </v-container>
     </v-main>
+    <WidgetAlertComponent />
   </v-app>
 </template>
 

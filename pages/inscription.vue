@@ -86,15 +86,6 @@
         <v-btn color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
       </v-row>
     </v-form>
-    <v-alert
-      dismissible
-      elevation="24"
-      type="error"
-      transition="scale-transition"
-      class="center-v-alert"
-      :value="error.display"
-      >{{ error.message }}</v-alert
-    >
   </v-col>
 </template>
 
@@ -114,16 +105,12 @@ export default {
       confirmPassword: '',
       image: null,
       isLoading: false,
-      error: {
-        message: 'Erreur ...',
-        display: false,
-      },
     }
   },
   methods: {
     async sendRequest() {
       if (this.$refs.form.validate()) {
-        this.error.display = false
+        this.$store.dispatch('alert-component/hide')
         this.isLoading = true
 
         try {
@@ -141,8 +128,7 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.error.message = error.response.data.error
-          this.error.display = true
+          this.$store.dispatch('alert-component/displayError', error.response.data.error)
           this.isLoading = false
         }
       }

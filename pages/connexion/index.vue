@@ -57,13 +57,16 @@ export default {
       },
     }
   },
+  mounted() {
+    this.$store.dispatch('authentication/logout')
+  },
   methods: {
     async connect(event) {
       event.preventDefault()
       event.stopPropagation()
 
       if (this.$refs.form.validate()) {
-        this.error.display = false
+        this.$store.dispatch('alert-component/hide')
         this.isLoading = true
 
         try {
@@ -73,15 +76,11 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.error.message = error.response.data.error
-          this.error.display = true
+          this.$store.dispatch('alert-component/displayError', error.response.data.error)
           this.isLoading = false
         }
       }
     },
-  },
-  mounted() {
-    this.$store.dispatch('authentication/logout')
   },
 }
 </script>

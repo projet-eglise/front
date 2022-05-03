@@ -5,6 +5,7 @@
         <Nuxt />
       </v-container>
     </v-main>
+    <WidgetAlertComponent />
   </v-app>
 </template>
 
