@@ -21,4 +21,7 @@ export default ($axios) => ({
 
     return await $axios.post('/signin', data)
   },
+  async whoami() {
+    return await $axios.get('/whoami')
+  },
 })
