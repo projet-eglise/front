@@ -24,7 +24,7 @@
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <a href="">Mot de passe oublié</a>
+          <NuxtLink to="">Mot de passe oublié</NuxtLink>
         </v-row>
       </v-form>
     </v-fade-transition>

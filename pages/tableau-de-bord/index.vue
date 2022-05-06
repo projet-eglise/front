@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  name: 'DashboardIndexPage',
   meta: { protected: true },
   methods: {
     goChoosePage(churchUid) {

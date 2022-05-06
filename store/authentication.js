@@ -57,6 +57,10 @@ export const actions = {
       commit('LOGIN', this.$cookies.get('token'))
     }
 
+    if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined)) {
+      return '/erreur/404'
+    }
+
     if (state.isConnected || !route.meta[0].protected) {
       return route.path
     }
