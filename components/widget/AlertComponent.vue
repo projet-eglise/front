@@ -17,13 +17,13 @@
 export default {
   computed: {
     type() {
-      return this.$store.getters['alert-component/type']
+      return this.$store.getters['components/alert-component/type']
     },
     display() {
-      return this.$store.getters['alert-component/display']
+      return this.$store.getters['components/alert-component/display']
     },
     message() {
-      return this.$store.getters['alert-component/message']
+      return this.$store.getters['components/alert-component/message']
     },
   },
 }

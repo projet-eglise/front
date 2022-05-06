@@ -110,7 +110,7 @@ export default {
   methods: {
     async sendRequest() {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch('alert-component/hide')
+        this.$store.dispatch('components/alert-component/hide')
         this.isLoading = true
 
         try {
@@ -128,7 +128,7 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.$store.dispatch('alert-component/displayError', error.response.data.error)
+          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
           this.isLoading = false
         }
       }
