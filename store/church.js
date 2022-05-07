@@ -1,6 +1,9 @@
 export const state = () => ({
   name: '',
   uid: '',
+  addres: {},
+  main_administrator: {},
+  pastor: {},
 })
 
 export const mutations = {
@@ -11,6 +14,10 @@ export const mutations = {
 }
 
 export const actions = {
+  add({ commit }, payload) {
+    commit('SET_CHURCH', payload)
+  },
+
   setChurchWithUid({ commit, rootGetters }, payload) {
     const churches = rootGetters['authentication/whoami'].churches
     for (const key in churches) {

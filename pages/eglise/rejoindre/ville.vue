@@ -1,10 +1,10 @@
 <template>
-    <p>Rejoindre mon Eglise</p>
+    <p>Rejoindre grâce à la ville</p>
 </template>
 
 <script>
 export default {
-  layout: 'login',
+  layout: 'configuration',
   meta: { protected: true },
 }
 </script>

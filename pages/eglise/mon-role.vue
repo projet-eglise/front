@@ -1,10 +1,9 @@
 <template>
-    <p>Créer mon Eglise</p>
+    <p>Mon rôle</p>
 </template>
 
 <script>
 export default {
-  layout: 'login',
   meta: { protected: true },
 }
 </script>

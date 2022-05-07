@@ -5,7 +5,7 @@
         <i class="fas fa-chevron-left"></i> Retour
       </NuxtLink>
     </p>
-    <NuxtLink to="/eglise/rejoindre">
+    <NuxtLink to="/eglise/rejoindre/code">
       <v-btn color="primary" block>Rejoindre une Eglise</v-btn>
     </NuxtLink>
     <p class="primary--text text-uppercase">ou</p>
@@ -17,8 +17,7 @@
 
 <script>
 export default {
-  name: 'ChooseMyChurchPage',
-  layout: 'login',
+  layout: 'configuration',
   meta: { protected: true },
   methods: {
     chooseChurch(churchUid) {

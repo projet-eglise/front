@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'ChooseMyChurchPage',
-  layout: 'login',
+  layout: 'configuration',
   meta: { protected: true },
   data() {
     return {
@@ -24,11 +24,12 @@ export default {
     }
   },
   mounted() {
-    if (this.$nuxt.context.from !== undefined && this.$nuxt.context.from === 'connexion') {
+    if (this.$nuxt.context.from === 'connexion') {
       this.churches = this.$store.getters['authentication/whoami'].churches
       this.is_admin = this.$store.getters['authentication/whoami'].user.is_admin
     } else {
       this.$repositories.authentication.whoami().then(function (response) {
+        console.log(response)
         this.churches = response.data.data.churches
         this.is_admin = response.data.data.user.is_admin
       }.bind(this))

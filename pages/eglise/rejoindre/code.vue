@@ -1,10 +1,10 @@
 <template>
-  <a href="/login">Go vers la page de login</a>
+    <p>Rejoindre avec un code une Eglise</p>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  layout: 'configuration',
   meta: { protected: true },
 }
 </script>
