@@ -1,10 +1,6 @@
 <template>
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
-    <p class="text-left">
-      <NuxtLink to="/connexion/choisir-mon-eglise" class="text-decoration-none text-uppercase text-left mr-auto">
-        <i class="fas fa-chevron-left"></i> Retour
-      </NuxtLink>
-    </p>
+    <WidgetReturnButton to="/connexion/choisir-mon-eglise" />
     <NuxtLink to="/eglise/rejoindre/code">
       <v-btn color="primary" block>Rejoindre une Eglise</v-btn>
     </NuxtLink>

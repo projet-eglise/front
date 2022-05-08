@@ -1,5 +1,7 @@
 <template>
-    <p>Rejoindre avec un code une Eglise</p>
+  <v-col class="ml-auto mr-auto flex-column" height="100%" align="center">
+    <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
+  </v-col>
 </template>
 
 <script>

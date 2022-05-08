@@ -1,10 +1,6 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
-    <p>
-      <NuxtLink to="/eglise/creer-ou-rejoindre" class="text-decoration-none text-uppercase">
-        <i class="fas fa-chevron-left"></i> Retour
-      </NuxtLink>
-    </p>
+    <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
     <p class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Mon Eglise</p>
     <v-row>
       <v-text-field

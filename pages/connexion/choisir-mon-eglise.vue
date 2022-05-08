@@ -29,7 +29,6 @@ export default {
       this.is_admin = this.$store.getters['authentication/whoami'].user.is_admin
     } else {
       this.$repositories.authentication.whoami().then(function (response) {
-        console.log(response)
         this.churches = response.data.data.churches
         this.is_admin = response.data.data.user.is_admin
       }.bind(this))
