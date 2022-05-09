@@ -88,20 +88,23 @@ export default {
         this.isLoading = true
 
         try {
-          await this.$repositories.churches.add({
-            church_name: this.churchName,
-            church_address: this.churchAddress,
-            church_postal_code: this.churchPostalCode,
-            church_city: this.churchCity,
-            pastor_firstname: this.pastorFirstname,
-            pastor_lastname: this.pastorLastname,
-            pastor_email: this.pastorEmail,
-          }).then(function(response) {
-            this.$store.dispatch('church/add', response.data.data.church)
-          }.bind(this))
-
-          this.isLoading = false
-          this.$router.push('/eglise/mon-role')
+          await this.$repositories.churches
+            .add({
+              church_name: this.churchName,
+              church_address: this.churchAddress,
+              church_postal_code: this.churchPostalCode,
+              church_city: this.churchCity,
+              pastor_firstname: this.pastorFirstname,
+              pastor_lastname: this.pastorLastname,
+              pastor_email: this.pastorEmail,
+            })
+            .then(
+              function (response) {
+                this.$store.dispatch('church/add', response.data.data.church)
+                this.isLoading = false
+                this.$router.push(`/eglise/mon-role/${response.data.data.church.uid}`)
+              }.bind(this)
+            )
         } catch (error) {
           this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
           this.isLoading = false

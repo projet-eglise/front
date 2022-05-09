@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="align-center justify-center">
+    <v-main :class="classes">
       <v-container fluid>
         <Nuxt class="content"/>
       </v-container>
@@ -11,7 +11,11 @@
 
 <script>
 export default {
-  name: 'ConfigurationLayout',
+  computed: {
+    classes() {
+      return this.$nuxt.$route.path === "/eglise/rejoindre" ? "justify-center" : "align-center justify-center"
+    }
+  }
 }
 </script>
 
