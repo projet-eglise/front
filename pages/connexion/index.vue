@@ -24,7 +24,7 @@
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <NuxtLink to="">Mot de passe oublié</NuxtLink>
+          <span class="primary--text font-italic text-decoration-underline" style="cursor: pointer" @click="openResetPassword">Mot de passe oublié</span>
         </v-row>
       </v-form>
     </v-fade-transition>
@@ -37,6 +37,7 @@
       :value="error.display"
       >{{ error.message }}</v-alert
     >
+    <WidgetModalResetPassword :want-open-dialog="wantOpenDialog" />
   </v-col>
 </template>
 
@@ -51,6 +52,7 @@ export default {
       password: '',
       showPassword: false,
       isLoading: false,
+      wantOpenDialog: false,
       error: {
         message: 'Erreur ...',
         display: false,
@@ -80,6 +82,18 @@ export default {
           this.isLoading = false
         }
       }
+    },
+    openResetPassword(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      this.wantOpenDialog = true
+      setTimeout(
+        function () {
+          this.wantOpenDialog = false
+        }.bind(this),
+        10
+      )
     },
   },
 }
