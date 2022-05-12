@@ -39,17 +39,20 @@ export default {
 
 .alert-widget {
   width: 50%;
+  z-index: 100000;
 }
 
 @media (max-width: 480px) {
   .alert-widget {
     width: 100%;
+    z-index: 100000;
   }
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
   .alert-widget {
     width: 70%;
+    z-index: 100000;
   }
 }
 </style>

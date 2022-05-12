@@ -23,4 +23,7 @@ export default ($axios) => ({
   async whoami() {
     return await $axios.get('/whoami')
   },
+  async passwordRequest(email) {
+    return await $axios.get(`/password_request/request/${email}`)
+  },
 })

@@ -15,7 +15,7 @@ export default ({ app }, inject) => {
         return pattern.test(value) || "Format d'email incorrect"
       },
       password: (value) => {
-        const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,}$/
         return pattern.test(value) || "Votre mot de passe ne contient pas les caractères nécessaires"
       },
       postal_code: (value) => {
