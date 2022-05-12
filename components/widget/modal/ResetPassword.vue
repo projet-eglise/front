@@ -19,25 +19,26 @@
             réinitialisation de mot de passe.</v-card-text
           >
 
-          <v-text-field
-            ref="email"
-            v-model="email"
-            solo
-            label="Email de récupération"
-            class="ml-4 mr-4"
-            prepend-inner-icon="fa-at fa-md"
-            :rules="[$rules.required, $rules.email]"
-          />
-          <v-card-text class="font-italic primary--text mt-n2 pb-1"
-            >Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter
-            l’administrateur de votre Eglise.</v-card-text
-          >
+          <v-form ref="form">
+            <v-text-field
+              v-model="email"
+              solo
+              label="Email de récupération"
+              class="ml-4 mr-4"
+              prepend-inner-icon="fa-at fa-md"
+              :rules="[$rules.required, $rules.email]"
+            />
+            <v-card-text class="font-italic primary--text mt-n2 pb-1"
+              >Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter
+              l’administrateur de votre Eglise.</v-card-text
+            >
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn text @click="close"> Annuler </v-btn>
-            <v-btn color="primary" text @click="sendRequest"> Envoyer </v-btn>
-          </v-card-actions>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn text @click="close"> Annuler </v-btn>
+              <v-btn color="primary" type="submit" text @click="sendRequest"> Envoyer </v-btn>
+            </v-card-actions>
+          </v-form>
         </v-container>
       </v-card>
     </v-dialog>
@@ -70,13 +71,19 @@ export default {
   methods: {
     close() {
       this.openDialog = false
-      setTimeout(function () {
-        this.requested = false
-        this.email = ''
-      }.bind(this), 100)
+      setTimeout(
+        function () {
+          this.requested = false
+          this.email = ''
+        }.bind(this),
+        100
+      )
     },
-    async sendRequest() {
-      if (this.$refs.email.validate()) {
+    async sendRequest(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (this.$refs.form.validate()) {
         this.$store.dispatch('components/alert-component/hide')
         this.isLoading = true
 

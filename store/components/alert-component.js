@@ -14,6 +14,9 @@ export const mutations = {
   ERROR_TYPE(state) {
     state.type = 'error'
   },
+  SUCCESS_TYPE(state) {
+    state.type = 'success'
+  },
   SET_MESSAGE(state, message) {
     state.message = message
   },
@@ -23,6 +26,11 @@ export const actions = {
   displayError({ commit }, message) {
     commit('SET_MESSAGE', message)
     commit('ERROR_TYPE')
+    commit('DISPLAY')
+  },
+  displaySuccess({ commit }, message) {
+    commit('SET_MESSAGE', message)
+    commit('SUCCESS_TYPE')
     commit('DISPLAY')
   },
   hide({ commit }) {

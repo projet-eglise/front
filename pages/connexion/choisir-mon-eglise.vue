@@ -23,7 +23,7 @@ export default {
       churches: {},
     }
   },
-  mounted() {
+  beforeMount() {
     if (this.$nuxt.context.from === 'connexion') {
       this.churches = this.$store.getters['authentication/whoami'].churches
       this.is_admin = this.$store.getters['authentication/whoami'].user.is_admin

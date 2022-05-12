@@ -26,4 +26,10 @@ export default ($axios) => ({
   async passwordRequest(email) {
     return await $axios.get(`/password_request/request/${email}`)
   },
+  async checkToken(token) {
+    return await $axios.get(`/password_request/check/${token}`)
+  },
+  async changePassword(payload) {
+    return await $axios.post(`/password_request/change_password`, payload)
+  },
 })
