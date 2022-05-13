@@ -2,9 +2,7 @@
   <v-col class="ml-auto mr-auto justify-start" height="100%">
     <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
     <h1 class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Mon rôle dans mon Eglise</h1>
-    <v-row v-if="waitingMount" class="text-center mt-10 mb-12">
-      <v-progress-circular :size="50" color="primary" class="ml-auto mr-auto" indeterminate />
-    </v-row>
+    <WidgetWaitingSpinner v-if="waitingMount" />
     <v-fade-transition v-else apear>
       <ul>
         <li v-for="service in services" :key="service.uid" class="mt-4">
