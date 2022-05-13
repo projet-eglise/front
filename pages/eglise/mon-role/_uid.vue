@@ -11,12 +11,12 @@
             <ul>
               <li v-for="role in service.roles" v-show="role.display" :key="role.uid" class="mb-1">
                 <p class="mb-1">
-                  {{ role.name }} <i class="ml-2 fa fa-trash cursor-pointer" @click="deleteRole(role)"></i>
+                  {{ role.name }} <i class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline" @click="deleteRole(role)"></i>
                 </p>
                 <ul>
                   <li v-for="option in role.role_options" v-show="option.display" :key="option.uid">
                     <p class="mb-1">
-                      {{ option.name }} <i class="ml-2 fa fa-trash cursor-pointer" @click="deleteOption(option)"></i>
+                      {{ option.name }} <i class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline" @click="deleteOption(option)"></i>
                     </p>
                   </li>
                   <li
@@ -192,5 +192,9 @@ li {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.vertical-align-baseline {
+  vertical-align: baseline;
 }
 </style>
