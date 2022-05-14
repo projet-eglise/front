@@ -1,22 +1,35 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
     <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
-    <h1 class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Mon rôle dans mon Eglise</h1>
+    <h1 class="text-center primary--text text-uppercase bold mt-4 font-weight-bold text-center">
+      Mon rôle dans l'Eglise
+    </h1>
+    <p class="text-center font-italic primary--text mb-8">
+      Choisissez votre rôle ainsi que les précision nécessaire pour finir de rejoindre votre Eglise.
+    </p>
     <WidgetWaitingSpinner v-if="waitingMount" />
     <v-fade-transition v-else apear>
-      <ul>
+      <ul class="pl-0">
         <li v-for="service in services" :key="service.uid" class="mt-4">
           <v-card class="pb-4">
             <v-card-title class="pb-0">{{ service.name }}</v-card-title>
-            <ul>
+            <ul class="pl-8">
               <li v-for="role in service.roles" v-show="role.display" :key="role.uid" class="mb-1">
                 <p class="mb-1">
-                  {{ role.name }} <i class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline" @click="deleteRole(role)"></i>
+                  {{ role.name }}
+                  <i
+                    class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline"
+                    @click="deleteRole(role)"
+                  ></i>
                 </p>
-                <ul>
+                <ul class="pl-8">
                   <li v-for="option in role.role_options" v-show="option.display" :key="option.uid">
                     <p class="mb-1">
-                      {{ option.name }} <i class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline" @click="deleteOption(option)"></i>
+                      {{ option.name }}
+                      <i
+                        class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline"
+                        @click="deleteOption(option)"
+                      ></i>
                     </p>
                   </li>
                   <li
@@ -24,7 +37,7 @@
                     class="cursor-pointer"
                     @click="displayRoleModal(role)"
                   >
-                    <i class="fa-plus fa mr-2"></i>Ajouter un rôle
+                    <i class="fa-plus fa mr-2"></i>Ajouter une précision
                   </li>
                 </ul>
               </li>
@@ -96,6 +109,7 @@ export default {
       }
 
       this.iCanJoin = isInAtLeastOneService && addable
+      // TODO Corriger l'ajout quand un seul service à des enfants
     },
   },
   beforeMount() {
@@ -152,14 +166,14 @@ export default {
         }
 
         for (const roleId in service.roles) {
-            const role = service.roles[roleId]
-            if (!role.display) {
-              for (const roleId in role.role_options) {
-                const option = role.role_options[roleId]
-                option.display = false
-              }
+          const role = service.roles[roleId]
+          if (!role.display) {
+            for (const roleId in role.role_options) {
+              const option = role.role_options[roleId]
+              option.display = false
             }
           }
+        }
       }
 
       this.services.push({})

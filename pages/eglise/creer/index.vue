@@ -102,7 +102,7 @@ export default {
               function (response) {
                 this.$store.dispatch('church/add', response.data.data.church)
                 this.isLoading = false
-                this.$router.push(`/eglise/mon-role/${response.data.data.church.uid}`)
+                this.$router.push(`/eglise/${response.data.data.church.uid}/mon-role`)
               }.bind(this)
             )
         } catch (error) {

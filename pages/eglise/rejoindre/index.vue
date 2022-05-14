@@ -13,7 +13,7 @@
       Saissisez au moins les trois première lettres de la ville ou se situe votre Eglise
     </p>
     <p v-if="displayError" class="font-italic primary--text">Nous ne connaissons pas cette ville</p>
-    <container class="d-flex align-content-start flex-wrap">
+    <v-container class="d-flex align-content-start flex-wrap">
       <div v-for="church in displayedChurches" :key="church.name" style="width: 100%">
         <v-card class="ma-2">
           <v-card-title class="pb-0">{{ church.name }} - <span>{{ church.pastor.name }}</span></v-card-title>
@@ -26,7 +26,7 @@
           </v-card-actions>
         </v-card>
       </div>
-    </container>
+    </v-container>
     <v-dialog v-model="dialog" persistent width="500">
       <v-card>
         <v-card-title class="text-h5 mb-4"> Voulez vous rejoindre cette Eglise ? </v-card-title>
@@ -72,7 +72,7 @@ export default {
       return this.displayedChurches.length === 0 && !this.displayEnterLetters
     },
     to() {
-      return `/eglise/mon-role/${this.displayedChurch.uid}`
+      return `/eglise/${this.displayedChurch.uid}/mon-role`
     }
   },
   watch: {
