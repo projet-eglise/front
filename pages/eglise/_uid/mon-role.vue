@@ -88,9 +88,10 @@ export default {
 
           if (role.display === undefined) role.display = false
           if (!role.display) hasFreeRoles = true
-          if (role.display && role.role_options.length === 0) isInAtLeastOneService = true
-          if (role.display) countRolesSelected++
-
+          if (role.display) {
+            isInAtLeastOneService = true
+            countRolesSelected++
+          }
           let countOptions = 0
           for (const optionId in role.role_options) {
             const option = role.role_options[optionId]
@@ -109,7 +110,6 @@ export default {
       }
 
       this.iCanJoin = isInAtLeastOneService && addable
-      // TODO Corriger l'ajout quand un seul service à des enfants
     },
   },
   beforeMount() {
