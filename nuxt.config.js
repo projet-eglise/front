@@ -65,4 +65,6 @@ export default {
   },
 
   pageTransition: 'fade',
+
+  loading: false,
 }
