@@ -1,5 +1,6 @@
 <template>
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
+    <WidgetWaitingSpinner v-if="waitingMount" />
     <NuxtLink v-if="is_admin" to="/admin">
       <v-btn color="primary" block>Administrateur</v-btn>
     </NuxtLink>
@@ -21,16 +22,19 @@ export default {
     return {
       is_admin: false,
       churches: {},
+      waitingMount: true,
     }
   },
   beforeMount() {
     if (this.$nuxt.context.from === 'connexion') {
       this.churches = this.$store.getters['authentication/whoami'].churches
       this.is_admin = this.$store.getters['authentication/whoami'].user.is_admin
+      this.waitingMount = false
     } else {
       this.$repositories.authentication.whoami().then(function (response) {
         this.churches = response.data.data.churches
         this.is_admin = response.data.data.user.is_admin
+        this.waitingMount = false
       }.bind(this))
     }
   },
