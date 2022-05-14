@@ -71,8 +71,8 @@ export const actions = {
     const res = await this.$repositories.authentication.signin(payload)
     const { status, data } = res
 
-    if (status === 200 && data.message && data.data) {
-      commit('LOGIN')
+    if (status === 200 && data.message && data.data && data.data.token) {
+      commit('LOGIN', data.data.token)
       this.$router.push('/eglise/creer-ou-rejoindre')
     } else {
       commit('LOGOUT')
