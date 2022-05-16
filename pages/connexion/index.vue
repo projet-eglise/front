@@ -6,6 +6,7 @@
         <v-text-field
           v-model="email"
           solo
+          dense
           label="Email"
           prepend-inner-icon="fa-at fa-md"
           :rules="[$rules.required, $rules.email]"
@@ -13,6 +14,7 @@
         <v-text-field
           v-model="password"
           solo
+          dense
           label="Mot de passe"
           :rules="[$rules.required]"
           :type="showPassword ? 'text' : 'password'"

@@ -85,7 +85,7 @@ export default {
     },
   },
   async mounted() {
-    const response = await this.$repositories.churches.getAllForJoin()
+    const response = await this.$repositories.churches.getjoinable()
     this.churches = response.data.data
   },
   methods: {
