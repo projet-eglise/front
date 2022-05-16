@@ -4,12 +4,22 @@
     <NuxtLink v-if="is_admin" to="/admin">
       <v-btn color="primary" block>Administrateur</v-btn>
     </NuxtLink>
-    <v-btn v-for="church in churches" :key="church.uid" color="primary" block @click="chooseChurch(church.uid)">
+    <v-btn v-for="church in churches" :key="church.uid" color="primary" block @click="chooseChurch(church)">
       {{ church.name }}
     </v-btn>
     <NuxtLink to="/eglise/creer-ou-rejoindre" style="text-decoration: none">
       <v-btn color="primary" block outlined> <i class="fas fa-add mr-2" /> Rejoindre une Eglise</v-btn>
     </NuxtLink>
+    <v-dialog v-model="displayModal" max-width="500">
+      <v-card>
+        <v-card-title class="text-h5" style="word-break: break-word"> Veuillez patienter </v-card-title>
+        <v-card-text>Un administrateur va valider votre demande d'admission.</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn class="mt-0 mb-0" text @click="displayModal = false"> Fermer </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-col>
 </template>
 
@@ -23,6 +33,7 @@ export default {
       is_admin: false,
       churches: {},
       waitingMount: true,
+      displayModal: false,
     }
   },
   beforeMount() {
@@ -31,17 +42,29 @@ export default {
       this.is_admin = this.$store.getters['authentication/whoami'].user.is_admin
       this.waitingMount = false
     } else {
-      this.$repositories.authentication.whoami().then(function (response) {
-        this.churches = response.data.data.churches
-        this.is_admin = response.data.data.user.is_admin
-        this.waitingMount = false
-      }.bind(this))
+      this.$repositories.authentication.whoami().then(
+        function (response) {
+          this.churches = response.data.data.churches
+          this.is_admin = response.data.data.user.is_admin
+          this.waitingMount = false
+        }.bind(this)
+      )
     }
   },
   methods: {
-    chooseChurch(churchUid) {
-      this.$store.dispatch('church/setChurchWithUid', churchUid)
-      this.$router.push('/tableau-de-bord')
+    chooseChurch(church) {
+      if (church.hasAtLeastOneRole && church.hasAtLeastOneRoleValidate) {
+        this.$store.dispatch('church/setChurchWithUid', church.uid)
+        this.$router.push('/tableau-de-bord')
+      }
+
+      if (church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) {
+        this.displayModal = true
+      }
+
+      if (!church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) {
+        this.$router.push(`/eglise/${church.uid}/mon-role`)
+      }
     },
   },
 }

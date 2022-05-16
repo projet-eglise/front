@@ -16,7 +16,9 @@
     <v-container class="d-flex align-content-start flex-wrap">
       <div v-for="church in displayedChurches" :key="church.name" style="width: 100%">
         <v-card class="ma-2">
-          <v-card-title class="pb-0">{{ church.name }} - <span>{{ church.pastor.name }}</span></v-card-title>
+          <v-card-title class="pb-0">
+            {{ church.name }} - <span>{{ church.pastor.name }}</span>
+          </v-card-title>
 
           <v-card-text class="pb-0 pt-0 text-left">{{ church.address.address }}</v-card-text>
           <v-card-text class="pb-0 pt-0 text-left">{{ church.address.address2 }}</v-card-text>
@@ -39,7 +41,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text @click="dialog = false"> Annuler </v-btn>
-          <NuxtLink :to="to" class="text-decoration-none"><v-btn text color="primary"> Rejoindre </v-btn></NuxtLink>
+          <v-btn text color="primary" :loading="isLoading" @click="sendRequest"> Rejoindre </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -57,11 +59,12 @@ export default {
       displayedChurch: {
         uid: '',
         name: '',
-        pastor: {name: ''},
-        address: { address: '', address2: '', city: ''}
+        pastor: { name: '' },
+        address: { address: '', address2: '', city: '' },
       },
       churches: [],
       churchCityResearch: '',
+      isLoading: false,
     }
   },
   computed: {
@@ -73,12 +76,15 @@ export default {
     },
     to() {
       return `/eglise/${this.displayedChurch.uid}/mon-role`
-    }
+    },
   },
   watch: {
     churchCityResearch(newSearch) {
       if (newSearch.length > 2) {
-        this.displayedChurches = this.churches.filter((element) => element.address.city.toLowerCase().includes(newSearch.toLowerCase()))
+        if (this.churches !== undefined)
+          this.displayedChurches = this.churches.filter((element) =>
+            element.address.city.toLowerCase().includes(newSearch.toLowerCase())
+          )
       } else {
         this.displayedChurches = []
       }
@@ -92,6 +98,22 @@ export default {
     reserve(church) {
       this.dialog = true
       this.displayedChurch = church
+    },
+    async sendRequest(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      this.$store.dispatch('components/alert-component/hide')
+      this.isLoading = true
+
+      try {
+        await this.$repositories.churches.join(this.displayedChurch.uid)
+        this.isLoading = false
+        this.$router.push(this.to)
+      } catch (error) {
+        this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
+        this.isLoading = false
+      }
     },
   },
 }
