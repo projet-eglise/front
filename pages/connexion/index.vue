@@ -2,10 +2,11 @@
   <v-col class="login-form ml-auto mr-auto" height="100%">
     <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
     <v-fade-transition>
-      <v-form ref="form">
+      <v-form ref="form" @submit="connect">
         <v-text-field
           v-model="email"
           solo
+          dense
           label="Email"
           prepend-inner-icon="fa-at fa-md"
           :rules="[$rules.required, $rules.email]"
@@ -13,6 +14,7 @@
         <v-text-field
           v-model="password"
           solo
+          dense
           label="Mot de passe"
           :rules="[$rules.required]"
           :type="showPassword ? 'text' : 'password'"
@@ -20,11 +22,11 @@
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn color="primary" block :loading="isLoading" @click="connect"> S'identifier </v-btn>
+        <v-btn color="primary" type="submit" block :loading="isLoading"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <a href="">Mot de passe oublié</a>
+          <span class="primary--text font-italic text-decoration-underline" style="cursor: pointer" @click="openResetPassword">Mot de passe oublié</span>
         </v-row>
       </v-form>
     </v-fade-transition>
@@ -37,6 +39,7 @@
       :value="error.display"
       >{{ error.message }}</v-alert
     >
+    <WidgetModalResetPassword :want-open-dialog="wantOpenDialog" />
   </v-col>
 </template>
 
@@ -44,22 +47,30 @@
 export default {
   name: 'LoginPage',
   layout: 'login',
+  meta: { protected: false },
   data() {
     return {
       email: '',
       password: '',
       showPassword: false,
       isLoading: false,
+      wantOpenDialog: false,
       error: {
         message: 'Erreur ...',
         display: false,
       },
     }
   },
+  mounted() {
+    this.$store.dispatch('authentication/logout')
+  },
   methods: {
-    async connect() {
+    async connect(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
       if (this.$refs.form.validate()) {
-        this.error.display = false
+        this.$store.dispatch('components/alert-component/hide')
         this.isLoading = true
 
         try {
@@ -69,11 +80,22 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.error.message = error.response.data.error
-          this.error.display = true
+          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
           this.isLoading = false
         }
       }
+    },
+    openResetPassword(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      this.wantOpenDialog = true
+      setTimeout(
+        function () {
+          this.wantOpenDialog = false
+        }.bind(this),
+        10
+      )
     },
   },
 }
@@ -81,7 +103,6 @@ export default {
 
 <style scoped>
 .login-form {
-  width: 30%;
   margin-bottom: 4em;
 }
 
@@ -92,17 +113,5 @@ export default {
 .center-v-alert {
   left: 50%;
   transform: translate(-50%, 0);
-}
-
-@media (max-width: 480px) {
-  .login-form {
-    width: 90%;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .login-form {
-    width: 70%;
-  }
 }
 </style>

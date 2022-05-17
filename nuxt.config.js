@@ -15,7 +15,7 @@ export default {
   css: ['~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/repositories.js', '~/plugins/rules.js', '~/plugins/phone-input'],
+  plugins: ['~/plugins/repositories.js', '~/plugins/rules.js', '~/plugins/phone-input', '~/plugins/axios'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -29,6 +29,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -65,5 +66,7 @@ export default {
 
   pageTransition: 'fade',
 
-  mode: 'spa'
+  mode: 'spa',
+  
+  loading: false,
 }

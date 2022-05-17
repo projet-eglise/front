@@ -1,6 +1,6 @@
 <template>
   <v-col class="signin-form ml-auto mr-auto justify-start" height="100%">
-    <NuxtLink to="/connexion" class="return-link"><i class="fas fa-chevron-left"></i> Retour</NuxtLink>
+    <WidgetReturnButton to="/connexion" />
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
       <v-row>
@@ -84,15 +84,6 @@
         <v-btn color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
       </v-row>
     </v-form>
-    <v-alert
-      dismissible
-      elevation="24"
-      type="error"
-      transition="scale-transition"
-      class="center-v-alert"
-      :value="error.display"
-      >{{ error.message }}</v-alert
-    >
   </v-col>
 </template>
 
@@ -100,6 +91,7 @@
 export default {
   name: 'SignInPage',
   layout: 'login',
+  meta: { protected: false },
   data() {
     return {
       lastname: '',
@@ -111,16 +103,12 @@ export default {
       confirmPassword: '',
       image: null,
       isLoading: false,
-      error: {
-        message: 'Erreur ...',
-        display: false,
-      },
     }
   },
   methods: {
     async sendRequest() {
       if (this.$refs.form.validate()) {
-        this.error.display = false
+        this.$store.dispatch('components/alert-component/hide')
         this.isLoading = true
 
         try {
@@ -138,8 +126,7 @@ export default {
           })
           this.isLoading = false
         } catch (error) {
-          this.error.message = error.response.data.error
-          this.error.display = true
+          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
           this.isLoading = false
         }
       }
@@ -150,13 +137,7 @@ export default {
 
 <style scoped lang="scss">
 .signin-form {
-  width: 30%;
   margin-bottom: 4em;
-}
-
-.return-link {
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .row {
@@ -174,10 +155,6 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .signin-form {
-    width: 90%;
-  }
-
   .row {
     > .v-input {
       width: 100%;
@@ -197,12 +174,6 @@ export default {
     margin-right: 0px !important;
     margin-left: 0px !important;
     margin-bottom: 24px;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 768px) {
-  .signin-form {
-    width: 70%;
   }
 }
 </style>

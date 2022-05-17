@@ -2,12 +2,13 @@
   <v-app>
     <v-main class="align-center justify-center">
       <v-container fluid>
-        <Nuxt v-if="!startWaitingPage"/>
-        <v-col class="justify-center text-center" v-else>
+        <Nuxt v-if="!startWaitingPage" class="content" />
+        <v-col v-else class="justify-center text-center">
           <LoginLightningWelcome />
         </v-col>
       </v-container>
     </v-main>
+    <WidgetAlertComponent />
   </v-app>
 </template>
 
@@ -15,11 +16,11 @@
 export default {
   name: 'LoginLayout',
   computed: {
-    startWaitingPage: function () {
+    startWaitingPage() {
       return this.$store.getters['main/displayWelcome']
     },
   },
-  mounted: function () {
+  mounted() {
     setTimeout(
       function () {
         this.$store.dispatch('main/welcomeDisplayed')
@@ -34,5 +35,22 @@ export default {
 body,
 .v-application {
   background-color: #00353f !important;
+  overflow-y: hidden;
+}
+
+.content {
+  width: 30%;
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .content {
+    width: 70%;
+  }
 }
 </style>
