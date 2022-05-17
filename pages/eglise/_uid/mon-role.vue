@@ -1,6 +1,6 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
-    <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
+    <WidgetReturnButton :to="returnTo" />
     <h1 class="text-center primary--text text-uppercase bold mt-4 font-weight-bold text-center">
       Mon rôle dans l'Eglise
     </h1>
@@ -53,8 +53,26 @@
         </li>
       </ul>
     </v-fade-transition>
-    <v-btn class="mt-8" color="primary" block :disabled="!iCanJoin">Rejoindre</v-btn>
+    <v-btn class="mt-8" color="primary" block :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
+      Rejoindre
+    </v-btn>
     <WidgetModalAddRoleOrOption v-model="options" :want-open-dialog="wantOpenDialog" @input="updateServices" />
+    <v-dialog v-model="dialog" max-width="500">
+      <v-card>
+        <v-card-title class="text-h5" style="word-break: break-word"> Veuillez patienter </v-card-title>
+        <v-card-text>
+          Une notification l a été envoyé à l’Administrateur de votre Eglise afin qu’il valide votre inscription.
+          <br />
+          Une notifications vous sera envoyé dès que tout sera validé.
+          <br />
+          A très vite ...
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn class="mt-0 mb-0" text @click="close"> Fermer </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-col>
 </template>
 
@@ -70,7 +88,15 @@ export default {
       wantOpenDialog: false,
       waitingMount: true,
       iCanJoin: false,
+      isLoading: false,
+      dialog: false,
     }
+  },
+  computed: {
+    returnTo() {
+      if (this.$nuxt.context.from !== undefined) return this.$nuxt.context.from.path
+      return '/eglise/creer-ou-rejoindre'
+    },
   },
   watch: {
     services(newServices) {
@@ -117,6 +143,7 @@ export default {
       function (response) {
         this.services = response.data.data
         this.waitingMount = false
+        if (this.services.length === 0) this.$router.push('/connexion/choisir-mon-eglise')
       }.bind(this)
     )
   },
@@ -194,6 +221,54 @@ export default {
       option.display = false
       this.services.push({})
       this.services.pop()
+    },
+    async sendRequest(event) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      this.services.push({})
+      this.services.pop()
+
+      if (this.iCanJoin) {
+        this.$store.dispatch('components/alert-component/hide')
+        this.isLoading = true
+
+        try {
+          const data = []
+
+          for (const serviceId in this.services) {
+            const service = this.services[serviceId]
+
+            for (const roleId in service.roles) {
+              const roleToAdd = {}
+              const role = service.roles[roleId]
+
+              if (role.display) roleToAdd.role = role.uid
+              if (role.role_options.length === 0 && role.display) {
+                roleToAdd.option = null
+                data.push(roleToAdd)
+              }
+              for (const optionId in role.role_options) {
+                const option = role.role_options[optionId]
+                if (option.display) {
+                  roleToAdd.option = option.uid
+                  data.push(roleToAdd)
+                }
+              }
+            }
+          }
+          await this.$repositories.users.addRolesInChurch(this.$route.params.uid, data)
+          this.isLoading = false
+          this.dialog = true
+        } catch (error) {
+          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
+          this.isLoading = false
+        }
+      }
+    },
+    close() {
+      this.dialog = false
+      this.$router.push('/connexion/choisir-mon-eglise')
     },
   },
 }
