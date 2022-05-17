@@ -52,12 +52,13 @@ export const actions = {
   logout({ commit }) {
     commit('LOGOUT')
   },
-  checkRouteAccess({ state, commit }, route) {
+  checkRouteAccess({ state, commit, rootGetters }, route) {
     if (!state.isConnected && this.$cookies.get('token') !== undefined) {
       commit('LOGIN', this.$cookies.get('token'))
     }
 
     if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined)) {
+      if (rootGetters['main/displayWelcome']) return '/connexion'
       return '/erreur/404'
     }
 

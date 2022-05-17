@@ -4,9 +4,11 @@ export default function ({ $axios, store, redirect }) {
     if (token !== null) $axios.setToken('Bearer ' + store.getters['authentication/token'])
   })
 
-  $axios.onError(error => {
+  $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status)
-    if(code === 401) redirect('/connexion')
-    if(code === 404) redirect('/tableau-de-bord')
+    if (code === 401) redirect('/connexion')
+    if (code === 404)
+      if (this.$store.getters['authentication/isConnected']) redirect('/connexion/choisir-mon-eglise')
+      else redirect('/connexion')
   })
 }

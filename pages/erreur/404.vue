@@ -8,10 +8,10 @@ export default {
   meta: { protected: false },
   mounted() {
     setTimeout(function () {
-      let route = '/tableau-de-bord';
+      let route = '/connexion/choisir-mon-eglise';
       if(this.$nuxt.context.from !== undefined) route = this.$nuxt.context.from.path
       this.$router.push(route)
-    }.bind(this), 5000)
+    }.bind(this), 3000)
   },
 }
 </script>
