@@ -9,7 +9,6 @@
       prepend-inner-icon="fa-lock fa-md"
       label="Mot de passe"
       solo
-      dense
       :type="showPassword ? 'text' : 'password'"
       :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
       @click:append="showPassword = !showPassword"
@@ -20,7 +19,6 @@
       prepend-inner-icon="fa-lock fa-md"
       label="Confirmation"
       solo
-      dense
       :type="showConfirmPassword ? 'text' : 'password'"
       :append-icon="showConfirmPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
       @click:append="showConfirmPassword = !showConfirmPassword"

@@ -9,21 +9,19 @@
         class="ml-0 mr-0"
         label="Nom de l'Eglise"
         solo
-        dense
       />
     </v-row>
     <v-row>
-      <v-text-field v-model="churchAddress" :rules="[$rules.required]" class="ml-0 mr-0" label="Adresse" solo dense />
+      <v-text-field v-model="churchAddress" :rules="[$rules.required]" class="ml-0 mr-0" label="Adresse" solo />
     </v-row>
     <v-row class="col-1-2">
       <v-text-field
         v-model="churchPostalCode"
         label="Code postal"
         solo
-        dense
         :rules="[$rules.required, $rules.postal_code]"
       />
-      <v-text-field v-model="churchCity" class="text-capitalize" label="Ville" solo dense :rules="[$rules.required]" />
+      <v-text-field v-model="churchCity" class="text-capitalize" label="Ville" solo :rules="[$rules.required]" />
     </v-row>
     <p class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Responsable de l'Eglise</p>
     <v-form ref="addChurchForm">
@@ -34,7 +32,6 @@
           prepend-inner-icon="fa-user fa-md"
           label="Prénom"
           solo
-          dense
           :rules="[$rules.required]"
         />
         <v-text-field
@@ -43,7 +40,6 @@
           label="Nom"
           class="text-uppercase"
           solo
-          dense
           :rules="[$rules.required]"
         />
       </v-row>
@@ -55,7 +51,6 @@
           prepend-inner-icon="fa-at fa-md"
           label="Adresse mail"
           solo
-          dense
         />
       </v-row>
       <v-row class="justify-end mt-8">

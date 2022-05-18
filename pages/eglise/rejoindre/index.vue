@@ -7,7 +7,6 @@
       prepend-inner-icon="fa-search fa-md"
       label="Ville de l'Eglise"
       solo
-      dense
     />
     <p v-if="displayEnterLetters" class="font-italic primary--text">
       Saissisez au moins les trois première lettres de la ville ou se situe votre Eglise
