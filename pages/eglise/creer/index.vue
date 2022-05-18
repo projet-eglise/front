@@ -59,7 +59,7 @@
         />
       </v-row>
       <v-row class="justify-end mt-8">
-        <v-btn color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
+        <v-btn class="background--text" color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
       </v-row>
     </v-form>
   </v-col>

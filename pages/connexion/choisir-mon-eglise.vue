@@ -2,13 +2,13 @@
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
     <WidgetWaitingSpinner v-if="waitingMount" />
     <NuxtLink v-if="is_admin" to="/admin">
-      <v-btn color="primary" block>Administrateur</v-btn>
+      <v-btn class="background--text" color="primary" block large>Administrateur</v-btn>
     </NuxtLink>
-    <v-btn v-for="church in churches" :key="church.uid" color="primary" block @click="chooseChurch(church)">
+    <v-btn v-for="church in churches" :key="church.uid" class="background--text" color="primary" block large @click="chooseChurch(church)">
       {{ church.name }}
     </v-btn>
     <NuxtLink to="/eglise/creer-ou-rejoindre" style="text-decoration: none">
-      <v-btn color="primary" block outlined> <i class="fas fa-add mr-2" /> Rejoindre une Eglise</v-btn>
+      <v-btn color="primary" block large outlined> <i class="fas fa-add mr-2" /> Rejoindre une Eglise</v-btn>
     </NuxtLink>
     <v-dialog v-model="displayModal" max-width="500">
       <v-card>

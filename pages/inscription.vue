@@ -1,5 +1,5 @@
 <template>
-  <v-col class="signin-form ml-auto mr-auto justify-start" height="100%">
+  <v-col class="ml-auto mr-auto justify-start" height="100%">
     <WidgetReturnButton to="/connexion" />
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
@@ -10,7 +10,6 @@
           prepend-inner-icon="fa-user fa-md"
           label="Prénom"
           solo
-          dense
           :rules="[$rules.required]"
         />
         <v-text-field
@@ -19,7 +18,6 @@
           label="Nom"
           class="text-uppercase"
           solo
-          dense
           :rules="[$rules.required]"
         />
       </v-row>
@@ -31,10 +29,9 @@
           prepend-inner-icon="fa-at fa-md"
           label="Adresse mail"
           solo
-          dense
         />
       </v-row>
-      <v-row class="mb-8">
+      <v-row>
         <vue-phone-number-input
           ref="phone"
           v-model="phone"
@@ -63,7 +60,6 @@
           label="Mot de passe"
           type="password"
           solo
-          dense
         />
         <v-text-field
           v-model="confirmPassword"
@@ -72,7 +68,6 @@
           label="Confirmation"
           type="password"
           solo
-          dense
         />
       </v-row>
       <v-row>
@@ -81,7 +76,7 @@
         </p>
       </v-row>
       <v-row class="justify-end mt-8">
-        <v-btn color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
+        <v-btn class="background--text" color="primary" :loading="isLoading" large @click="sendRequest">ENREGISTRER</v-btn>
       </v-row>
     </v-form>
   </v-col>
@@ -136,10 +131,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.signin-form {
-  margin-bottom: 4em;
-}
-
 .row {
   > .v-input {
     width: 45%;

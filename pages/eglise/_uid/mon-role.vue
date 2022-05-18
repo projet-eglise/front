@@ -53,7 +53,7 @@
         </li>
       </ul>
     </v-fade-transition>
-    <v-btn class="mt-8" color="primary" block :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
+    <v-btn class="mt-8 background--text" color="primary" block :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
       Rejoindre
     </v-btn>
     <WidgetModalAddRoleOrOption v-model="options" :want-open-dialog="wantOpenDialog" @input="updateServices" />
@@ -61,7 +61,7 @@
       <v-card>
         <v-card-title class="text-h5" style="word-break: break-word"> Veuillez patienter </v-card-title>
         <v-card-text>
-          Une notification l a été envoyé à l’Administrateur de votre Eglise afin qu’il valide votre inscription.
+          Une notification a été envoyé à l’Administrateur de votre Eglise afin qu’il valide votre inscription.
           <br />
           Une notifications vous sera envoyé dès que tout sera validé.
           <br />

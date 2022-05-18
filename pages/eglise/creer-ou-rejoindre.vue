@@ -2,11 +2,11 @@
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
     <WidgetReturnButton to="/connexion/choisir-mon-eglise" />
     <NuxtLink to="/eglise/rejoindre">
-      <v-btn color="primary" block>Rejoindre une Eglise</v-btn>
+      <v-btn class="background--text" color="primary" large block>Rejoindre une Eglise</v-btn>
     </NuxtLink>
     <p class="primary--text text-uppercase">ou</p>
     <NuxtLink to="/eglise/creer">
-      <v-btn color="primary" block>Créer une Eglise</v-btn>
+      <v-btn class="background--text" color="primary" large block>Créer une Eglise</v-btn>
     </NuxtLink>
   </v-col>
 </template>

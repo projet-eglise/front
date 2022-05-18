@@ -52,6 +52,7 @@ export default {
       themes: {
         light: {
           primary: '#08C5D1',
+          background: '#00353f',
         },
       },
     },

@@ -6,7 +6,6 @@
         <v-text-field
           v-model="email"
           solo
-          dense
           label="Email"
           prepend-inner-icon="fa-at fa-md"
           :rules="[$rules.required, $rules.email]"
@@ -14,7 +13,6 @@
         <v-text-field
           v-model="password"
           solo
-          dense
           label="Mot de passe"
           :rules="[$rules.required]"
           :type="showPassword ? 'text' : 'password'"
@@ -22,7 +20,7 @@
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn color="primary" type="submit" block :loading="isLoading"> S'identifier </v-btn>
+        <v-btn class="background--text" color="primary" type="submit" block large :loading="isLoading"> S'identifier </v-btn>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>

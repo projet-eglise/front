@@ -26,9 +26,9 @@
       @click:append="showConfirmPassword = !showConfirmPassword"
     />
     <p class="primary--text font-italic mb-4">
-      Votre mot de passe doit contenir au minimum 8 caractères, 1 chiffre et un symbole.
+      Votre mot de passe doit contenir au minimum 8 caractères, un chiffre et un symbole.
     </p>
-    <v-btn color="primary" type="submit" block :loading="isLoading" @click="sendRequest"> Réinitialiser </v-btn>
+    <v-btn class="background--text" color="primary" type="submit" block :loading="isLoading" @click="sendRequest"> Réinitialiser </v-btn>
   </v-form>
 </template>
 

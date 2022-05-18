@@ -28,7 +28,7 @@
               prepend-inner-icon="fa-at fa-md"
               :rules="[$rules.required, $rules.email]"
             />
-            <v-card-text class="font-italic primary--text mt-n2 pb-1"
+            <v-card-text class="font-italic mt-n2 pb-2 pt-2"
               >Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter
               l’administrateur de votre Eglise.</v-card-text
             >
