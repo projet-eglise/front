@@ -20,11 +20,18 @@
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn class="background--text" color="primary" type="submit" block large :loading="isLoading"> S'identifier </v-btn>
+        <v-btn class="background--text" color="primary" type="submit" block large :loading="isLoading">
+          S'identifier
+        </v-btn>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <span class="primary--text font-italic text-decoration-underline" style="cursor: pointer" @click="openResetPassword">Mot de passe oublié</span>
+          <span
+            class="primary--text font-italic text-decoration-underline"
+            style="cursor: pointer"
+            @click="openResetPassword"
+            >Mot de passe oublié</span
+          >
         </v-row>
       </v-form>
     </v-fade-transition>
@@ -72,10 +79,17 @@ export default {
         this.isLoading = true
 
         try {
-          await this.$store.dispatch('authentication/login', {
-            email: this.email,
-            password: this.password,
-          })
+          const res = await this.$repositories.authentication.login(this.email, this.password)
+          const { status, data } = res
+
+          if (status === 200 && data.message && data.data && data.data.token) {
+            this.$store.dispatch('authentication/login', data.data.token)
+            if (this.$store.getters['main/referer'] !== '') this.$router.push(this.$store.getters['main/referer'])
+            else this.$router.push('/connexion/choisir-mon-eglise')
+          } else {
+            this.$store.dispatch('authentication/logout')
+          }
+
           this.isLoading = false
         } catch (error) {
           this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
