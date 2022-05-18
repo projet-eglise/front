@@ -1,4 +1,9 @@
 @import 'vue-phone-number-input/dist/vue-phone-number-input.css';
+
+html {
+  overflow: hidden !important;
+}
+
 .vue-phone-number-input .select-country-container {
   flex: 0 0 95px !important;
   min-width: 95px !important;
