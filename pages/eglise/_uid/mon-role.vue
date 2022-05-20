@@ -53,9 +53,9 @@
         </li>
       </ul>
     </v-fade-transition>
-    <v-btn class="mt-8" color="primary" block :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
+    <AppButtonBlock class="mt-8" :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
       Rejoindre
-    </v-btn>
+    </AppButtonBlock>
     <WidgetModalAddRoleOrOption v-model="options" :want-open-dialog="wantOpenDialog" @input="updateServices" />
     <v-dialog v-model="dialog" max-width="500">
       <v-card>

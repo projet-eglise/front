@@ -81,7 +81,7 @@
         </p>
       </v-row>
       <v-row class="justify-end mt-8">
-        <v-btn color="primary" :loading="isLoading" @click="sendRequest">ENREGISTRER</v-btn>
+        <AppButtonBlock :loading="isLoading" @click="sendRequest"> Enregistrer </AppButtonBlock>
       </v-row>
     </v-form>
   </v-col>

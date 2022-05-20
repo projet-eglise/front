@@ -22,7 +22,7 @@
           :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
           @click:append="showPassword = !showPassword"
         />
-        <v-btn color="primary" type="submit" block :loading="isLoading"> S'identifier </v-btn>
+        <AppButtonBlock type="submit" :loading="isLoading">S'identifier</AppButtonBlock>
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>

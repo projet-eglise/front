@@ -18,6 +18,7 @@ export default {
     centred: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
   data() {

@@ -28,7 +28,7 @@
     <p class="primary--text font-italic mb-4">
       Votre mot de passe doit contenir au minimum 8 caractères, 1 chiffre et un symbole.
     </p>
-    <v-btn color="primary" type="submit" block :loading="isLoading" @click="sendRequest"> Réinitialiser </v-btn>
+    <AppButtonBlock type="submit" :loading="isLoading" @click="sendRequest"> Réinitialiser </AppButtonBlock>
   </v-form>
 </template>
 

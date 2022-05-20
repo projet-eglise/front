@@ -12,6 +12,11 @@ export default {
       default: 'button',
       required: false,
     },
+    primary: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   data() {
     return {
@@ -21,10 +26,10 @@ export default {
   computed: {
     commonAttrs() {
       return {
-        class: ['background--text'],
+        class: this.$attrs.outlined !== undefined ? [] : ['background--text'],
         color: 'primary',
         large: true,
-        type: this.type
+        type: this.type,
       }
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <v-col>
     <p>Page de récapitulatif ^^</p>
-    <v-btn @click="goChoosePage">Retour au choix d'Eglise</v-btn>
+    <AppButtonBlock @click="goChoosePage">Retour au choix d'Eglise</AppButtonBlock>
   </v-col>
 </template>
 
