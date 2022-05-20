@@ -1,6 +1,6 @@
 <template>
   <v-form ref="form" class="ml-auto mr-auto mb-4 text-center" height="100%">
-    <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto mb-4" />
+    <AppLogo class="mb-4" centred />
     <h2 class="primary--text font-weight-bold">Mise à jour de votre mot de passe</h2>
     <p class="primary--text font-italic mb-4">Saisissez votre nouveau mot de passe si dessous.</p>
     <v-text-field
@@ -35,7 +35,7 @@
 <script>
 export default {
   meta: { protected: false },
-  layout: 'login',
+  layout: 'centred-with-welcome',
   data() {
     return {
       isLoading: false,

@@ -1,6 +1,6 @@
 <template>
   <v-col class="login-form ml-auto mr-auto" height="100%">
-    <v-img :src="require('@/assets/img/circled-logo.png')" height="250" width="250" class="ml-auto mr-auto" />
+    <AppLogo centred />
     <v-fade-transition>
       <v-form ref="form" @submit="connect">
         <v-text-field
