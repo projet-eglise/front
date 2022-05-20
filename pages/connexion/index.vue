@@ -46,7 +46,7 @@
 <script>
 export default {
   name: 'LoginPage',
-  layout: 'login',
+  layout: 'centred-with-welcome',
   meta: { protected: false },
   data() {
     return {

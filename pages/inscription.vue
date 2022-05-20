@@ -90,7 +90,7 @@
 <script>
 export default {
   name: 'SignInPage',
-  layout: 'login',
+  layout: 'centred-with-welcome',
   meta: { protected: false },
   data() {
     return {
