@@ -20,14 +20,7 @@
           >
 
           <v-form ref="form">
-            <v-text-field
-              v-model="email"
-              solo
-              label="Email de récupération"
-              class="ml-4 mr-4"
-              prepend-inner-icon="fa-at fa-md"
-              :rules="[$rules.required, $rules.email]"
-            />
+            <AppTextFieldEmail v-model="email" label="Email de récupération" class="ml-4 mr-4" />
             <v-card-text class="font-italic primary--text mt-n2 pb-1"
               >Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter
               l’administrateur de votre Eglise.</v-card-text

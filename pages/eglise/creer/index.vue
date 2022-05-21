@@ -3,60 +3,42 @@
     <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
     <p class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Mon Eglise</p>
     <v-row>
-      <v-text-field
-        v-model="churchName"
-        :rules="[$rules.required]"
-        class="ml-0 mr-0"
-        label="Nom de l'Eglise"
-        solo
-        dense
-      />
+      <AppTextField v-model="churchName" class="ml-0 mr-0" label="Nom de l'Eglise" :rules="[$rules.required]" />
     </v-row>
     <v-row>
-      <v-text-field v-model="churchAddress" :rules="[$rules.required]" class="ml-0 mr-0" label="Adresse" solo dense />
+      <AppTextField v-model="churchAddress" class="ml-0 mr-0" label="Adresse" :rules="[$rules.required]" />
     </v-row>
     <v-row class="col-1-2">
-      <v-text-field
-        v-model="churchPostalCode"
-        label="Code postal"
-        solo
-        dense
-        :rules="[$rules.required, $rules.postal_code]"
-      />
-      <v-text-field v-model="churchCity" class="text-capitalize" label="Ville" solo dense :rules="[$rules.required]" />
+      <AppTextField v-model="churchPostalCode" label="Code postal" :rules="[$rules.required, $rules.postal_code]" />
+      <AppTextField v-model="churchCity" class="text-capitalize" label="Ville" :rules="[$rules.required]" />
     </v-row>
     <p class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Responsable de l'Eglise</p>
     <v-form ref="addChurchForm">
       <v-row>
-        <v-text-field
+        <AppTextField
           v-model="pastorFirstname"
           class="text-capitalize"
-          prepend-inner-icon="fa-user fa-md"
+          left-icon="user"
           label="Prénom"
-          solo
-          dense
           :rules="[$rules.required]"
         />
-        <v-text-field
+        <AppTextField
           v-model="pastorLastname"
-          prepend-inner-icon="fa-user fa-md"
+          class="text-capitalize"
+          left-icon="user"
           label="Nom"
-          class="text-uppercase"
-          solo
-          dense
+          :rules="[$rules.required]"
+        />
+        <AppTextField
+          v-model="pastorLastname"
+          class="text-capitalize"
+          left-icon="user"
+          label="Nom"
           :rules="[$rules.required]"
         />
       </v-row>
       <v-row>
-        <v-text-field
-          v-model="pastorEmail"
-          :rules="[$rules.required, $rules.email]"
-          class="ml-0 mr-0"
-          prepend-inner-icon="fa-at fa-md"
-          label="Adresse mail"
-          solo
-          dense
-        />
+        <AppTextFieldEmail v-model="pastorEmail" class="ml-0 mr-0" />
       </v-row>
       <v-row class="justify-end mt-8">
         <AppButtonBlock :loading="isLoading" @click="sendRequest"> Enregistrer </AppButtonBlock>

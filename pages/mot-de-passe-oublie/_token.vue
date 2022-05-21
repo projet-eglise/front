@@ -3,31 +3,13 @@
     <AppLogo class="mb-4" centred />
     <h2 class="primary--text font-weight-bold">Mise à jour de votre mot de passe</h2>
     <p class="primary--text font-italic mb-4">Saisissez votre nouveau mot de passe si dessous.</p>
-    <v-text-field
-      v-model="password"
-      :rules="[$rules.required, $rules.password]"
-      prepend-inner-icon="fa-lock fa-md"
-      label="Mot de passe"
-      solo
-      dense
-      :type="showPassword ? 'text' : 'password'"
-      :append-icon="showPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
-      @click:append="showPassword = !showPassword"
-    />
-    <v-text-field
+    <AppTextFieldPassword v-model="password" :rules="[$rules.password]" />
+    <AppTextFieldPassword
       v-model="confirmPassword"
-      :rules="[$rules.required, password === confirmPassword || 'Les deux mots de passe ne correspondent pas']"
-      prepend-inner-icon="fa-lock fa-md"
       label="Confirmation"
-      solo
-      dense
-      :type="showConfirmPassword ? 'text' : 'password'"
-      :append-icon="showConfirmPassword ? 'fa-eye fa-md' : 'fa-eye-slash fa-md'"
-      @click:append="showConfirmPassword = !showConfirmPassword"
+      :rules="[password === confirmPassword || 'Les deux mots de passe ne correspondent pas']"
     />
-    <p class="primary--text font-italic mb-4">
-      Votre mot de passe doit contenir au minimum 8 caractères, 1 chiffre et un symbole.
-    </p>
+    <AppParagraphPasswordRequirement class="mb-4" />
     <AppButtonBlock type="submit" :loading="isLoading" @click="sendRequest"> Réinitialiser </AppButtonBlock>
   </v-form>
 </template>

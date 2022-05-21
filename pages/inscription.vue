@@ -4,35 +4,23 @@
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
       <v-row>
-        <v-text-field
+        <AppTextField
           v-model="firstname"
           class="text-capitalize"
-          prepend-inner-icon="fa-user fa-md"
+          left-icon="user"
           label="Prénom"
-          solo
-          dense
           :rules="[$rules.required]"
         />
-        <v-text-field
+        <AppTextField
           v-model="lastname"
-          prepend-inner-icon="fa-user fa-md"
-          label="Nom"
           class="text-uppercase"
-          solo
-          dense
+          left-icon="user"
+          label="Nom"
           :rules="[$rules.required]"
         />
       </v-row>
       <v-row>
-        <v-text-field
-          v-model="email"
-          :rules="[$rules.required, $rules.email]"
-          class="ml-0 mr-0"
-          prepend-inner-icon="fa-at fa-md"
-          label="Adresse mail"
-          solo
-          dense
-        />
+        <AppTextFieldEmail v-model="email" class="ml-0 mr-0" />
       </v-row>
       <v-row class="mb-8">
         <vue-phone-number-input
@@ -56,29 +44,16 @@
         />
       </v-row>
       <v-row>
-        <v-text-field
-          v-model="password"
-          :rules="[$rules.required, $rules.password]"
-          prepend-inner-icon="fa-lock fa-md"
-          label="Mot de passe"
-          type="password"
-          solo
-          dense
-        />
-        <v-text-field
+        <AppTextFieldPassword v-model="password" :rules="[$rules.password]" unviewable />
+        <AppTextFieldPassword
           v-model="confirmPassword"
-          :rules="[$rules.required, password === confirmPassword || 'Les deux mots de passe ne correspondent pas']"
-          prepend-inner-icon="fa-lock fa-md"
           label="Confirmation"
-          type="password"
-          solo
-          dense
+          :rules="[$rules.passwords_equals(password, confirmPassword)]"
+          unviewable
         />
       </v-row>
       <v-row>
-        <p class="primary--text text-center font-italic mt-n2">
-          Votre mot de passe doit contenir au minimum 8 caractères, 1 chiffre et un symbole.
-        </p>
+        <AppParagraphPasswordRequirement class="mt-n2 text-center" />
       </v-row>
       <v-row class="justify-end mt-8">
         <AppButtonBlock :loading="isLoading" @click="sendRequest"> Enregistrer </AppButtonBlock>

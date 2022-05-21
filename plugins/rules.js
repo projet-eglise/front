@@ -22,6 +22,9 @@ export default ({ app }, inject) => {
         const pattern = /^[0-9][0-9A-B][0-9]{3}$/
         return pattern.test(value) || "Code postal incorrect"
       },
+      passwords_equals: (value1, value2) => {
+        return value1 === value2 || 'Les deux mots de passe ne correspondent pas'
+      }
     })
   )
 }

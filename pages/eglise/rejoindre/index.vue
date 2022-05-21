@@ -2,13 +2,8 @@
   <v-col class="ml-auto mr-auto flex-column" height="100%" align="center" justify="start">
     <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
 
-    <v-text-field
-      v-model="churchCityResearch"
-      prepend-inner-icon="fa-search fa-md"
-      label="Ville de l'Eglise"
-      solo
-      dense
-    />
+    <AppTextField v-model="churchCityResearch" label="Ville de l'Eglise" left-icon="search" />
+
     <p v-if="displayEnterLetters" class="font-italic primary--text">
       Saissisez au moins les trois première lettres de la ville ou se situe votre Eglise
     </p>
