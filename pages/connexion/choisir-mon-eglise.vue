@@ -16,7 +16,7 @@
         <v-card-text>Un administrateur va valider votre demande d'admission.</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn class="mt-0 mb-0" text @click="displayModal = false"> Fermer </v-btn>
+          <AppButtonText class="mt-0 mb-0" @click="displayModal = false"> Fermer </AppButtonText>
         </v-card-actions>
       </v-card>
     </v-dialog>

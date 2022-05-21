@@ -9,7 +9,7 @@
             <p>Un email contenant un lien de réinistialisation a été envoyé à l'adresse {{ email }}</p>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text @click="close"> Fermer </v-btn>
+              <AppButtonText @click="close"> Fermer </AppButtonText>
             </v-card-actions>
           </v-container>
         </v-fade-transition>
@@ -28,8 +28,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text @click="close"> Annuler </v-btn>
-              <v-btn color="primary" type="submit" text @click="sendRequest"> Envoyer </v-btn>
+              <AppButtonText @click="close"> Annuler </AppButtonText>
+              <AppButtonText primary type="submit" @click="sendRequest"> Envoyer </AppButtonText>
             </v-card-actions>
           </v-form>
         </v-container>

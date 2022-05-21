@@ -26,7 +26,7 @@ export default {
   computed: {
     commonAttrs() {
       return {
-        class: this.$attrs.outlined !== undefined ? [] : ['background--text'],
+        class: this.$attrs.outlined !== undefined || this.primary ? [] : ['background--text'],
         color: 'primary',
         large: true,
         type: this.type,

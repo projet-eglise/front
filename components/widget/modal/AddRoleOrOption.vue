@@ -15,8 +15,8 @@
       </v-form>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text @click="close"> Annuler </v-btn>
-        <v-btn color="primary" type="submit" text @click="close"> Ajouter </v-btn>
+        <AppButtonText @click="close"> Annuler </AppButtonText>
+        <AppButtonText primary type="submit" @click="close"> Ajouter </AppButtonText>
       </v-card-actions>
     </v-card>
   </v-dialog>

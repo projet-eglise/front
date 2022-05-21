@@ -69,7 +69,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn class="mt-0 mb-0" text @click="close"> Fermer </v-btn>
+          <AppButtonText class="mt-0 mb-0" @click="close"> Fermer </AppButtonText>
         </v-card-actions>
       </v-card>
     </v-dialog>

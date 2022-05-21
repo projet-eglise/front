@@ -19,7 +19,7 @@
           <v-card-text class="pb-0 pt-0 text-left">{{ church.address.address2 }}</v-card-text>
 
           <v-card-actions class="justify-end pt-0">
-            <v-btn color="primary" text @click="reserve(church)"> Rejoindre </v-btn>
+            <AppButtonText primary @click="reserve(church)"> Rejoindre </AppButtonText>
           </v-card-actions>
         </v-card>
       </div>
@@ -35,8 +35,8 @@
         <v-card-text class="pt-0 pb-0">{{ displayedChurch.address.address2 }}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="dialog = false"> Annuler </v-btn>
-          <v-btn text color="primary" :loading="isLoading" @click="sendRequest"> Rejoindre </v-btn>
+          <AppButtonText @click="dialog = false"> Annuler </AppButtonText>
+          <AppButtonText primary :loading="isLoading" @click="sendRequest"> Rejoindre </AppButtonText>
         </v-card-actions>
       </v-card>
     </v-dialog>
