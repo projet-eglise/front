@@ -6,8 +6,10 @@
 export default {
   mounted() {
     setTimeout(function() {
-      this.$router.push('/tableau-de-bord')
-    }, 5000);
+      let route = '/connexion/choisir-mon-eglise';
+      if(this.$nuxt.context.from !== undefined) route = this.$nuxt.context.from.path
+      this.$router.push(route)
+    }.bind(this), 3000);
   }
 }
 </script>

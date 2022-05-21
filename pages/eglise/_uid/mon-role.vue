@@ -61,7 +61,7 @@
       <v-card>
         <v-card-title class="text-h5" style="word-break: break-word"> Veuillez patienter </v-card-title>
         <v-card-text>
-          Une notification l a été envoyé à l’Administrateur de votre Eglise afin qu’il valide votre inscription.
+          Une notification a été envoyé à l’Administrateur de votre Eglise afin qu’il valide votre inscription.
           <br />
           Une notifications vous sera envoyé dès que tout sera validé.
           <br />

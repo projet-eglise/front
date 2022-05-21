@@ -52,10 +52,17 @@ export default {
         this.isLoading = true
 
         try {
-          await this.$store.dispatch('authentication/login', {
-            email: this.email,
-            password: this.password,
-          })
+          const res = await this.$repositories.authentication.login(this.email, this.password)
+          const { status, data } = res
+
+          if (status === 200 && data.message && data.data && data.data.token) {
+            this.$store.dispatch('authentication/login', data.data.token)
+            if (this.$store.getters['main/referer'] !== '') this.$router.push(this.$store.getters['main/referer'])
+            else this.$router.push('/connexion/choisir-mon-eglise')
+          } else {
+            this.$store.dispatch('authentication/logout')
+          }
+
           this.isLoading = false
         } catch (error) {
           this.$store.dispatch('components/alert-component/displayError', error.response.data.error)

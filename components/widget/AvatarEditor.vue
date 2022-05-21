@@ -1,6 +1,6 @@
 <template>
   <label for="avatar">
-    <div class="circle d-flex align-center justify-center mt-10 mb-10 ml-auto mr-auto">
+    <div class="circle d-flex align-center justify-center mt-10 mb-10 ml-auto mr-auto" style="cursor: pointer">
       <i v-if="image === null && !chargingImage" class="fas fa-user-edit user-icon ml-4" />
       <v-progress-circular v-else-if="chargingImage" indeterminate color="primary" />
       <v-img v-else class="image-preview" height="100%" :src="createImage()" />
@@ -31,6 +31,11 @@ export default {
   },
   methods: {
     displayImagePreview(uploadedImage) {
+      if (uploadedImage[0] === undefined) {
+        this.image = null
+        return
+      }
+
       const imageFile = uploadedImage[0]
       this.chargingImage = true
 

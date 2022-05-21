@@ -1,4 +1,9 @@
 @import 'vue-phone-number-input/dist/vue-phone-number-input.css';
+
+html {
+  overflow: auto !important;
+}
+
 .vue-phone-number-input .select-country-container {
   flex: 0 0 95px !important;
   min-width: 95px !important;
@@ -59,4 +64,9 @@ i.v-icon.fa-lg {
 
 .width-45p {
   width: 45%;
+}
+
+.input-tel.input-phone-number > input,
+.country-selector.input-country-selector > input {
+  height: 48px;
 }

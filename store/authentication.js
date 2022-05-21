@@ -1,7 +1,10 @@
+import moment from 'moment'
+
 export const state = () => ({
   isConnected: false,
   token: null,
   whoami: null,
+  expiration: 10000000000,
 })
 
 export const mutations = {
@@ -23,6 +26,7 @@ export const mutations = {
 
     state.whoami = JSON.parse(jsonPayload)
     state.token = token
+    state.expiration = state.whoami.exp
     this.$cookies.set('token', token)
 
     delete state.whoami.exp
@@ -31,37 +35,34 @@ export const mutations = {
     state.isConnected = false
     state.token = null
     state.whoami = null
+    this.expiration = 1000000000000
     this.$cookies.remove('token')
   },
 }
 
 export const actions = {
-  async login({ commit }, payload) {
-    const res = await this.$repositories.authentication.login(payload.email, payload.password)
-    const { status, data } = res
-
-    if (status === 200 && data.message && data.data && data.data.token) {
-      commit('LOGIN', data.data.token)
-      this.$router.push('/connexion/choisir-mon-eglise')
-    } else {
-      commit('LOGOUT')
-    }
-
-    return res
+  login({ commit }, token) {
+    commit('LOGIN', token)
   },
   logout({ commit }) {
     commit('LOGOUT')
   },
-  checkRouteAccess({ state, commit }, route) {
+  checkRouteAccess({ state, commit, rootGetters, dispatch }, route) {
     if (!state.isConnected && this.$cookies.get('token') !== undefined) {
       commit('LOGIN', this.$cookies.get('token'))
     }
 
     if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined)) {
+      if (rootGetters['main/displayWelcome']) return '/connexion'
       return '/erreur/404'
     }
 
     if (state.isConnected || !route.meta[0].protected) {
+      if(state.isConnected && state.expiration - moment().format('X') <= 0 ) {
+        dispatch('main/setReferer', this.app.router.currentRoute.path, {root: true})
+        return '/connexion'
+      }
+
       return route.path
     }
 

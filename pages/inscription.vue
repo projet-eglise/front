@@ -1,5 +1,5 @@
 <template>
-  <v-col class="signin-form ml-auto mr-auto justify-start" height="100%">
+  <v-col class="ml-auto mr-auto justify-start" height="100%">
     <WidgetReturnButton to="/connexion" />
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
@@ -22,7 +22,7 @@
       <v-row>
         <AppTextFieldEmail v-model="email" class="ml-0 mr-0" />
       </v-row>
-      <v-row class="mb-8">
+      <v-row>
         <vue-phone-number-input
           ref="phone"
           v-model="phone"
@@ -111,10 +111,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.signin-form {
-  margin-bottom: 4em;
-}
-
 .row {
   > .v-input {
     width: 45%;

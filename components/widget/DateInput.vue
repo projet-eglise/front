@@ -6,7 +6,6 @@
         :label="label"
         :class="classes"
         :value="formatedDate"
-        dense
         solo
         readonly
         v-bind="attrs"
