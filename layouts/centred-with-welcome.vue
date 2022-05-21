@@ -4,7 +4,7 @@
       <v-container fluid>
         <Nuxt v-if="!startWaitingPage" class="content" />
         <v-col v-else class="justify-center text-center">
-          <LoginLightningWelcome />
+          <LightningWelcome />
         </v-col>
       </v-container>
     </v-main>

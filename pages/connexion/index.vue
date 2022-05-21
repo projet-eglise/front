@@ -21,7 +21,7 @@
         </v-row>
       </v-form>
     </v-fade-transition>
-    <WidgetModalResetPassword :want-open-dialog="wantOpenDialog" />
+    <DialogResetPassword :want-open-dialog="wantOpenDialog" />
   </v-col>
 </template>
 

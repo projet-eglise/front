@@ -56,7 +56,7 @@
     <AppButtonBlock class="mt-8" :loading="isLoading" :disabled="!iCanJoin" @click="sendRequest">
       Rejoindre
     </AppButtonBlock>
-    <WidgetModalAddRoleOrOption v-model="options" :want-open-dialog="wantOpenDialog" @input="updateServices" />
+    <DialogAddRoleOrOption v-model="options" :want-open-dialog="wantOpenDialog" @input="updateServices" />
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
         <v-card-title class="text-h5" style="word-break: break-word"> Veuillez patienter </v-card-title>
