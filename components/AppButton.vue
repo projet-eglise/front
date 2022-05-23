@@ -17,6 +17,11 @@ export default {
       default: false,
       required: false,
     },
+    color: {
+      type: String,
+      default: 'primary',
+      required: false,
+    },
   },
   data() {
     return {
@@ -27,7 +32,7 @@ export default {
     commonAttrs() {
       return {
         class: this.$attrs.outlined !== undefined || this.primary ? [] : ['background--text'],
-        color: 'primary',
+        color: this.color,
         large: true,
         type: this.type,
       }

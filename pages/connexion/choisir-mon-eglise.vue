@@ -4,8 +4,8 @@
     <NuxtLink v-if="is_admin" to="/admin">
       <AppButtonBlock> Administrateur </AppButtonBlock>
     </NuxtLink>
-    <AppButtonBlock v-for="church in churches" :key="church.uid" @click="chooseChurch(church)">
-      {{ church.name }}
+    <AppButtonBlock v-for="church in churches" :key="church.uid" :color="churchColor(church)" @click="chooseChurch(church)">
+      {{ church.name }}{{ churchState(church) }}
     </AppButtonBlock>
     <NuxtLink to="/eglise/creer-ou-rejoindre" style="text-decoration: none">
       <AppButtonOutlinedBlock> <i class="fas fa-add mr-2" /> Rejoindre une Eglise </AppButtonOutlinedBlock>
@@ -65,6 +65,21 @@ export default {
       if (!church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) {
         this.$router.push(`/eglise/${church.uid}/mon-role`)
       }
+    },
+    churchState(church) {
+      if (church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) return ' - En attente de validation'
+      if (!church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) return ' - Rôles à saisir'
+
+      return ''
+    },
+    churchColor(church) {
+      if (
+        (church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) ||
+        (!church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate)
+      )
+        return 'orange'
+
+      return 'primary'
     },
   },
 }

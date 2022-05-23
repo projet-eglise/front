@@ -53,6 +53,7 @@ export default {
         light: {
           primary: '#08C5D1',
           background: '#00353F',
+          orange: '#D46F4D',
         },
       },
     },
