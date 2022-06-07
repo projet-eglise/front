@@ -1,6 +1,6 @@
 <template>
   <v-col height="100%">
-    <p>Page des Eglises</p>
+    <p>Page des utilisateurs</p>
   </v-col>
 </template>
 
