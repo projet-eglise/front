@@ -87,11 +87,6 @@ export default {
     format(timestamp) {
       return moment.unix(timestamp / 10000).format('DD/MM/YYYY HH:MM:ss.SS')
     },
-    errorColor(error) {
-      if (error > 400) return 'red'
-      else if (error > 300) return 'orange'
-      else return 'green'
-    },
     rowClick(e) {
       this.dialog = true
       this.selectedUser = e
