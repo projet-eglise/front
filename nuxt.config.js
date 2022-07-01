@@ -12,7 +12,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/css/main.scss'],
+  css: ['@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/repositories.js', '~/plugins/rules.js', '~/plugins/phone-input', '~/plugins/axios'],
@@ -21,7 +21,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', ['@nuxtjs/moment', ['fr']]],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', ['@nuxtjs/moment', ['fr']], '@nuxt/postcss8'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -60,7 +60,14 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
 
   router: {
     middleware: ['authentication'],
@@ -69,6 +76,6 @@ export default {
   pageTransition: 'fade',
 
   mode: 'spa',
-  
+
   loading: false,
 }
