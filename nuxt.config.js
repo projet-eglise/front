@@ -21,7 +21,13 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', ['@nuxtjs/moment', ['fr']], '@nuxt/postcss8'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/vuetify',
+    ['@nuxtjs/moment', ['fr']],
+    '@nuxt/postcss8',
+    '@nuxt/typescript-build',
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -75,7 +81,7 @@ export default {
 
   pageTransition: 'fade',
 
-  mode: 'spa',
+  ssr: false,
 
   loading: false,
 }
