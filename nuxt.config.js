@@ -31,6 +31,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -63,6 +64,19 @@ export default {
         },
       },
     },
+  },
+
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'fr',
+    locales: [
+      {
+        code: 'fr',
+        file: 'fr-FR.js',
+      },
+    ],
+    lazy: true,
+    langDir: 'langs/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

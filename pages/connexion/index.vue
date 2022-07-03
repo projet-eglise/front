@@ -7,14 +7,14 @@
         <AppTextFieldEmail v-model="email" />
         <AppTextFieldPassword v-model="password" />
 
-        <AppButtonBlock type="submit" :loading="isLoading">S'identifier</AppButtonBlock>
+        <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
 
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink to="/inscription">Inscription</NuxtLink>
+          <NuxtLink to="/inscription">{{ $t('authentication.create_an_account') }}</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <span class="primary--text font-italic text-decoration-none pointer" @click="openResetPassword"
-            >Mot de passe oublié</span
-          >
+          <span class="primary--text font-italic text-decoration-none pointer" @click="openResetPassword">
+            {{ $t('authentication.lost_password') }}
+          </span>
         </v-row>
       </v-form>
     </v-fade-transition>
