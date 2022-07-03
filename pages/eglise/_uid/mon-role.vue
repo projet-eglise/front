@@ -18,7 +18,7 @@
                 <p class="mb-1">
                   {{ role.name }}
                   <i
-                    class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline"
+                    class="ml-2 fa fa-trash fa-sm pointer vertical-align-baseline"
                     @click="deleteRole(role)"
                   ></i>
                 </p>
@@ -27,14 +27,14 @@
                     <p class="mb-1">
                       {{ option.name }}
                       <i
-                        class="ml-2 fa fa-trash fa-sm cursor-pointer vertical-align-baseline"
+                        class="ml-2 fa fa-trash fa-sm pointer vertical-align-baseline"
                         @click="deleteOption(option)"
                       ></i>
                     </p>
                   </li>
                   <li
                     v-if="role.role_options.length > 0 && role.has_free_options"
-                    class="cursor-pointer"
+                    class="pointer"
                     @click="displayRoleModal(role)"
                   >
                     <i class="fa-plus fa mr-2"></i>Ajouter une précision
@@ -43,7 +43,7 @@
               </li>
               <li
                 v-if="service.has_free_roles && service.roles.length > service.count_selected"
-                class="cursor-pointer"
+                class="pointer"
                 @click="displayServiceModal(service)"
               >
                 <i class="fa-plus fa mr-2"></i> Ajouter un rôle
@@ -277,10 +277,6 @@ export default {
 <style scoped>
 li {
   list-style-type: none;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .vertical-align-baseline {

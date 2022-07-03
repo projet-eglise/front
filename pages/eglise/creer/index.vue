@@ -98,10 +98,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.signin-form {
-  margin-bottom: 4em;
-}
-
 .col-1-2 {
   > :first-child {
     width: 20% !important;

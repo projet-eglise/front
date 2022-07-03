@@ -1,5 +1,5 @@
 <template>
-  <v-col class="login-form ml-auto mr-auto" height="100%">
+  <v-col class="mb-4em ml-auto mr-auto" height="100%">
     <AppLogo centred />
 
     <v-fade-transition>
@@ -12,10 +12,7 @@
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <span
-            class="primary--text font-italic text-decoration-underline"
-            style="cursor: pointer"
-            @click="openResetPassword"
+          <span class="primary--text font-italic text-decoration-underline pointer" @click="openResetPassword"
             >Mot de passe oublié</span
           >
         </v-row>
@@ -87,10 +84,6 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  margin-bottom: 4em;
-}
-
 .v-image {
   margin-bottom: 2em;
 }
