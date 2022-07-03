@@ -15,7 +15,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: 'Mot de passe',
+      default: this.$t('components.labels.password'),
       required: false,
     },
     rules: {

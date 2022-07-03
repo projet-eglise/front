@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="openDialog" persistent max-width="400">
     <v-card>
-      <v-card-title class="text-h5" style="word-break: break-word"> Ajouter un role </v-card-title>
+      <v-card-title class="text-h5" style="word-break: break-word">
+        {{ $t('components.dialogs.add_role_or_option.add_role') }}
+      </v-card-title>
 
       <v-form class="ml-4">
         <v-checkbox
@@ -15,8 +17,8 @@
       </v-form>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <AppButtonText @click="close"> Annuler </AppButtonText>
-        <AppButtonText primary type="submit" @click="close"> Ajouter </AppButtonText>
+        <AppButtonText @click="close">{{ $t('global.cancel') }}</AppButtonText>
+        <AppButtonText primary type="submit" @click="close">{{ $t('global.adds') }}</AppButtonText>
       </v-card-actions>
     </v-card>
   </v-dialog>

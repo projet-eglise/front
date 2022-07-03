@@ -7,7 +7,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: 'Adresse mail',
+      default: this.$t('components.labels.email'),
       required: false,
     },
     rules: {

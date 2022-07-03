@@ -2,34 +2,32 @@
   <v-expand-transition>
     <v-dialog v-model="openDialog" persistent max-width="500">
       <v-card>
-        <v-card-title class="text-h5" style="word-break: break-word"> Réinitialisation de mot de passe </v-card-title>
+        <v-card-title class="text-h5" style="word-break: break-word">
+          {{ $t('components.dialogs.reset_password.reset_password') }}
+        </v-card-title>
 
         <v-fade-transition v-if="requested" appear>
           <v-container>
-            <p>Un email contenant un lien de réinistialisation a été envoyé à l'adresse {{ email }}</p>
+            <p>{{ $t('components.dialogs.reset_password.email_sent_to', { email: email }) }}</p>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <AppButtonText @click="close"> Fermer </AppButtonText>
+              <AppButtonText @click="close">{{ $t('global.close') }}</AppButtonText>
             </v-card-actions>
           </v-container>
         </v-fade-transition>
         <v-container v-else>
-          <v-card-text
-            >Veuillez saisir l’adresse e-mail de votre compte pour que nous puissions envoyer un lien de
-            réinitialisation de mot de passe.</v-card-text
-          >
+          <v-card-text>{{ $t('components.dialogs.reset_password.enter_email') }}</v-card-text>
 
           <v-form ref="form">
-            <AppTextFieldEmail v-model="email" label="Email de récupération" class="ml-4 mr-4" />
-            <v-card-text class="font-italic primary--text mt-n2 pb-1"
-              >Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter
-              l’administrateur de votre Eglise.</v-card-text
-            >
+            <AppTextFieldEmail v-model="email" :label="$t('components.labels.recovery_email')" class="ml-4 mr-4" />
+            <v-card-text class="font-italic primary--text mt-n2 pb-1">
+              {{ $t('components.dialogs.reset_password.if_dont_receive') }}
+            </v-card-text>
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <AppButtonText @click="close"> Annuler </AppButtonText>
-              <AppButtonText primary type="submit" @click="sendRequest"> Envoyer </AppButtonText>
+              <AppButtonText @click="close">{{ $t('global.cancel') }}</AppButtonText>
+              <AppButtonText primary type="submit" @click="sendRequest">{{ $t('global.send') }}</AppButtonText>
             </v-card-actions>
           </v-form>
         </v-container>
