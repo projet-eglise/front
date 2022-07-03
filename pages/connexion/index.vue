@@ -12,7 +12,7 @@
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink to="/inscription">Inscription</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
-          <span class="primary--text font-italic text-decoration-underline pointer" @click="openResetPassword"
+          <span class="primary--text font-italic text-decoration-none pointer" @click="openResetPassword"
             >Mot de passe oublié</span
           >
         </v-row>
