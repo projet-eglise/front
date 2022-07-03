@@ -15,7 +15,13 @@ export default {
   css: ['@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/repositories.js', '~/plugins/rules.js', '~/plugins/phone-input', '~/plugins/axios'],
+  plugins: [
+    '~/services/authentication',
+    '~/plugins/axios',
+    '~/plugins/phone-input',
+    '~/plugins/repositories.js',
+    '~/plugins/rules.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -10,7 +10,7 @@
         <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
 
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink to="/inscription">{{ $t('authentication.create_an_account') }}</NuxtLink>
+          <NuxtLink to="/registration">{{ $t('authentication.create_an_account') }}</NuxtLink>
           <span class="ml-2 mr-2 primary--text">/</span>
           <span class="primary--text font-italic text-decoration-none pointer" @click="openResetPassword">
             {{ $t('authentication.lost_password') }}
@@ -45,26 +45,9 @@ export default {
       event.stopPropagation()
 
       if (this.$refs.form.validate()) {
-        this.$store.dispatch('components/alert-component/hide')
         this.isLoading = true
-
-        try {
-          const res = await this.$repositories.authentication.login(this.email, this.password)
-          const { status, data } = res
-
-          if (status === 200 && data.message && data.data && data.data.token) {
-            this.$store.dispatch('authentication/login', data.data.token)
-            if (this.$store.getters['main/referer'] !== '') this.$router.push(this.$store.getters['main/referer'])
-            else this.$router.push('/connexion/choisir-mon-eglise')
-          } else {
-            this.$store.dispatch('authentication/logout')
-          }
-
-          this.isLoading = false
-        } catch (error) {
-          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-          this.isLoading = false
-        }
+        await this.$authentication.login(this.email, this.password)
+        this.isLoading = false
       }
     },
     openResetPassword(event) {
