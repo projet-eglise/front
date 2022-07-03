@@ -1,5 +1,5 @@
 <template>
-  <p><span ref="part1">Bi</span><span ref="part2">enve</span><span ref="part3">nue</span></p>
+  <p><span ref="part1">{{ $t('lightning_welcome.part1') }}</span><span ref="part2">{{ $t('lightning_welcome.part2') }}</span><span ref="part3">{{ $t('lightning_welcome.part3') }}</span></p>
 </template>
 <script>
 export default {
