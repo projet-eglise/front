@@ -1,6 +1,6 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
-    <WidgetReturnButton to="/connexion" />
+    <WidgetReturnButton to="/login" />
     <v-form ref="form">
       <WidgetAvatarEditor v-model="image" />
       <v-row>

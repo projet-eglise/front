@@ -95,7 +95,7 @@ export default {
   computed: {
     returnTo() {
       if (this.$nuxt.context.from !== undefined) return this.$nuxt.context.from.path
-      return '/eglise/creer-ou-rejoindre'
+      return '/church/add-or-join'
     },
   },
   watch: {
@@ -143,7 +143,7 @@ export default {
       function (response) {
         this.services = response.data.data
         this.waitingMount = false
-        if (this.services.length === 0) this.$router.push('/connexion/choisir-mon-eglise')
+        if (this.services.length === 0) this.$router.push('/login/choisir-mon-eglise')
       }.bind(this)
     )
   },
@@ -268,7 +268,7 @@ export default {
     },
     close() {
       this.dialog = false
-      this.$router.push('/connexion/choisir-mon-eglise')
+      this.$router.push('/login/choisir-mon-eglise')
     },
   },
 }

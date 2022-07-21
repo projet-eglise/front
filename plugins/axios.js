@@ -8,10 +8,10 @@ export default function ({ $axios, store, redirect, app }) {
     const code = parseInt(error.response && error.response.status)
     if (code === 401) {
       store.dispatch('main/setReferer', app.router.currentRoute.path)
-      redirect('/connexion')
+      redirect('/login')
     }
     if (code === 404)
-      if (store.getters['authentication/isConnected']) redirect('/connexion/choisir-mon-eglise')
-      else redirect('/connexion')
+      if (store.getters['authentication/isConnected']) redirect('/login/choisir-mon-eglise')
+      else redirect('/login')
   })
 }

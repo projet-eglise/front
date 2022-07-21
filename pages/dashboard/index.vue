@@ -11,7 +11,7 @@ export default {
   methods: {
     goChoosePage(churchUid) {
       this.$store.dispatch('church/clearChurch', churchUid)
-      this.$router.push('/connexion/choisir-mon-eglise')
+      this.$router.push('/login/choisir-mon-eglise')
     },
   },
 }

@@ -33,7 +33,7 @@ export default {
       this.isLoading = false
     } catch (error) {
       this.isLoading = false
-      this.$router.push('/connexion')
+      this.$router.push('/login')
     }
   },
   methods: {
@@ -57,7 +57,7 @@ export default {
               this.$store.dispatch('components/alert-component/displaySuccess', 'Mot de passe mis à jour avec succès')
               setTimeout(
                 function () {
-                  this.$router.push('/connexion')
+                  this.$router.push('/login')
                 }.bind(this),
                 2000
               )

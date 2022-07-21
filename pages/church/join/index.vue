@@ -1,6 +1,6 @@
 <template>
   <v-col class="ml-auto mr-auto flex-column" height="100%" align="center" justify="start">
-    <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
+    <WidgetReturnButton to="/church/add-or-join" />
 
     <AppTextField v-model="churchCityResearch" label="Ville de l'Eglise" left-icon="search" />
 
@@ -70,7 +70,7 @@ export default {
       return this.displayedChurches.length === 0 && !this.displayEnterLetters
     },
     to() {
-      return `/eglise/${this.displayedChurch.uid}/mon-role`
+      return `/church/join/${this.displayedChurch.uid}/role`
     },
   },
   watch: {

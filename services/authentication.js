@@ -9,7 +9,7 @@ export default ({ app }, inject) => {
         if (status === 200 && data.message && data.data && data.data.token) {
           app.store.dispatch('authentication/login', data.data.token)
           if (app.store.getters['main/referer'] !== '') app.router.push(app.store.getters['main/referer'])
-          else app.router.push('/connexion/choisir-mon-eglise')
+          else app.router.push('/login/choisir-mon-eglise')
         } else {
           app.store.dispatch('authentication/logout')
         }

@@ -1,6 +1,6 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
-    <WidgetReturnButton to="/eglise/creer-ou-rejoindre" />
+    <WidgetReturnButton to="/church/add-or-join" />
     <p class="text-center primary--text text-uppercase bold mt-4 font-weight-bold">Mon Eglise</p>
     <v-row>
       <AppTextField v-model="churchName" class="ml-0 mr-0" label="Nom de l'Eglise" :rules="[$rules.required]" />
@@ -84,7 +84,7 @@ export default {
               function (response) {
                 this.$store.dispatch('church/add', response.data.data.church)
                 this.isLoading = false
-                this.$router.push(`/eglise/${response.data.data.church.uid}/mon-role`)
+                this.$router.push(`/church/join/${response.data.data.church.uid}/role`)
               }.bind(this)
             )
         } catch (error) {

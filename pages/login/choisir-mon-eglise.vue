@@ -7,7 +7,7 @@
     <AppButtonBlock v-for="church in churches" :key="church.uid" :color="churchColor(church)" @click="chooseChurch(church)">
       {{ church.name }}{{ churchState(church) }}
     </AppButtonBlock>
-    <NuxtLink to="/eglise/creer-ou-rejoindre" style="text-decoration: none">
+    <NuxtLink to="/church/add-or-join" style="text-decoration: none">
       <AppButtonOutlinedBlock> <i class="fas fa-add mr-2" /> Rejoindre une Eglise </AppButtonOutlinedBlock>
     </NuxtLink>
     <v-dialog v-model="displayModal" max-width="500">
@@ -55,7 +55,7 @@ export default {
     chooseChurch(church) {
       if (church.hasAtLeastOneRole && church.hasAtLeastOneRoleValidate) {
         this.$store.dispatch('church/setChurchWithUid', church.uid)
-        this.$router.push('/tableau-de-bord')
+        this.$router.push('/dashboard')
       }
 
       if (church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) {
@@ -63,7 +63,7 @@ export default {
       }
 
       if (!church.hasAtLeastOneRole && !church.hasAtLeastOneRoleValidate) {
-        this.$router.push(`/eglise/${church.uid}/mon-role`)
+        this.$router.push(`/church/join/${church.uid}/role`)
       }
     },
     churchState(church) {

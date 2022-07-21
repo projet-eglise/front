@@ -10,7 +10,7 @@ export default {
   meta: { protected: true },
   methods: {
     goChoosePage() {
-      this.$router.push('/connexion/choisir-mon-eglise')
+      this.$router.push('/login/choisir-mon-eglise')
     },
   },
 }

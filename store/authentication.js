@@ -53,20 +53,20 @@ export const actions = {
     }
 
     if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined)) {
-      if (rootGetters['main/displayWelcome']) return '/connexion'
-      return '/erreur/404'
+      if (rootGetters['main/displayWelcome']) return '/login'
+      return '/error/404'
     }
 
     if (state.isConnected || !route.meta[0].protected) {
       if(state.isConnected && state.expiration - moment().format('X') <= 0 ) {
         dispatch('main/setReferer', this.app.router.currentRoute.path, {root: true})
-        return '/connexion'
+        return '/login'
       }
 
       return route.path
     }
 
-    return '/connexion'
+    return '/login'
   },
   async signin({ commit }, payload) {
     const res = await this.$repositories.authentication.signin(payload)
@@ -74,7 +74,7 @@ export const actions = {
 
     if (status === 200 && data.message && data.data && data.data.token) {
       commit('LOGIN', data.data.token)
-      this.$router.push('/eglise/creer-ou-rejoindre')
+      this.$router.push('/church/add-or-join')
     } else {
       commit('LOGOUT')
     }
