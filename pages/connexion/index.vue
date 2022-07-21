@@ -10,9 +10,8 @@
         <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
 
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink to="/registration">{{ $t('authentication.create_an_account') }}</NuxtLink>
-          <span class="ml-2 mr-2 primary--text">/</span>
-          <span class="primary--text font-italic text-decoration-none pointer" @click="openResetPassword">
+          <NuxtLink id="account-link" class="hover:font-bold" to="/registration">{{ $t('authentication.create_an_account') }}</NuxtLink>
+          <span class="primary--text font-italic text-decoration-none pointer hover:font-bold" @click="openResetPassword">
             {{ $t('authentication.lost_password') }}
           </span>
         </v-row>
@@ -29,8 +28,8 @@ export default {
   meta: { protected: false },
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'timothe@hofmann.fr',
+      password: 'LnVglh4^#',
       showPassword: false,
       isLoading: false,
       wantOpenDialog: false,
@@ -74,5 +73,24 @@ export default {
 .center-v-alert {
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+#account-link {
+  margin-right: 1.5em;
+  position: relative;
+}
+
+#account-link:after {
+  background: #08c5d1;
+  border-radius: 50%;
+  content: '';
+  cursor: auto;
+  display: inline-block;
+  height: 0.25rem;
+  pointer-events: none;
+  position: absolute;
+  right: -0.9em;
+  top: 0.7em;
+  width: 0.25rem;
 }
 </style>
