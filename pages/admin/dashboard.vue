@@ -1,12 +1,13 @@
 <template>
-  <v-col>
+  <v-col height="100%">
     <p>Page d'administration</p>
-    <v-btn @click="goChoosePage">Retour au choix d'Eglise</v-btn>
+    <AppButtonBlock @click="goChoosePage">Retour au choix d'Eglise</AppButtonBlock>
   </v-col>
 </template>
 
 <script>
 export default {
+  layout: 'administration',
   meta: { protected: true },
   methods: {
     goChoosePage() {

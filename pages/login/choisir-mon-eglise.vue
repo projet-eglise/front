@@ -1,7 +1,7 @@
 <template>
   <v-col class="choises ml-auto mr-auto flex-column" height="100%" align="center">
     <WidgetWaitingSpinner v-if="waitingMount" />
-    <NuxtLink v-if="is_admin" to="/admin">
+    <NuxtLink v-if="is_admin" to="/admin/tableau-de-bord">
       <AppButtonBlock> Administrateur </AppButtonBlock>
     </NuxtLink>
     <AppButtonBlock v-for="church in churches" :key="church.uid" :color="churchColor(church)" @click="chooseChurch(church)">
