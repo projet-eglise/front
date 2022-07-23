@@ -35,7 +35,7 @@ export default {
     close: 'Fermer',
     dashboard: 'Tableau de bord',
     home: 'Accueil',
-    logout: 'Déonnexion',
+    logout: 'Déconnexion',
     menu: 'Menu',
     send: 'Envoyer',
     services: 'Services',
