@@ -1,6 +1,6 @@
 <template>
   <v-col class="mb-4em ml-auto mr-auto" height="100%">
-    <AppLogo centred />
+    <AppLogo class="mb-8" centred />
 
     <v-fade-transition>
       <v-form ref="form" @submit="connect">

@@ -1,5 +1,5 @@
 <template>
-  <v-img :src="require('@/assets/img/circled-logo.png')" v-bind="{ ...$attrs, ...commonAttrs }" v-on="$listeners" />
+  <img :src="require('@/assets/img/circled-logo.png')" v-bind="{ ...$attrs, ...commonAttrs }" v-on="$listeners" />
 </template>
 
 <script>
@@ -33,6 +33,7 @@ export default {
         height: this.height,
         class: {
           'ml-auto mr-auto': this.centred,
+          'object-contain': true
         },
       }
     },
