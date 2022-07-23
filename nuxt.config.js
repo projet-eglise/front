@@ -99,6 +99,11 @@ export default {
     middleware: ['authentication'],
   },
 
+  env: {
+    DEFAULT_LOGIN: process.env.DEFAULT_LOGIN ?? '',
+    DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD ?? '',
+  },
+
   pageTransition: 'fade',
 
   ssr: false,

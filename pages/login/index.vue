@@ -28,8 +28,8 @@ export default {
   meta: { protected: false },
   data() {
     return {
-      email: '',
-      password: '',
+      email: process.env.DEFAULT_LOGIN ?? '',
+      password: process.env.DEFAULT_PASSWORD ?? '',
       showPassword: false,
       isLoading: false,
       wantOpenDialog: false,
