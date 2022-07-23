@@ -31,7 +31,14 @@ export default {
   global: {
     add: 'Ajouter',
     cancel: 'Annuler',
+    chat: 'Tchat',
     close: 'Fermer',
+    dashboard: 'Tableau de bord',
+    home: 'Accueil',
+    logout: 'Déonnexion',
+    menu: 'Menu',
     send: 'Envoyer',
+    services: 'Services',
+    settings: 'Paramètres',
   },
 }

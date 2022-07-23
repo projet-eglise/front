@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Tableau de bord</p>
+    <p>Services</p>
   </div>
 </template>
 

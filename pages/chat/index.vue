@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Tableau de bord</p>
+    <p>Tchat de l'app</p>
   </div>
 </template>
 
