@@ -1,7 +1,6 @@
 <template>
   <v-col height="100%">
-    <p>Page d'administration</p>
-    <AppButtonBlock @click="goChoosePage">Retour au choix d'Eglise</AppButtonBlock>
+    <p>Dashboard</p>
   </v-col>
 </template>
 

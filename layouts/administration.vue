@@ -17,35 +17,11 @@
           </v-list-item-icon>
           <v-list-item-title>Tableau de bord</v-list-item-title>
         </v-list-item>
-        <v-list-item to="/admin/churches" nuxt>
+        <v-list-item to="/admin/login" nuxt>
           <v-list-item-icon>
-            <v-icon>fas fa-church</v-icon>
+            <v-icon>fas fa-power-off</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Eglises</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/admin/users" nuxt>
-          <v-list-item-icon>
-            <v-icon>fas fa-users</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Utilisateurs</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/admin/logs" nuxt>
-          <v-list-item-icon>
-            <v-icon>fas fa-clock-rotate-left</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Logs</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/admin/errors" nuxt>
-          <v-list-item-icon>
-            <v-icon>fas fa-bug</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Erreurs</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/login" nuxt>
-          <v-list-item-icon>
-            <v-icon>fas fa-arrow-left</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Retour au menu</v-list-item-title>
+          <v-list-item-title>Déconnexion</v-list-item-title>
         </v-list-item>
       </v-list>
       <template #append>
