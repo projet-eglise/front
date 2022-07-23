@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-0 left-0 bg-[#FFFFFF] h-20 w-screen flex items-center">
+  <div class="absolute top-0 left-0 bg-[#FFFFFF] h-20 w-screen flex items-center rounded-br-lg rounded-bl-lg">
     <AppLogo class="h-14" centred />
   </div>
 </template>

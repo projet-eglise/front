@@ -1,0 +1,11 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+  <div class="absolute top-0 left-0 w-screen h-screen bg-[#FFFFFF] w-14 transition-all z-50 rounded-tr-lg rounded-br-lg">
+    <AppLogo class="h-20 p-2" />
+
+    <v-list dense>
+      <AppNavigationDrawerListItem :label="$t('global.dashboard')" icon="home" path="/admin/dashboard" />
+      <AppNavigationDrawerListItem :label="$t('global.logout')" icon="power-off" path="/admin/login" />
+    </v-list>
+  </div>
+</template>
