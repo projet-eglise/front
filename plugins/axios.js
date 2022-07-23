@@ -10,8 +10,5 @@ export default function ({ $axios, store, redirect, app }) {
       store.dispatch('main/setReferer', app.router.currentRoute.path)
       redirect('/login')
     }
-    if (code === 404)
-      if (store.getters['authentication/isConnected']) redirect('/login/choisir-mon-eglise')
-      else redirect('/login')
   })
 }

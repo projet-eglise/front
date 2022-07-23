@@ -48,25 +48,24 @@ export const actions = {
     commit('LOGOUT')
   },
   checkRouteAccess({ state, commit, rootGetters, dispatch }, route) {
-    if (!state.isConnected && this.$cookies.get('token') !== undefined) {
-      commit('LOGIN', this.$cookies.get('token'))
+    if (route.name === null) return rootGetters['main/referer'] === '' ? '/login' : '/error/404'
+
+    if (!state.isConnected && this.$cookies.get('token') !== undefined) commit('LOGIN', this.$cookies.get('token'))
+
+    if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined))
+      return rootGetters['main/displayWelcome'] ? '/login' : '/dashboard'
+
+    if (state.isConnected && route.meta[0].protected)
+      dispatch('main/setReferer', this.app.router.currentRoute.path ?? '', { root: true })
+
+    if (!state.isConnected && route.meta[0].protected) return '/login'
+
+    if (state.isConnected && state.expiration - moment().format('X') <= 0) {
+      // TODO Refresh token
+      return '/login'
     }
 
-    if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined)) {
-      if (rootGetters['main/displayWelcome']) return '/login'
-      return '/error/404'
-    }
-
-    if (state.isConnected || !route.meta[0].protected) {
-      if(state.isConnected && state.expiration - moment().format('X') <= 0 ) {
-        dispatch('main/setReferer', this.app.router.currentRoute.path, {root: true})
-        return '/login'
-      }
-
-      return route.path
-    }
-
-    return '/login'
+    return route.path
   },
   async signin({ commit }, payload) {
     const res = await this.$repositories.authentication.signin(payload)
