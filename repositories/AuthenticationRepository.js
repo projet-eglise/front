@@ -4,7 +4,14 @@ export default ($axios) => ({
     data.append('email', email)
     data.append('password', password)
 
-    return await $axios.post('/login', data)
+    return await $axios.post('authentication/login', data)
+  },
+  async adminLogin(email, password) {
+    const data = new FormData()
+    data.append('email', email)
+    data.append('password', password)
+
+    return await $axios.post('admin/authentication/login', data)
   },
   async signin(payload) {
     const data = new FormData()

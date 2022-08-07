@@ -2,11 +2,11 @@
   <v-col class="mb-4em ml-auto mr-auto" height="100%">
     <AppLogo class="mb-8" centred />
 
-    <v-form ref="form" @submit="connect">
-      <AppTextFieldEmail v-model="email" />
-      <AppTextFieldPassword v-model="password" />
+    <v-form id="login-form" ref="form" @submit="connect">
+      <AppTextFieldEmail id="email" v-model="email" />
+      <AppTextFieldPassword id="password" v-model="password" />
 
-      <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
+      <AppButtonBlock id="submit" type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
     </v-form>
   </v-col>
 </template>
@@ -34,7 +34,7 @@ export default {
 
       if (this.$refs.form.validate()) {
         this.isLoading = true
-        await this.$authentication.adminLogin(this.email, this.password)
+        await this.$authentication.login(this.email, this.password, true)
         this.isLoading = false
       }
     },
