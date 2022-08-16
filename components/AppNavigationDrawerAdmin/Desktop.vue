@@ -5,6 +5,7 @@
 
     <v-list dense>
       <AppNavigationDrawerListItem :label="$t('global.dashboard')" icon="home" path="/admin/dashboard" />
+      <AppNavigationDrawerListItem :label="$t('global.users')" icon="users" path="/admin/users" />
       <AppNavigationDrawerListItem :label="$t('global.logout')" icon="power-off" path="/admin/login" />
     </v-list>
   </div>

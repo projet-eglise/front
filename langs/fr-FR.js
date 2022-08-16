@@ -40,5 +40,6 @@ export default {
     send: 'Envoyer',
     services: 'Services',
     settings: 'Paramètres',
+    users: 'Utilisateurs',
   },
 }
