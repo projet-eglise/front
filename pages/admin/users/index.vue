@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full">
-    <p>Utilisateurs</p>
+  <div>
+    <AppTitlePageAdmin>{{ $t('global.users') }}</AppTitlePageAdmin>
   </div>
 </template>
 

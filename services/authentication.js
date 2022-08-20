@@ -7,8 +7,8 @@ export default ({ app }, inject) => {
           ? await app.$repositories.authentication.adminLogin(email, password)
           : await app.$repositories.authentication.login(email, password)
 
-        if (status === 200 && data.token) {
-          app.store.dispatch('authentication/login', data.token)
+        if (status === 200 && data.data.token) {
+          app.store.dispatch('authentication/login', data.data.token)
           if (app.store.getters['main/referer'] !== '') app.router.push(app.store.getters['main/referer'])
           else app.router.push(admin ? '/admin/dashboard' : '/dashboard')
         } else {

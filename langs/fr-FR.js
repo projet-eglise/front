@@ -25,8 +25,21 @@ export default {
         email_sent_to: "Un email contenant un lien de réinistialisation a été envoyé à l'adresse { email }",
         enter_email: 'Veuillez saisir l’adresse e-mail de votre compte pour que nous puissions envoyer un lien de réinitialisation de mot de passe.',
         if_dont_receive: 'Si vous ne recevez pas l’e-mail, pensez a regarder dans vos spams. Si le problème persiste contacter l’administrateur de votre Eglise.'
-      }
+      },
+      view_email: {
+        email_detail: 'Détail du mail',
+        date_and_hour_expedition: "Date et heure d'expédition",
+        expeditor: "Expéditeur",
+        link_to_template: 'Lien du template',
+        to: "Destinataire | Destinataires",
+      },
     },
+  },
+  pages: {
+    admin_emails: {
+      email_template: 'Template du mail',
+      no_recipient: 'Aucun destinataire',
+    }
   },
   global: {
     add: 'Ajouter',
@@ -34,6 +47,8 @@ export default {
     chat: 'Tchat',
     close: 'Fermer',
     dashboard: 'Tableau de bord',
+    error: 'Erreur',
+    emails: 'Mails',
     home: 'Accueil',
     logout: 'Déconnexion',
     menu: 'Menu',

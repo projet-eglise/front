@@ -1,17 +1,12 @@
 <template>
-  <v-col height="100%">
-    <p>Dashboard</p>
-  </v-col>
+  <div>
+    <AppTitlePageAdmin>{{ $t('global.dashboard') }}</AppTitlePageAdmin>
+  </div>
 </template>
 
 <script>
 export default {
   layout: 'administration',
   meta: { protected: true },
-  methods: {
-    goChoosePage() {
-      this.$router.push('/login/choisir-mon-eglise')
-    },
-  },
 }
 </script>

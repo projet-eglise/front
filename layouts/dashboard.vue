@@ -5,7 +5,7 @@
         <AppBar class="md:hidden" />
         <div class="flex">
           <AppNavigationDrawer class="hidden md:block" />
-          <div class="mb-20 mt-20 md:mb-0 md:mt-0 h-screen overflow-auto p-4">
+          <div class="mb-20 mt-20 md:mb-0 md:mt-0 h-screen overflow-auto p-4 w-full">
             <Nuxt />
           </div>
         </div>

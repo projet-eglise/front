@@ -2,10 +2,10 @@
   <v-app>
     <v-main>
       <div class="flex flex-col w-screen h-screen">
-        <AppBarAdmin class="md:hidden" />
+        <AppBarAdmin class="md:hidden z-50" />
         <div class="flex">
-          <AppNavigationDrawerAdminDesktop class="hidden md:block" />
-          <div class="mb-20 mt-20 md:mb-0 md:mt-0 h-screen overflow-auto p-4">
+          <AppNavigationDrawerAdminDesktop class="hidden md:block z-50" />
+          <div class="pt-24 pb-4 px-4 md:py-0 h-screen overflow-auto w-full">
             <Nuxt />
           </div>
         </div>
