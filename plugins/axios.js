@@ -8,7 +8,9 @@ export default function ({ $axios, store, redirect, app }) {
     const code = parseInt(error.response && error.response.status)
     if (code === 401 && app.router.currentRoute.path !== '/admin/login' && app.router.currentRoute.path !== '/login') {
       store.dispatch('main/setReferer', app.router.currentRoute.path)
-      redirect('/login')
+
+      if (app.router.currentRoute.path.includes('/admin')) redirect('/admin/login')
+      else redirect('/login')
     }
   })
 }
