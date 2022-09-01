@@ -27,12 +27,13 @@ export default {
       showConfirmPassword: false,
     }
   },
-  beforeMount() {
+  async beforeMount() {
     try {
-      this.$repositories.authentication.checkToken(this.$route.params.token)
+      await this.$repositories.authentication.checkToken(this.$route.params.token)
       this.isLoading = false
     } catch (error) {
       this.isLoading = false
+      this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
       this.$router.push('/login')
     }
   },
