@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="openDialog" max-width="600">
-    <v-card>
+    <v-card class="dialog-view-email">
       <v-card-title class="text-h5" style="word-break: break-word">
         {{ $t('components.dialogs.view_email.email_detail') }}
       </v-card-title>

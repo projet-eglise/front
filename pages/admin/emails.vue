@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppTitlePageAdmin>{{ $t('global.emails') }}</AppTitlePageAdmin>
-    <v-data-table :headers="headers" :items="emails" @click:row="handleClick">
+    <v-data-table class="emails-table" :headers="headers" :items="emails" @click:row="handleClick">
       <template #[`item.response`]="{ item }">
         <WidgetHttpResponseCode :code="item.response.code" />
       </template>
