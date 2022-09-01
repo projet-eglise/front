@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const env = require('../../utils/env')
+clearInput = require('../../utils/clear-input')
 jest.setTimeout(10000)
 
 beforeEach(async () => {
@@ -10,6 +11,9 @@ describe('Test the administrator login portal.', () => {
   test('Good credentials redirects to dashboard', async () => {
     await page.waitForSelector('#login-form')
 
+    await clearInput(page, 'input#email')
+    await clearInput(page, 'input#password')
+
     await page.type('input#email', env.credentials.admin.email)
     await page.type('input#password', env.credentials.admin.password)
 
@@ -19,6 +23,9 @@ describe('Test the administrator login portal.', () => {
   })
   test('Bad credentials gives error', async () => {
     await page.waitForSelector('#login-form')
+
+    await clearInput(page, 'input#email')
+    await clearInput(page, 'input#password')
 
     await page.type('input#email', env.credentials.admin.email)
     await page.type('input#password', 'azeazeaze')
@@ -36,6 +43,9 @@ describe('Test the administrator login portal.', () => {
   test('Not admin user gives error', async () => {
     await page.waitForSelector('#login-form')
 
+    await clearInput(page, 'input#email')
+    await clearInput(page, 'input#password')
+
     await page.type('input#email', env.credentials.user.email)
     await page.type('input#password', env.credentials.user.password)
 
@@ -52,6 +62,9 @@ describe('Test the administrator login portal.', () => {
   test('Reconnect after disconnect', async () => {
     await page.waitForSelector('#login-form')
 
+    await clearInput(page, 'input#email')
+    await clearInput(page, 'input#password')
+
     await page.type('input#email', env.credentials.admin.email)
     await page.type('input#password', env.credentials.admin.password)
 
@@ -67,6 +80,9 @@ describe('Test the administrator login portal.', () => {
     expect(await page.url()).toBe(env.URL + '/admin/login')
 
     await page.waitForSelector('#login-form')
+
+    await clearInput(page, 'input#email')
+    await clearInput(page, 'input#password')
 
     await page.type('input#email', env.credentials.admin.email)
     await page.type('input#password', env.credentials.admin.password)

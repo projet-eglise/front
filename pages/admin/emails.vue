@@ -5,6 +5,10 @@
       <template #[`item.response`]="{ item }">
         <WidgetHttpResponseCode :code="item.response.code" />
       </template>
+      
+      <template #[`item.sending_time`]="{ item }">
+        {{ $display.timestamp(item.sending_time) }}
+      </template>
 
       <template #[`item.from`]="{ item }">
         <p class="mb-0">{{ item.from.name }} &lt;{{ item.from.email }}&gt;</p>
@@ -47,10 +51,10 @@ export default {
       emails: [],
       headers: [
         { text: 'Statut', value: 'response', sortable: false },
+        { text: 'Date et heure', value: 'sending_time', sortable: false },
         { text: 'Sujet', value: 'subject', sortable: false },
         { text: 'Expéditeur', value: 'from', sortable: false },
-        { text: 'Destinataire', value: 'to', sortable: false },
-        { text: 'Template', value: 'template', sortable: false },
+        { text: 'Destinataire(s)', value: 'to', sortable: false },
       ],
     }
   },

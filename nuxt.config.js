@@ -18,6 +18,7 @@ export default {
   plugins: [
     '~/services/authentication',
     '~/plugins/axios',
+    '~/plugins/display.js',
     '~/plugins/phone-input',
     '~/plugins/repositories.js',
     '~/plugins/rules.js',
@@ -106,6 +107,7 @@ export default {
   },
 
   env: {
+    ENV: process.env.env ?? 'LOCAL',
     DEFAULT_LOGIN: process.env.DEFAULT_LOGIN ?? '',
     DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD ?? '',
   },
