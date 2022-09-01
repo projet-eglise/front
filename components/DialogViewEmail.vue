@@ -16,7 +16,7 @@
         </p>
 
         <p class="font-bold mb-0">{{ $t('components.dialogs.view_email.date_and_hour_expedition') }}</p>
-        <p>{{ displaySendingTime(value.sending_time) }}</p>
+        <p>{{ $display.timestamp(value.sending_time) }}</p>
 
         <p class="font-bold mb-0">{{ $t('components.dialogs.view_email.expeditor') }}</p>
         <p>{{ value.from.name }} &lt;{{ value.from.email }}&gt;</p>
@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import moment from 'moment'
-
 export default {
   props: {
     wantOpenDialog: {
@@ -69,9 +67,6 @@ export default {
     close() {
       this.openDialog = false
     },
-    displaySendingTime(timestamp) {
-      return moment(timestamp * 0.1).format('DD/MM/YYYY hh:mm:ss (SSS)')
-    }
   },
 }
 </script>

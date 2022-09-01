@@ -25,7 +25,7 @@ export default {
       function () {
         this.$store.dispatch('main/welcomeDisplayed')
       }.bind(this),
-      process.env.ENV === 'PROD' ? 4000 : 200
+      process.env.ENV === 'PROD' ? 4000 : 800
     )
   },
 }
