@@ -47,21 +47,13 @@ export default {
         this.isLoading = true
 
         this.$repositories.authentication
-          .changePassword({
-            token: this.$route.params.token,
-            password: this.password,
-          })
+          .changePassword(this.$route.params.token, this.password)
           .then(
             function () {
               this.isLoading = false
               this.requested = true
               this.$store.dispatch('components/alert-component/displaySuccess', 'Mot de passe mis à jour avec succès')
-              setTimeout(
-                function () {
-                  this.$router.push('/login')
-                }.bind(this),
-                2000
-              )
+              this.$router.push('/login')
             }.bind(this)
           )
           .catch(
