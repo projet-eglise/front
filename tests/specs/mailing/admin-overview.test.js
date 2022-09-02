@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
-// const env = require('../../utils/env')
 authentication = require('../../utils/authentication/admin')
-jest.setTimeout(10000)
+jest.setTimeout(14000)
 
 beforeEach(async () => {
   await authentication(page)
