@@ -5,7 +5,7 @@
         <span v-show="!hasImage">{{ initials }}</span>
         <v-img v-show="hasImage" :src="image" class="rounded-circle" />
       </v-avatar>
-      <v-col>
+      <v-col v-if="displayUsername">
         <p class="ma-0 black--text">{{ username }}</p>
         <p v-show="secondLine" class="ma-0 black--text">{{ secondLine }}</p>
       </v-col>
@@ -26,9 +26,14 @@ export default {
       default: '',
       required: false,
     },
+    displayUsername: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
     imageSize: {
       type: String,
-      default: 'medium',
+      default: 'm',
       required: false,
     },
     link: {
@@ -50,19 +55,21 @@ export default {
       return (
         this.user !== undefined &&
         this.user !== null &&
-        this.user.profile_image_link !== null &&
-        this.user.profile_image_link !== ''
+        this.user.profile_picture !== null &&
+        this.user.profile_picture !== ''
       )
     },
     image() {
-      if (this.hasImage) return this.user.profile_image_link
+      if (this.hasImage) return this.user.profile_picture
       return ''
     },
     size() {
       switch (this.imageSize) {
-        case 'small':
+        case 'xs':
+          return 30
+        case 's':
           return 40
-        case 'large':
+        case 'l':
           return 62
         default:
           return 48

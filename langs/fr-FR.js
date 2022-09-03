@@ -47,6 +47,7 @@ export default {
     add: 'Ajouter',
     cancel: 'Annuler',
     chat: 'Tchat',
+    christians: 'Chrétiens',
     close: 'Fermer',
     date_and_hour: "Date et heure",
     dashboard: 'Tableau de bord',
