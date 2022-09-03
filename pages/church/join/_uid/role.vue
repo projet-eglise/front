@@ -143,7 +143,7 @@ export default {
       function (response) {
         this.services = response.data.data
         this.waitingMount = false
-        if (this.services.length === 0) this.$router.push('/login/choisir-mon-eglise')
+        if (this.services.length === 0) this.$router.push('/church/add-or-join')
       }.bind(this)
     )
   },
@@ -268,7 +268,7 @@ export default {
     },
     close() {
       this.dialog = false
-      this.$router.push('/login/choisir-mon-eglise')
+      this.$router.push('/church/add-or-join')
     },
   },
 }

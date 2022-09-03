@@ -6,7 +6,7 @@
 export default {
   mounted() {
     setTimeout(function() {
-      let route = '/login/choisir-mon-eglise';
+      let route = '/dashboard';
       if(this.$nuxt.context.from !== undefined) route = this.$nuxt.context.from.path
       this.$router.push(route)
     }.bind(this), 3000);

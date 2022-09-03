@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col mx-auto justify-center align-center">
-    <WidgetReturnButton to="/login/choisir-mon-eglise" class="mr-auto" />
     <div class="flex flex-col md:flex-row justify-center">
       <AppButtonSquareWithImage link="/church/add" icon="plus" first-line="Ajouter une" second-line="Eglise" />
       <span class="flex text-primary uppercase text-4xl text-center font-bold m-8 justify-center align-center"> </span>
