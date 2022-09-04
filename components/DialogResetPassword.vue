@@ -73,20 +73,19 @@ export default {
     async sendRequest(event) {
       event.preventDefault()
       event.stopPropagation()
+      if (!this.$refs.form.validate()) return null
 
-      if (this.$refs.form.validate()) {
-        this.$store.dispatch('components/alert-component/hide')
-        this.isLoading = true
+      this.$store.dispatch('components/alert-component/hide')
+      this.isLoading = true
 
-        try {
-          await this.$repositories.authentication.passwordRequest(this.email)
-          this.isLoading = false
-          this.requested = true
-          setTimeout(this.close, 5000)
-        } catch (error) {
-          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-          this.isLoading = false
-        }
+      try {
+        await this.$repositories.Authentication.passwordRequest(this.email)
+        this.isLoading = false
+        this.requested = true
+        setTimeout(this.close, 5000)
+      } catch (error) {
+        this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
+        this.isLoading = false
       }
     },
   },

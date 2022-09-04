@@ -31,12 +31,11 @@ export default {
     async connect(event) {
       event.preventDefault()
       event.stopPropagation()
+      if (!this.$refs.form.validate()) return null
 
-      if (this.$refs.form.validate()) {
-        this.isLoading = true
-        await this.$authentication.login(this.email, this.password, true)
-        this.isLoading = false
-      }
+      this.isLoading = true
+      await this.$authentication.login(this.email, this.password, true)
+      this.isLoading = false
     },
     openResetPassword(event) {
       event.preventDefault()

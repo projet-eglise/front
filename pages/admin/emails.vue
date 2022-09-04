@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted() {
-    this.$repositories.mailing.all().then(
+    this.$repositories.Mailing.all().then(
       function (response) {
         this.emails = response.data.data
       }.bind(this)

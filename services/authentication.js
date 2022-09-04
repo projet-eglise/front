@@ -4,8 +4,8 @@ export default ({ app }, inject) => {
       app.store.dispatch('components/alert-component/hide')
       try {
         const { status, data } = admin
-          ? await app.$repositories.authentication.adminLogin(email, password)
-          : await app.$repositories.authentication.login(email, password)
+          ? await app.$repositories.Authentication.adminLogin(email, password)
+          : await app.$repositories.Authentication.login(email, password)
 
         if (status === 200 && data.data.token) {
           app.store.dispatch('authentication/login', data.data.token)
@@ -16,6 +16,24 @@ export default ({ app }, inject) => {
         }
       } catch (error) {
         app.store.dispatch('components/alert-component/displayError', error.response.data.error)
+      }
+    },
+    async signin(firstname, lastname, email, password, phone, birthdate, profilePicture) {
+      const { status, data } = await app.$repositories.Authentication.signin(
+        firstname,
+        lastname,
+        email,
+        password,
+        phone,
+        birthdate,
+        profilePicture
+      )
+
+      if (status === 200 && data.message && data.data && data.data.token) {
+        app.store.dispatch('authentication/login', data.data.token)
+        app.router.push('/church/add-or-join')
+      } else {
+        app.store.dispatch('authentication/logout')
       }
     },
   })

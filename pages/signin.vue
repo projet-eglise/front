@@ -1,10 +1,11 @@
 <template>
   <v-col class="ml-auto mr-auto justify-start" height="100%">
     <WidgetReturnButton to="/login" />
-    <v-form ref="form">
+    <v-form id="signin-form" ref="form">
       <WidgetAvatarEditor v-model="image" />
       <v-row>
         <AppTextField
+          id="firstname"
           v-model="firstname"
           class="text-capitalize"
           left-icon="user"
@@ -12,6 +13,7 @@
           :rules="[$rules.required]"
         />
         <AppTextField
+          id="lastname"
           v-model="lastname"
           class="text-uppercase"
           left-icon="user"
@@ -20,10 +22,11 @@
         />
       </v-row>
       <v-row>
-        <AppTextFieldEmail v-model="email" class="ml-0 mr-0" />
+        <AppTextFieldEmail id="email" v-model="email" class="ml-0 mr-0" />
       </v-row>
       <v-row>
         <vue-phone-number-input
+          id="phone"
           ref="phone"
           v-model="phone"
           label="Numéro de téléphone"
@@ -37,6 +40,7 @@
           }"
         />
         <WidgetDateInput
+          id="birthdate"
           v-model="birthdate"
           classes="ml-1 width-45p"
           label="Date de naissance"
@@ -44,8 +48,9 @@
         />
       </v-row>
       <v-row>
-        <AppTextFieldPassword v-model="password" :rules="[$rules.password]" unviewable />
+        <AppTextFieldPassword id="password" v-model="password" :rules="[$rules.password]" unviewable />
         <AppTextFieldPassword
+          id="confirm-password"
           v-model="confirmPassword"
           label="Confirmation"
           :rules="[$rules.passwords_equals(password, confirmPassword)]"
@@ -56,7 +61,7 @@
         <AppParagraphPasswordRequirement class="mt-n2 text-center" />
       </v-row>
       <v-row class="justify-end mt-8">
-        <AppButtonBlock :loading="isLoading" @click="sendRequest"> Enregistrer </AppButtonBlock>
+        <AppButtonBlock id="submit" :loading="isLoading" @click="sendRequest"> Enregistrer </AppButtonBlock>
       </v-row>
     </v-form>
   </v-col>
@@ -82,29 +87,21 @@ export default {
   },
   methods: {
     async sendRequest() {
-      if (this.$refs.form.validate()) {
-        this.$store.dispatch('components/alert-component/hide')
-        this.isLoading = true
+      if (!this.$refs.form.validate()) return null
 
-        try {
-          await this.$store.dispatch('authentication/signin', {
-            firstname: this.firstname,
-            lastname: this.lastname,
-            email: this.email,
-            password: this.password,
-            phone_number:
-              this.$refs.phone.$refs.CountrySelector.callingCode +
-              ' ' +
-              parseInt(this.phone.replaceAll(' ', ''), 10).toString(),
-            birthdate: this.birthdate,
-            profile_image: this.image,
-          })
-          this.isLoading = false
-        } catch (error) {
-          this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-          this.isLoading = false
-        }
-      }
+      this.isLoading = true
+      await this.$authentication.signin(
+        this.firstname,
+        this.lastname,
+        this.email,
+        this.password,
+        this.$refs.phone.$refs.CountrySelector.callingCode +
+          '' +
+          parseInt(this.phone.replaceAll(' ', ''), 10).toString(),
+        this.birthdate,
+        this.image
+      )
+      this.isLoading = false
     },
   },
 }

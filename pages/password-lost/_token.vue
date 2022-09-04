@@ -29,7 +29,7 @@ export default {
   },
   async beforeMount() {
     try {
-      await this.$repositories.authentication.checkToken(this.$route.params.token)
+      await this.$repositories.Authentication.checkToken(this.$route.params.token)
       this.isLoading = false
     } catch (error) {
       this.isLoading = false
@@ -42,27 +42,26 @@ export default {
       event.preventDefault()
       event.stopPropagation()
 
-      if (this.$refs.form.validate()) {
-        this.$store.dispatch('components/alert-component/hide')
-        this.isLoading = true
+      if (!this.$refs.form.validate()) return null
 
-        this.$repositories.authentication
-          .changePassword(this.$route.params.token, this.password)
-          .then(
-            function () {
-              this.isLoading = false
-              this.requested = true
-              this.$store.dispatch('components/alert-component/displaySuccess', 'Mot de passe mis à jour avec succès')
-              this.$router.push('/login')
-            }.bind(this)
-          )
-          .catch(
-            function (error) {
-              this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-              this.isLoading = false
-            }.bind(this)
-          )
-      }
+      this.$store.dispatch('components/alert-component/hide')
+      this.isLoading = true
+
+      this.$repositories.Authentication.changePassword(this.$route.params.token, this.password)
+        .then(
+          function () {
+            this.isLoading = false
+            this.requested = true
+            this.$store.dispatch('components/alert-component/displaySuccess', 'Mot de passe mis à jour avec succès')
+            this.$router.push('/login')
+          }.bind(this)
+        )
+        .catch(
+          function (error) {
+            this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
+            this.isLoading = false
+          }.bind(this)
+        )
     },
   },
 }

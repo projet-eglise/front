@@ -15,6 +15,7 @@
       <template #[`item.profile_picture`]="{ item }">
         <SummaryUsername :user="item" image-size="xs" />
       </template>
+
       <template #[`item.fullname`]="{ item }">
         <span>{{ item.firstname }} {{ item.lastname }}</span>
       </template>
@@ -33,13 +34,15 @@ export default {
       headers: [
         { text: '', value: 'profile_picture', sortable: false, width: '4%' },
         { text: 'Nom et prénom', value: 'fullname' },
+        { text: 'Firstname', value: 'firstname', align: ' d-none' },
+        { text: 'Lastname', value: 'lastname', align: ' d-none' },
         { text: 'Email', value: 'email' },
         { text: 'Numéro de téléphone', value: 'phone' },
       ],
     }
   },
   mounted() {
-    this.$repositories.christians.all().then(
+    this.$repositories.ChurchHumanResources.Christians.all().then(
       function (response) {
         this.christians = response.data.data
       }.bind(this)

@@ -10,8 +10,13 @@
         <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
 
         <v-row class="mt-4 justify-center font-italic">
-          <NuxtLink id="account-link" class="hover:font-bold" to="/registration">{{ $t('authentication.create_an_account') }}</NuxtLink>
-          <span class="primary--text font-italic text-decoration-none pointer hover:font-bold" @click="openResetPassword">
+          <NuxtLink id="account-link" class="hover:font-bold" to="/signin">{{
+            $t('authentication.create_an_account')
+          }}</NuxtLink>
+          <span
+            class="primary--text font-italic text-decoration-none pointer hover:font-bold"
+            @click="openResetPassword"
+          >
             {{ $t('authentication.lost_password') }}
           </span>
         </v-row>
@@ -42,12 +47,11 @@ export default {
     async connect(event) {
       event.preventDefault()
       event.stopPropagation()
+      if (!this.$refs.form.validate()) return null
 
-      if (this.$refs.form.validate()) {
-        this.isLoading = true
-        await this.$authentication.login(this.email, this.password)
-        this.isLoading = false
-      }
+      this.isLoading = true
+      await this.$authentication.login(this.email, this.password)
+      this.isLoading = false
     },
     openResetPassword(event) {
       event.preventDefault()

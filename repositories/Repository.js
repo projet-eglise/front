@@ -1,17 +1,19 @@
-import AuthenticationRepository from '~/repositories/AuthenticationRepository'
+import AuthenticationRepository from '~/repositories/Authentication/AuthenticationRepository'
 import ChurchesRepository from '~/repositories/ChurchesRepository'
-import ChristiansRepository from '~/repositories/ChristiansRepository'
+import ChristiansRepository from '~/repositories/ChurchHumanRessources/ChristiansRepository'
 import LogsRepository from '~/repositories/LogsRepository'
-import MailingRepository from '~/repositories/MailingRepository'
+import MailingRepository from '~/repositories/Mailing/MailingRepository'
 import RolesRepository from '~/repositories/RolesRepository'
 import UsersRepository from '~/repositories/UsersRepository'
 
 export default ($axios) => ({
-  authentication: AuthenticationRepository($axios),
+  Authentication: AuthenticationRepository($axios),
+  ChurchHumanResources: {
+    Christians: ChristiansRepository($axios)
+  },
+  Mailing: MailingRepository($axios),
   churches: ChurchesRepository($axios),
-  christians: ChristiansRepository($axios),
   logs: LogsRepository($axios),
-  mailing: MailingRepository($axios),
   roles: RolesRepository($axios),
   users: UsersRepository($axios),
 })
