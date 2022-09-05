@@ -1,5 +1,5 @@
 <template>
-  <v-container class="alert-widget absolute-bottom-center">
+  <v-container v-if="display" class="alert-widget absolute-bottom-center">
     <v-alert
       dismissible
       elevation="24"

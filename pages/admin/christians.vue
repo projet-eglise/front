@@ -34,10 +34,10 @@ export default {
       headers: [
         { text: '', value: 'profile_picture', sortable: false, width: '4%' },
         { text: 'Nom et prénom', value: 'fullname' },
-        { text: 'Firstname', value: 'firstname', align: ' d-none' },
-        { text: 'Lastname', value: 'lastname', align: ' d-none' },
         { text: 'Email', value: 'email' },
         { text: 'Numéro de téléphone', value: 'phone' },
+        { text: 'Firstname', value: 'firstname', align: ' d-none' },
+        { text: 'Lastname', value: 'lastname', align: ' d-none' },
       ],
     }
   },

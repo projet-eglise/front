@@ -2,6 +2,7 @@
   <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
     <template #activator="{ on, attrs }">
       <v-text-field
+        :id="textFieldId"
         :prepend-inner-icon="prependInnerIcon"
         :label="label"
         :class="classes"
@@ -13,6 +14,7 @@
       />
     </template>
     <v-date-picker
+      :id="modalId"
       v-model="date"
       locale="fr-fr"
       :active-picker.sync="activePicker"
@@ -43,6 +45,16 @@ export default {
     classes: {
       type: String,
       default: '',
+      required: false,
+    },
+    textFieldId: {
+      type: String,
+      default: 'date-input',
+      required: false,
+    },
+    modalId: {
+      type: String,
+      default: 'date-modal',
       required: false,
     },
   },

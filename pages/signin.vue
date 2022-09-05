@@ -40,8 +40,9 @@
           }"
         />
         <WidgetDateInput
-          id="birthdate"
           v-model="birthdate"
+          text-field-id="birthdate-input"
+          modal-id="birthdate-modal"
           classes="ml-1 width-45p"
           label="Date de naissance"
           prepend_inner_icon="fa-birthday-cake fa-md"
