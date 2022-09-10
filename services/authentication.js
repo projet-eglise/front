@@ -36,5 +36,13 @@ export default ({ app }, inject) => {
         app.store.dispatch('authentication/logout')
       }
     },
+    async checkToken(token) {
+      try {
+        await app.$repositories.Authentication.checkToken(token)
+      } catch (error) {
+        app.store.dispatch('components/alert-component/displayError', error.response.data.error)
+        app.router.push('/login')
+      }
+    },
   })
 }

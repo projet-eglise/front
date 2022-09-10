@@ -28,14 +28,8 @@ export default {
     }
   },
   async beforeMount() {
-    try {
-      await this.$repositories.Authentication.checkToken(this.$route.params.token)
-      this.isLoading = false
-    } catch (error) {
-      this.isLoading = false
-      this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-      this.$router.push('/login')
-    }
+    await this.$authentication.checkToken(this.$route.params.token)
+    this.isLoading = false
   },
   methods: {
     sendRequest(event) {
