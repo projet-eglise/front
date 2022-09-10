@@ -139,13 +139,13 @@ export default {
     },
   },
   beforeMount() {
-    this.$repositories.roles.getAll().then(
-      function (response) {
-        this.services = response.data.data
-        this.waitingMount = false
-        if (this.services.length === 0) this.$router.push('/church/add-or-join')
-      }.bind(this)
-    )
+    // this.$repositories.roles.getAll().then(
+    //   function (response) {
+    //     this.services = response.data.data
+    //     this.waitingMount = false
+    //     if (this.services.length === 0) this.$router.push('/church/add-or-join')
+    //   }.bind(this)
+    // )
   },
   methods: {
     displayServiceModal(service) {

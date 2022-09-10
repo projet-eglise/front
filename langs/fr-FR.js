@@ -48,6 +48,7 @@ export default {
     cancel: 'Annuler',
     chat: 'Tchat',
     christians: 'Chrétiens',
+    churches: 'Eglises',
     close: 'Fermer',
     date_and_hour: "Date et heure",
     dashboard: 'Tableau de bord',

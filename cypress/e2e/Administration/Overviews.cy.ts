@@ -1,5 +1,5 @@
 describe('Test the tables of the administrator interface.', () => {
-  beforeEach(() => {
+  before(() => {
     cy.login(true)
   })
 
@@ -31,6 +31,29 @@ describe('Test the tables of the administrator interface.', () => {
       .should('match', /^\+\d{2} \d \d{2} \d{2} \d{2} \d{2}$/)
   })
 
+  it('Churches table test', () => {
+    cy.get('a[href="/admin/churches"]:visible', { timeout: 5000 }).click()
+
+    cy.get('.churches-table > div > table').should('be.visible')
+    cy.get('.churches-table tbody tr:first-child td:not(.d-none)').should('have.length', 4)
+
+    // Church name
+    cy.get('.churches-table tbody tr:first-child td:nth-child(1)').invoke('text').should('match', /^.+$/)
+
+    // Address
+    cy.get('.churches-table tbody tr:first-child td:nth-child(2)').invoke('text').should('match', /^.+$/)
+
+    // Administrator fullname
+    cy.get('.churches-table tbody tr:first-child td:nth-child(3)')
+      .invoke('text')
+      .should('match', /^[A-Z'][a-zé ']* [A-Z' ]*$/)
+
+    // Pastor fullname
+    cy.get('.churches-table tbody tr:first-child td:nth-child(4)')
+      .invoke('text')
+      .should('match', /^[A-Z'][a-zé ']* [A-Z' ]*$/)
+  })
+
   it('Mailing table test', () => {
     cy.get('a[href="/admin/emails"]:visible', { timeout: 5000 }).click()
 
@@ -46,12 +69,7 @@ describe('Test the tables of the administrator interface.', () => {
       .should('match', /\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2} \(\d{3}\)/)
 
     // Subject
-    cy.get('.emails-table tbody tr:first-child td:nth-child(3)')
-      .invoke('text')
-      .should(
-        'match',
-        /\w*/
-      )
+    cy.get('.emails-table tbody tr:first-child td:nth-child(3)').invoke('text').should('match', /\w*/)
 
     // From
     cy.get('.emails-table tbody tr:first-child td:nth-child(4)')
