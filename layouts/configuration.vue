@@ -13,7 +13,12 @@
 export default {
   computed: {
     classes() {
-      return this.$nuxt.$route.path === "/church/rejoindre" ? "justify-center" : "align-center justify-center"
+      switch(this.$nuxt.$route.path) {
+        case "/church/join":
+          return "justify-center"
+        default:
+          return "align-center justify-center"
+      }
     }
   }
 }

@@ -1,46 +1,52 @@
 <template>
-  <v-col class="ml-auto mr-auto flex-column" height="100%" align="center" justify="start">
-    <WidgetReturnButton to="/church/add-or-join" />
+  <div class="mx-auto flex flex-col h-full items-start">
+    <div class="z-10 fixed top-0 content flex flex-col items-center py-4 bg-[#00353f]">
+      <WidgetReturnButton class="mr-auto" to="/church/add-or-join" />
+      <AppTextField v-model="search" class="w-5/6" label="Ville de l'Eglise" left-icon="search" hide-details />
+    </div>
 
-    <AppTextField v-model="churchCityResearch" label="Ville de l'Eglise" left-icon="search" />
+    <div class="w-full text-center pt-28 pb-2">
+      <WidgetWaitingSpinner v-if="churches.length === 0" />
 
-    <p v-if="displayEnterLetters" class="font-italic primary--text">
-      Saissisez au moins les trois première lettres de la ville ou se situe votre Eglise
-    </p>
-    <p v-if="displayError" class="font-italic primary--text">Nous ne connaissons pas cette ville</p>
-    <v-container class="d-flex align-content-start flex-wrap">
-      <div v-for="church in displayedChurches" :key="church.name" style="width: 100%">
-        <v-card class="ma-2">
-          <v-card-title class="pb-0">
-            {{ church.name }} - <span>{{ church.pastor.name }}</span>
-          </v-card-title>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div
+          v-for="church in churchesToDisplay"
+          :key="church.name"
+          :class="['flex flex-col items-start w-full rounded pl-4 pt-4 pb-2 pr-2', background(church.joinable)]"
+        >
+          <p class="mb-0 font-bold" :style="color(church.joinable)">{{ church.name }}</p>
+          <p class="mb-2" :style="color(church.joinable)">Responsable: {{ church.pastor.fullname }}</p>
 
-          <v-card-text class="pb-0 pt-0 text-left">{{ church.address.address }}</v-card-text>
-          <v-card-text class="pb-0 pt-0 text-left">{{ church.address.address2 }}</v-card-text>
+          <p class="mb-0" :style="color(church.joinable)">{{ church.address.address }}</p>
+          <p class="mb-0" :style="color(church.joinable)">{{ church.address.postal_code }} {{ church.address.city }}</p>
 
-          <v-card-actions class="justify-end pt-0">
-            <AppButtonText primary @click="reserve(church)"> Rejoindre </AppButtonText>
+          <AppButtonText primary class="ml-auto z-0" :disabled="!church.joinable" @click="join(church)">
+            Rejoindre
+          </AppButtonText>
+        </div>
+      </div>
+
+      <v-dialog v-model="dialog" persistent width="500">
+        <v-card>
+          <v-card-title class="text-h5 mb-4"> Voulez vous rejoindre cette Eglise ? </v-card-title>
+          <v-card-text class="m-0">
+            <p class="font-weight-bold mb-2">{{ displayedChurch.name }}</p>
+            <span class="font-weight-bold">Responsable</span><br />
+            <p class="mb-2">{{ displayedChurch.pastor.fullname }}</p>
+            <span class="font-weight-bold">Adresse</span><br />
+            <span>{{ displayedChurch.address.address }}</span
+            ><br />
+            <span>{{ displayedChurch.address.postal_code }} {{ displayedChurch.address.city }}</span>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <AppButtonText @click="dialog = false"> Annuler </AppButtonText>
+            <AppButtonText primary :to="`/church/join/${displayedChurch.uuid}/role`"> Rejoindre </AppButtonText>
           </v-card-actions>
         </v-card>
-      </div>
-    </v-container>
-    <v-dialog v-model="dialog" persistent width="500">
-      <v-card>
-        <v-card-title class="text-h5 mb-4"> Voulez vous rejoindre cette Eglise ? </v-card-title>
-        <v-card-text class="font-weight-bold">Eglise {{ displayedChurch.name }}</v-card-text>
-        <v-card-text class="pb-0 font-weight-bold">Responsable</v-card-text>
-        <v-card-text class="pt-0">{{ displayedChurch.pastor.name }}</v-card-text>
-        <v-card-text class="pb-0 font-weight-bold">Adresse</v-card-text>
-        <v-card-text class="pb-0 pt-0">{{ displayedChurch.address.address }}</v-card-text>
-        <v-card-text class="pt-0 pb-0">{{ displayedChurch.address.address2 }}</v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <AppButtonText @click="dialog = false"> Annuler </AppButtonText>
-          <AppButtonText primary :loading="isLoading" @click="sendRequest"> Rejoindre </AppButtonText>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-col>
+      </v-dialog>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -49,93 +55,63 @@ export default {
   meta: { protected: true },
   data() {
     return {
+      search: '',
+      churches: [],
+      churchesToDisplay: [],
       dialog: false,
-      displayedChurches: [],
       displayedChurch: {
-        uid: '',
+        uuid: '',
         name: '',
         pastor: { name: '' },
-        address: { address: '', address2: '', city: '' },
+        address: {
+          address: '',
+          postal_code: '',
+          city: '',
+        },
       },
-      churches: [],
-      churchCityResearch: '',
       isLoading: false,
     }
   },
-  computed: {
-    displayEnterLetters() {
-      return !(this.churchCityResearch.length > 2)
-    },
-    displayError() {
-      return this.displayedChurches.length === 0 && !this.displayEnterLetters
-    },
-    to() {
-      return `/church/join/${this.displayedChurch.uid}/role`
-    },
-  },
-  watch: {
-    churchCityResearch(newSearch) {
-      if (newSearch.length > 2) {
-        if (this.churches !== undefined)
-          this.displayedChurches = this.churches.filter((element) =>
-            element.address.city.toLowerCase().includes(newSearch.toLowerCase())
-          )
-      } else {
-        this.displayedChurches = []
-      }
-    },
-  },
   async mounted() {
-    const response = await this.$repositories.churches.getjoinable()
+    const response = await this.$repositories.ChurchHumanResources.Churches.joinable()
     this.churches = response.data.data
+    this.churchesToDisplay = this.churches
   },
   methods: {
-    reserve(church) {
+    color(joinable) {
+      return joinable ? '' : 'color: rgba(0, 0, 0, 0.5);'
+    },
+    background(joinable) {
+      return joinable ? 'bg-[#FFFFFF]' : 'bg-[#DDDDDD]'
+    },
+    join(church) {
       this.dialog = true
       this.displayedChurch = church
     },
-    async sendRequest(event) {
+    sendRequest(event) {
       event.preventDefault()
       event.stopPropagation()
 
-      this.$store.dispatch('components/alert-component/hide')
-      this.isLoading = true
-
-      try {
-        await this.$repositories.churches.join(this.displayedChurch.uid)
-        this.isLoading = false
-        this.$router.push(this.to)
-      } catch (error) {
-        this.$store.dispatch('components/alert-component/displayError', error.response.data.error)
-        this.isLoading = false
-      }
+      this.$router.push(`/church/join/${this.displayedChurch.uid}/role`)
     },
   },
 }
 </script>
 
 <style scoped>
-.selector {
-  width: 90%;
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.08);
+.content {
+  width: 45%;
 }
 
-.button {
-  width: 50%;
-  color: white;
-  padding: 10px 4px;
-  border-radius: 4px;
-  font-weight: bold;
-
-  background-color: rgba(0, 0, 0, 0.08);
+@media (min-width: 480px) and (max-width: 768px) {
+  .content {
+    width: 80%;
+  }
 }
 
-.button:hover {
-  background-color: rgba(8, 197, 209, 0.4);
-}
-
-.selected {
-  background-color: #08c5d1;
+@media (max-width: 480px) {
+  .content {
+    width: 100%;
+  }
 }
 </style>
