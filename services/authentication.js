@@ -9,7 +9,7 @@ export default ({ app }, inject) => {
 
         if (status === 200 && data.data.token) {
           app.store.dispatch('authentication/login', data.data.token)
-          if (app.store.getters['main/referer'] !== '') app.router.push(app.store.getters['main/referer'])
+          if (app.store.getters['main/referer'].includes(['', '/login', '/admin/login'])) app.router.push(app.store.getters['main/referer'])
           else app.router.push(admin ? '/admin/dashboard' : '/church/add-or-join') // TODO Go to dashboard if possible
         } else {
           app.store.dispatch('authentication/logout')
