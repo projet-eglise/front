@@ -4,10 +4,10 @@
 
     <v-fade-transition>
       <v-form ref="form" @submit="connect">
-        <AppTextFieldEmail v-model="email" />
-        <AppTextFieldPassword v-model="password" />
+        <AppTextFieldEmail id="email" v-model="email" />
+        <AppTextFieldPassword id="password" v-model="password" />
 
-        <AppButtonBlock type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
+        <AppButtonBlock id="submit" type="submit" :loading="isLoading">{{ $t('authentication.login') }}</AppButtonBlock>
 
         <v-row class="mt-4 justify-center font-italic">
           <NuxtLink id="account-link" class="hover:font-bold" to="/signin">{{

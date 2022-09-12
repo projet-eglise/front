@@ -3,7 +3,7 @@ import ChristiansRepository from '~/repositories/ChurchHumanRessources/Christian
 import ChurchesRepository from '~/repositories/ChurchHumanRessources/ChurchesRepository'
 import MailingRepository from '~/repositories/Mailing/MailingRepository'
 // import LogsRepository from '~/repositories/LogsRepository'
-// import RolesRepository from '~/repositories/RolesRepository'
+import RolesRepository from '~/repositories/ChurchHumanRessources/RolesRepository'
 // import UsersRepository from '~/repositories/UsersRepository'
 
 export default ($axios) => ({
@@ -11,10 +11,10 @@ export default ($axios) => ({
   ChurchHumanResources: {
     Christians: ChristiansRepository($axios),
     Churches: ChurchesRepository($axios),
+    Roles: RolesRepository($axios),
   },
   Mailing: MailingRepository($axios),
   // churches: ChurchesRepository($axios),
   // logs: LogsRepository($axios),
-  // roles: RolesRepository($axios),
   // users: UsersRepository($axios),
 })

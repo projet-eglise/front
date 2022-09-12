@@ -1,3 +1,4 @@
+<!-- TODO Translate -->
 <template>
   <div class="mx-auto flex flex-col h-full items-start">
     <div class="z-10 fixed top-0 content flex flex-col items-center py-4 bg-[#00353f]">

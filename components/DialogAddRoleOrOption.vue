@@ -18,7 +18,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <AppButtonText @click="close">{{ $t('global.cancel') }}</AppButtonText>
-        <AppButtonText primary type="submit" @click="close">{{ $t('global.adds') }}</AppButtonText>
+        <AppButtonText primary type="submit" @click="close">{{ $t('global.add') }}</AppButtonText>
       </v-card-actions>
     </v-card>
   </v-dialog>

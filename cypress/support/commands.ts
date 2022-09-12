@@ -58,6 +58,7 @@ Cypress.Commands.add('login', (isAdmin: boolean, email?: string, password?: stri
   cy.get('input#password').clear().type(credentials.password)
 
   cy.get('#submit').click()
+  cy.wait(1000)
 })
 
 // Cypress.Commands.add('fake', (what: string) => {

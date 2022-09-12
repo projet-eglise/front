@@ -36,11 +36,20 @@ export default {
         to: 'Destinataire | Destinataires',
       },
     },
+    edit_roles: {
+
+    },
   },
   pages: {
     admin_emails: {
       email_template: 'Template du mail',
       no_recipient: 'Aucun destinataire',
+    },
+    church: {
+      join: {
+        my_role_in_church: "Mon rôle dans l'Eglise",
+        disclaimer: "Choisissez votre rôle ainsi que les précision nécessaire pour finir de rejoindre votre Eglise.",
+      },
     },
   },
   global: {
@@ -55,6 +64,7 @@ export default {
     error: 'Erreur',
     emails: 'Mails',
     home: 'Accueil',
+    join: 'Rejoindre',
     logout: 'Déconnexion',
     menu: 'Menu',
     send: 'Envoyer',
