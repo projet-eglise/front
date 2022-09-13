@@ -6,13 +6,15 @@
 
 <script>
 export default {
+  computed: {
+    adminIsConnected() {
+      return this.$store.getters['authentication/admin/isConnected']
+    },
+  },
   methods: {
     becomeAUser() {
       this.$authentication.logout(false, false)
       this.$router.push('/admin/christians')
-    },
-    adminIsConnected() {
-      return this.$store.getters['authentication/admin/isConnected']
     },
   },
 }
