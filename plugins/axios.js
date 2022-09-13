@@ -1,7 +1,7 @@
 export default function ({ $axios, store, redirect, app }) {
   $axios.onRequest(() => {
-    const token = store.getters['authentication/token']
-    if (token !== null) $axios.setToken('Bearer ' + store.getters['authentication/token'])
+    const token = app.router.currentRoute.path.startsWith('/admin/') ? store.getters['authentication/admin/token'] : store.getters['authentication/user/token']
+    if (token !== null) $axios.setToken('Bearer ' + token)
   })
 
   $axios.onError((error) => {
@@ -9,7 +9,7 @@ export default function ({ $axios, store, redirect, app }) {
     if (code === 401 && app.router.currentRoute.path !== '/admin/login' && app.router.currentRoute.path !== '/login') {
       store.dispatch('main/setReferer', app.router.currentRoute.path)
 
-      if (app.router.currentRoute.path.includes('/admin')) redirect('/admin/login')
+      if (app.router.currentRoute.path.startsWith('/admin')) redirect('/admin/login')
       else redirect('/login')
     }
   })

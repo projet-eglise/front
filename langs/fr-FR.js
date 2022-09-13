@@ -62,6 +62,7 @@ export default {
     date_and_hour: "Date et heure",
     dashboard: 'Tableau de bord',
     error: 'Erreur',
+    error_has_occurred: 'Une erreur est survenue',
     emails: 'Mails',
     home: 'Accueil',
     join: 'Rejoindre',

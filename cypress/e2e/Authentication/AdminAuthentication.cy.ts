@@ -42,7 +42,7 @@ describe('Test the administrator login portal.', () => {
 
     cy.url().should('include', '/admin/dashboard')
 
-    cy.get('a[href="/admin/login"]:visible', { timeout: 5000 }).click()
+    cy.get('a[href="/admin/logout"]:visible', { timeout: 5000 }).click()
 
     cy.get('input#email').clear().type(Cypress.env('credentials').admin.email)
     cy.get('input#password').clear().type(Cypress.env('credentials').admin.password)

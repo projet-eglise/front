@@ -3,19 +3,21 @@ export default ({ app }, inject) => {
     async login(email, password, admin = false) {
       app.store.dispatch('components/alert-component/hide')
       try {
-        const { status, data } = admin
-          ? await app.$repositories.Authentication.adminLogin(email, password)
-          : await app.$repositories.Authentication.login(email, password)
+      const { status, data } = admin
+        ? await app.$repositories.Authentication.adminLogin(email, password)
+        : await app.$repositories.Authentication.login(email, password)
 
-        if (status === 200 && data.data.token) {
-          app.store.dispatch('authentication/login', data.data.token)
-          if (app.store.getters['main/referer'].includes(['', '/login', '/admin/login'])) app.router.push(app.store.getters['main/referer'])
-          else app.router.push(admin ? '/admin/dashboard' : '/church/add-or-join') // TODO Go to dashboard if possible
-        } else {
-          app.store.dispatch('authentication/logout')
-        }
+      if (status === 200 && data.data.token) {
+        app.store.dispatch('authentication/login', data.data.token)
+        if (app.store.getters['main/referer'].includes(['', '/login', '/admin/login']))
+          app.router.push(app.store.getters['main/referer'])
+        else app.router.push(admin ? '/admin/dashboard' : '/church/add-or-join') // TODO Go to dashboard if possible
+      } else {
+        app.store.dispatch('authentication/logout', true)
+        app.store.dispatch('authentication/logout', false)
+      }
       } catch (error) {
-        app.store.dispatch('components/alert-component/displayError', error.response.data.error)
+        app.store.dispatch('components/alert-component/displayError', error.response.data.error ?? this.$t('global.error_has_occured'))
       }
     },
     async signin(firstname, lastname, email, password, phone, birthdate, profilePicture) {
@@ -41,6 +43,16 @@ export default ({ app }, inject) => {
         await app.$repositories.Authentication.checkToken(token)
       } catch (error) {
         app.store.dispatch('components/alert-component/displayError', error.response.data.error)
+        app.router.push('/login')
+      }
+    },
+    logout(admin = false) {
+      console.log(admin)
+      if (admin) {
+        app.store.dispatch('authentication/adminLogout')
+        app.router.push('/admin/login')
+      } else {
+        app.store.dispatch('authentication/logout')
         app.router.push('/login')
       }
     },

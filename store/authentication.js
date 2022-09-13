@@ -1,16 +1,18 @@
-import moment from 'moment'
-
 export const state = () => ({
-  isConnected: false,
-  token: null,
-  whoami: null,
-  expiration: 10000000000,
+  admin: {
+    isConnected: false,
+    token: null,
+    expiration: 10000000000,
+  },
+  user: {
+    isConnected: false,
+    token: null,
+    expiration: 10000000000,
+  },
 })
 
 export const mutations = {
   LOGIN(state, token) {
-    state.isConnected = true
-
     const base64Url = token.split('.')[1]
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
     const jsonPayload = process.client
@@ -24,19 +26,22 @@ export const mutations = {
         )
       : Buffer.from(base64, 'base64').toString()
 
-    state.whoami = JSON.parse(jsonPayload)
-    state.token = token
-    state.expiration = state.whoami.exp
-    this.$cookies.set('token', token)
+    const content = JSON.parse(jsonPayload)
 
-    delete state.whoami.exp
+    const userToConnect = content.isAdmin ? state.admin : state.user
+
+    userToConnect.isConnected = true
+    userToConnect.token = token
+    userToConnect.expiration = content.exp
+    this.$cookies.set(content.isAdmin ? 'adminToken' : 'token', token)
   },
-  LOGOUT(state) {
-    state.isConnected = false
-    state.token = null
-    state.whoami = null
-    this.expiration = 1000000000000
-    this.$cookies.remove('token')
+  LOGOUT(state, admin = false) {
+    const userToDisconnect = admin ? state.admin : state.user
+    userToDisconnect.isConnected = false
+    userToDisconnect.token = null
+    userToDisconnect.expiration = 1000000000000
+
+    this.$cookies.remove(admin ? 'adminToken' : 'token')
   },
 }
 
@@ -47,30 +52,19 @@ export const actions = {
   logout({ commit }) {
     commit('LOGOUT')
   },
-  checkRouteAccess({ state, commit, rootGetters, dispatch }, route) {
-    if (route.name === null) return rootGetters['main/referer'] === '' ? '/login' : '/error/404'
-
-    if (!state.isConnected && this.$cookies.get('token') !== undefined) commit('LOGIN', this.$cookies.get('token'))
-
-    if (!(route.meta !== undefined && route.meta[0] !== undefined && route.meta[0].protected !== undefined))
-      return rootGetters['main/displayWelcome'] ? '/login' : '/dashboard'
-
-    if (state.isConnected && route.meta[0].protected)
-      dispatch('main/setReferer', this.app.router.currentRoute.path ?? '', { root: true })
-
-    if (!state.isConnected && route.meta[0].protected) return '/login'
-
-    if (state.isConnected && state.expiration - moment().format('X') <= 0) {
-      // TODO Refresh token
-      return '/login'
-    }
-
-    return route.path
+  adminLogout({ commit }) {
+    commit('LOGOUT', true)
   },
 }
 
 export const getters = {
-  isConnected: (state) => state.isConnected,
-  token: (state) => state.token,
-  whoami: (state) => state.whoami,
+  // Admin informations
+  'admin/isConnected': (state) => state.admin.isConnected,
+  'admin/expiration': (state) => state.admin.expiration,
+  'admin/token': (state) => state.admin.token,
+
+  // User informations
+  'user/isConnected': (state) => state.user.isConnected,
+  'user/expiration': (state) => state.user.expiration,
+  'user/token': (state) => state.user.token,
 }

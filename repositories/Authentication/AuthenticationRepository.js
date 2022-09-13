@@ -29,9 +29,6 @@ export default ($axios) => ({
 
     return await $axios.post(resource + '/signin', data)
   },
-  async whoami() {
-    return await $axios.get('/whoami')
-  },
   async passwordRequest(email) {
     return await $axios.get(resource + `/reset-password/${email}`)
   },

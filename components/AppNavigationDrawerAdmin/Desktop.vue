@@ -8,7 +8,7 @@
       <AppNavigationDrawerListItem :label="$t('global.christians')" icon="users" path="/admin/christians" />
       <AppNavigationDrawerListItem :label="$t('global.churches')" icon="church" path="/admin/churches" />
       <AppNavigationDrawerListItem :label="$t('global.emails')" icon="paper-plane" path="/admin/emails" />
-      <AppNavigationDrawerListItem :label="$t('global.logout')" icon="power-off" path="/admin/login" />
+      <AppNavigationDrawerListItem :label="$t('global.logout')" icon="power-off" path="/admin/logout" />
     </v-list>
   </div>
 </template>
