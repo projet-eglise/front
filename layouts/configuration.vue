@@ -2,10 +2,11 @@
   <v-app>
     <v-main :class="classes">
       <v-container fluid>
-        <Nuxt class="content"/>
+        <Nuxt class="content" />
       </v-container>
     </v-main>
     <WidgetAlertComponent />
+    <AppButtonGoBackAdmin />
   </v-app>
 </template>
 
@@ -13,14 +14,14 @@
 export default {
   computed: {
     classes() {
-      switch(this.$nuxt.$route.path) {
-        case "/church/join":
-          return "justify-center"
+      switch (this.$nuxt.$route.path) {
+        case '/church/join':
+          return 'justify-center'
         default:
-          return "align-center justify-center"
+          return 'align-center justify-center'
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -36,7 +36,7 @@ describe('Test the user has access to the correct platform', () => {
   })
 
 
-  it.only('User login after administrator logout', () => {
+  it('User login after administrator logout', () => {
     cy.login(true)
     
     cy.url().should('include', '/admin/dashboard')

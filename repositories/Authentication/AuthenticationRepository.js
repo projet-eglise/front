@@ -41,4 +41,7 @@ export default ($axios) => ({
 
     return await $axios.post(resource + `/change-password/${token}`, payload)
   },
+  async becomeAGhost(email) {
+    return await $axios.get(`${resource}/become-a-ghost/${email}`)
+  },
 })

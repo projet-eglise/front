@@ -7,7 +7,7 @@ describe('Test the tables of the administrator interface.', () => {
     cy.get('a[href="/admin/christians"]:visible', { timeout: 5000 }).click()
 
     cy.get('.christians-table > div > table').should('be.visible')
-    cy.get('.christians-table tbody tr:first-child td:not(.d-none)').should('have.length', 4)
+    cy.get('.christians-table tbody tr:first-child td:not(.d-none)').should('have.length', 5)
 
     // Avatar
     cy.get('.christians-table tbody tr:first-child td:nth-child(1) .v-avatar').should('be.visible')
@@ -29,6 +29,9 @@ describe('Test the tables of the administrator interface.', () => {
     cy.get('.christians-table tbody tr:first-child td:nth-child(4)')
       .invoke('text')
       .should('match', /^\+\d{2} \d \d{2} \d{2} \d{2} \d{2}$/)
+
+    // Ghost mode
+    cy.get('.christians-table tbody tr:first-child td:nth-child(5) button.fa-ghost').should('be.visible')
   })
 
   it('Churches table test', () => {

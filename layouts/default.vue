@@ -6,6 +6,7 @@
       </v-container>
     </v-main>
     <WidgetAlertComponent />
+    <AppButtonGoBackAdmin />
   </v-app>
 </template>
 

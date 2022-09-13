@@ -12,6 +12,7 @@
         <AppBottomNavigation class="md:hidden" />
       </div>
     </v-main>
+    <AppButtonGoBackAdmin />
   </v-app>
 </template>
 

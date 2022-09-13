@@ -19,6 +19,12 @@
       <template #[`item.fullname`]="{ item }">
         <span>{{ item.firstname }} {{ item.lastname }}</span>
       </template>
+
+      <template #[`item.phantom`]="{ item }">
+        <div class="flex justify-center">
+          <AppButtonPhantom :email="item.email" />
+        </div>
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -36,6 +42,7 @@ export default {
         { text: 'Nom et prénom', value: 'fullname' },
         { text: 'Email', value: 'email' },
         { text: 'Numéro de téléphone', value: 'phone' },
+        { text: 'Mode phantôme', value: 'phantom', sortable: false, width: '10%' },
         { text: 'Firstname', value: 'firstname', align: ' d-none' },
         { text: 'Lastname', value: 'lastname', align: ' d-none' },
       ],
