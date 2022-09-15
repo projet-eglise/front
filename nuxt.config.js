@@ -110,6 +110,8 @@ export default {
     ENV: process.env.env ?? 'LOCAL',
     DEFAULT_LOGIN: process.env.DEFAULT_LOGIN ?? '',
     DEFAULT_PASSWORD: process.env.DEFAULT_PASSWORD ?? '',
+    DEFAULT_ADMIN_LOGIN: process.env.DEFAULT_ADMIN_LOGIN ?? '',
+    DEFAULT_ADMIN_PASSWORD: process.env.DEFAULT_ADMIN_PASSWORD ?? '',
   },
 
   pageTransition: 'fade',

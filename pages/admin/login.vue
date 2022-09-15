@@ -17,8 +17,8 @@ export default {
   meta: { protected: false },
   data() {
     return {
-      email: process.env.DEFAULT_LOGIN ?? '',
-      password: process.env.DEFAULT_PASSWORD ?? '',
+      email: process.env.DEFAULT_ADMIN_LOGIN ?? '',
+      password: process.env.DEFAULT_ADMIN_PASSWORD ?? '',
       showPassword: false,
       isLoading: false,
       wantOpenDialog: false,
