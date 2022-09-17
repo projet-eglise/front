@@ -7,7 +7,7 @@
     </div>
 
     <div class="w-full text-center pt-28 pb-2">
-      <WidgetWaitingSpinner v-if="churches.length === 0" />
+      <AppWaitingSpinner v-if="churches.length === 0" />
 
       <div class="grid sm:grid-cols-2 gap-4">
         <div

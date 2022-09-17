@@ -1,63 +1,7 @@
 <template>
   <div>
     <AppTitlePageAdmin>{{ $t('global.logs') }}</AppTitlePageAdmin>
-    <v-data-table
-      :headers="headers"
-      :items="logs"
-      :items-per-page="10"
-      class="elevation-1"
-      calculate-widths
-      :loading="loading"
-      @click:row="rowClick"
-    >
-      <template #[`item.start`]="{ item }">
-        {{ $display.date(item.start) }}<br />{{ $display.time(item.start) }}
-      </template>
-
-      <template #[`item.username`]="{ item }">
-        <SummaryUsername :user="item.user" :second-line="item.ip" image-size="s" :display-username="true" />
-      </template>
-
-      <template #[`item.code`]="{ item }">
-        <WidgetHttpResponseCodeWithMessage :code="Number(item.code)" :message="item.message" />
-      </template>
-      <template #[`item.method`]="{ item }">
-        <WidgetHttpMethod :method="item.method" />
-      </template>
-    </v-data-table>
-
-    <v-dialog v-model="dialog" max-width="700">
-      <v-card>
-        <v-card-title class="text-h5" style="word-break: break-word"> Requête </v-card-title>
-        <v-card-text class="ma-0">
-          <SummaryUsername
-            :user="selectedUser.user"
-            :second-line="selectedUser.ip"
-            image-size="s"
-            :display-username="true"
-            link
-          />
-        </v-card-text>
-        <v-card-text class="ma-0">
-          <WidgetHttpResponseCodeWithMessage
-            :code="Number(selectedUser.code)"
-            :message="selectedUser.message"
-            class="mr-2"
-          />
-          <WidgetHttpMethod class="mr-2" :method="selectedUser.method" />
-          <span class="mr-2">{{ $display.datetime(selectedUser.start) }}</span>
-          <span>{{ selectedUser.route }}</span>
-        </v-card-text>
-
-        <v-card-title class="font-weight-bold">Paramètres</v-card-title>
-        <WidgetHttpJson class="mx-8" :json="selectedUser.params" />
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <AppButtonText @click="dialog = false"> Fermer </AppButtonText>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <AppDatatableRequests :logs="logs" :loading="loading" />
   </div>
 </template>
 
@@ -67,25 +11,8 @@ export default {
   meta: { protected: true },
   data() {
     return {
-      headers: [
-        { text: 'Date', value: 'start' },
-        { text: 'Utilisateur', value: 'username' },
-        { text: 'Code', value: 'code' },
-        { text: 'Méthode', value: 'method' },
-        { text: 'Route', value: 'route' },
-      ],
       logs: [],
       loading: true,
-      dialog: false,
-      selectedUser: {
-        user: {},
-        ip: '',
-        method: '',
-        route: '',
-        code: '200',
-        message: 'OK',
-        start_timestamp: 0,
-      },
     }
   },
   mounted() {
@@ -95,17 +22,6 @@ export default {
         this.loading = false
       }.bind(this)
     )
-  },
-  methods: {
-    errorColor(error) {
-      if (error > 400) return 'red'
-      else if (error > 300) return 'orange'
-      else return 'green'
-    },
-    rowClick(e) {
-      this.dialog = true
-      this.selectedUser = e
-    },
   },
 }
 </script>

@@ -14,7 +14,7 @@
       </template>
 
       <template #[`item.profile_picture`]="{ item }">
-        <SummaryUsername :user="item" image-size="xs" />
+        <SummaryUsername :user="item" size="xs" />
       </template>
 
       <template #[`item.fullname`]="{ item }">

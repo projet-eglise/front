@@ -5,5 +5,8 @@ export default ($axios) => {
         async all() {
             return await $axios.get(resource + '/christians/all')
         },
+        async get(uuid) {
+            return await $axios.get(`${resource}/christian/${uuid}`)
+        },
     })
 }

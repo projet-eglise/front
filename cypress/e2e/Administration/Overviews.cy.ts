@@ -90,4 +90,34 @@ describe('Test the tables of the administrator interface.', () => {
         /^\w* <(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>$/
       )
   })
+
+  it.only('Logs table test', () => {
+    cy.get('a[href="/admin/logs"]:visible', { timeout: 5000 }).click()
+
+    cy.get('.logs-table > div > table').should('be.visible')
+    cy.get('.logs-table tbody tr:first-child td:not(.d-none)').should('have.length', 5)
+
+    // Date
+    cy.get('.logs-table tbody tr:first-child td:nth-child(1)')
+      .invoke('text')
+      .should('match', /\d{2}\/\d{2}\/\d{4}\d{2}:\d{2}:\d{2} \(\d{3}\)/)
+
+    // User
+    cy.get('.logs-table tbody tr:first-child td:nth-child(2) > a > div > div.v-avatar')
+    cy.get('.logs-table tbody tr:first-child td:nth-child(2) > a > div > div:last-child > p')
+
+    // Code
+    cy.get('.logs-table tbody tr:first-child td:nth-child(3) span span.v-chip')
+
+    // Method
+    cy.get('.logs-table tbody tr:first-child td:nth-child(4) span').should('be.visible')
+
+    // Route
+    cy.get('.logs-table tbody tr:first-child td:nth-child(5)')
+      .invoke('text')
+      .should('match', /^\/([a-z]*)/)
+
+    cy.get('.logs-table tbody tr:first-child').click()
+    cy.get('.request-details-modal', { timeout: 1000 }).should('be.visible')
+  })
 })

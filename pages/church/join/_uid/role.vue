@@ -5,7 +5,7 @@
       {{ $t('pages.church.join.my_role_in_church') }}
     </h1>
     <p class="text-center font-italic primary--text mb-8">{{ $t('pages.church.join.disclaimer') }}</p>
-    <WidgetWaitingSpinner v-if="waitingMount" />
+    <AppWaitingSpinner v-if="waitingMount" />
     <v-fade-transition v-else apear>
       <ul class="pl-0">
         <li v-for="service in services" :key="service.uid" class="mt-4 list-none">

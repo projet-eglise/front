@@ -13,7 +13,10 @@ export default ({ app }, inject) => {
       },
       time(timestamp) {
         return moment(timestamp * 0.1).format('hh:mm:ss (SSS)')
-      }
+      },
+      englishToFrenchFormat(date) {
+        return moment(date).format('DD/MM/YYYY')
+      },
     })
   )
 }
