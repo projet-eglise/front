@@ -6,6 +6,7 @@
       :headers="headers"
       :items="churches"
       :search="search"
+      :loading="loading"
       @click:row="handleClick"
     >
       <template #top>
@@ -21,6 +22,7 @@ export default {
   meta: { protected: true },
   data() {
     return {
+      loading: true,
       search: '',
       churches: [],
       headers: [
@@ -41,6 +43,7 @@ export default {
     this.$repositories.ChurchHumanResources.Churches.all().then(
       function (response) {
         this.churches = response.data.data
+        this.loading = false
       }.bind(this)
     )
   },

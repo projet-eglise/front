@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="user && link ? '/admin/utilisateur/' + user.uid : ''" class="text-decoration-none" :style="style">
+  <NuxtLink :to="user && link ? '/admin/christian/' + user.uuid : ''" class="text-decoration-none" :style="style">
     <v-row class="d-flex justify-center align-center pl-4">
       <v-avatar :size="size" :style="backgroundColor">
         <span v-show="!hasImage">{{ initials }}</span>
@@ -48,7 +48,7 @@ export default {
       return 'UI'
     },
     username() {
-      if (this.user !== undefined && this.user !== null) return this.user.firstname + ' ' + this.user.lastname
+      if (this.user !== undefined && this.user !== null) return this.user.fullname
       return 'Utilisateur inconnu'
     },
     hasImage() {

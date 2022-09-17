@@ -1,13 +1,13 @@
 <template>
   <div>
     <AppTitlePageAdmin>{{ $t('global.emails') }}</AppTitlePageAdmin>
-    <v-data-table class="emails-table" :headers="headers" :items="emails" @click:row="handleClick">
+    <v-data-table class="emails-table" :headers="headers" :items="emails" :loading="loading" @click:row="handleClick">
       <template #[`item.response`]="{ item }">
         <WidgetHttpResponseCode :code="item.response.code" />
       </template>
-      
+
       <template #[`item.sending_time`]="{ item }">
-        {{ $display.timestamp(item.sending_time) }}
+        {{ $display.datetime(item.sending_time) }}
       </template>
 
       <template #[`item.from`]="{ item }">
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       dialog: false,
+      loading: true,
       value: {
         templateAddress: '',
         subject: '',
@@ -62,6 +63,7 @@ export default {
     this.$repositories.Mailing.all().then(
       function (response) {
         this.emails = response.data.data
+        this.loading = false
       }.bind(this)
     )
   },

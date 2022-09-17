@@ -6,6 +6,7 @@
       :headers="headers"
       :items="christians"
       :search="search"
+      :loading="loading"
       @click:row="handleClick"
     >
       <template #top>
@@ -35,6 +36,7 @@ export default {
   meta: { protected: true },
   data() {
     return {
+      loading: true,
       search: '',
       christians: [],
       headers: [
@@ -52,12 +54,13 @@ export default {
     this.$repositories.ChurchHumanResources.Christians.all().then(
       function (response) {
         this.christians = response.data.data
+        this.loading = false
       }.bind(this)
     )
   },
   methods: {
     handleClick(value) {
-      // this.value = value
+      this.$router.push(`/admin/christian/${value.uuid}`)
     },
   },
 }
