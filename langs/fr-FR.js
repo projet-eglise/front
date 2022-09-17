@@ -45,6 +45,9 @@ export default {
       email_template: 'Template du mail',
       no_recipient: 'Aucun destinataire',
     },
+    admin_christian_details: {
+      title: 'Détails de {name}'
+    },
     church: {
       join: {
         my_role_in_church: "Mon rôle dans l'Eglise",
@@ -63,10 +66,12 @@ export default {
     dashboard: 'Tableau de bord',
     error: 'Erreur',
     error_has_occurred: 'Une erreur est survenue',
+    errors: 'Erreurs',
     emails: 'Mails',
     home: 'Accueil',
     join: 'Rejoindre',
     logout: 'Déconnexion',
+    logs: 'Logs',
     menu: 'Menu',
     send: 'Envoyer',
     services: 'Services',

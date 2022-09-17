@@ -9,7 +9,6 @@ export default {
   props: {
     code: {
       type: Number,
-      default: 200,
       required: true,
     },
   },

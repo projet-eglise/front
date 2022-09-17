@@ -16,7 +16,7 @@
         </p>
 
         <p class="font-bold mb-0">{{ $t('components.dialogs.view_email.date_and_hour_expedition') }}</p>
-        <p>{{ $display.timestamp(value.sending_time) }}</p>
+        <p>{{ $display.datetime(value.sending_time) }}</p>
 
         <p class="font-bold mb-0">{{ $t('components.dialogs.view_email.expeditor') }}</p>
         <p>{{ value.from.name }} &lt;{{ value.from.email }}&gt;</p>
