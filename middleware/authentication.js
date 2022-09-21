@@ -22,12 +22,14 @@ function checkRouteAccess(route, store, cookies) {
   // // Checks if the user token has expired or not.
   if (store.getters['authentication/user/isConnected'] && store.getters['authentication/user/expiration'] - moment().format('X') <= 0) {
     // TODO Refresh token user
+    store.dispatch('authentication/logout', false)
     return '/login'
   }
 
   // // Checks if the token has expired or not.
   if (store.getters['authentication/admin/isConnected'] && store.getters['authentication/admin/expiration'] - moment().format('X') <= 0) {
     // TODO Refresh token admin
+    store.dispatch('authentication/adminLogout', true)
     return '/admin/login'
   }
 
