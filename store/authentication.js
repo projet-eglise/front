@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const state = () => ({
   admin: {
     isConnected: false,
@@ -29,6 +31,8 @@ export const mutations = {
     const content = JSON.parse(jsonPayload)
 
     const userToConnect = content.isAdmin ? state.admin : state.user
+
+    if (content.exp - moment().format('X') <= 0) return
 
     userToConnect.isConnected = true
     userToConnect.token = token
