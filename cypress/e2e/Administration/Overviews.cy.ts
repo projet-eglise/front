@@ -91,7 +91,7 @@ describe('Test the tables of the administrator interface.', () => {
       )
   })
 
-  it.only('Logs table test', () => {
+  it('Logs table test', () => {
     cy.get('a[href="/admin/logs"]:visible', { timeout: 5000 }).click()
 
     cy.get('.logs-table > div > table').should('be.visible')

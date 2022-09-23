@@ -1,12 +1,11 @@
+const resource = '/mailing'
+
 export default ($axios) => ({
     async all() {
-      return await $axios.get('/mailing/all')
+      return await $axios.get(`${resource}/all`)
     },
-    async last() {
-      return await $axios.get('/mailing/last')
-    },
-    async lastFor(email) {
-      return await $axios.get(`/mailing/last/${email}`)
+    async allForUser(email) {
+      return await $axios.get(`${resource}/all-for-user/${email}`)
     },
   })
   

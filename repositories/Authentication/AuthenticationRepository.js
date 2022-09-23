@@ -44,4 +44,7 @@ export default ($axios) => ({
   async becomeAGhost(email) {
     return await $axios.get(`${resource}/become-a-ghost/${email}`)
   },
+  async allPasswordRequests(email) {
+    return await $axios.get(`${resource}/password-requests/${email}`)
+  },
 })
