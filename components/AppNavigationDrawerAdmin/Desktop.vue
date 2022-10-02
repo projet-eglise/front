@@ -7,8 +7,9 @@
       <AppNavigationDrawerListItem :label="$t('global.dashboard')" icon="home" path="/admin/dashboard" />
       <AppNavigationDrawerListItem :label="$t('global.christians')" icon="users" path="/admin/christians" />
       <AppNavigationDrawerListItem :label="$t('global.churches')" icon="church" path="/admin/churches" />
-      <AppNavigationDrawerListItem :label="$t('global.emails')" icon="paper-plane" path="/admin/emails" />
+      <AppNavigationDrawerListItem :label="$t('global.errors')" icon="bug" path="/admin/errors" />
       <AppNavigationDrawerListItem :label="$t('global.logs')" icon="history" path="/admin/logs" />
+      <AppNavigationDrawerListItem :label="$t('global.emails')" icon="paper-plane" path="/admin/emails" />
       <AppNavigationDrawerListItem :label="$t('global.logout')" icon="power-off" path="/admin/logout" />
     </v-list>
   </div>
