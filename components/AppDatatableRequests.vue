@@ -27,11 +27,11 @@
 
     <v-dialog v-model="dialog" max-width="700">
       <v-card class="request-details-modal">
-        <v-card-title class="text-h5" style="word-break: break-word"> Requête </v-card-title>
+        <v-card-title class="text-h5" style="word-break: break-word">{{ $t('global.request') }}</v-card-title>
         <v-card-text class="ma-0">
           <SummaryUsername
-            :user="selectedUser.user"
-            :second-line="selectedUser.ip"
+            :user="selectedRequest.user"
+            :second-line="selectedRequest.ip"
             size="s"
             :display-username="true"
             link
@@ -39,21 +39,22 @@
         </v-card-text>
         <v-card-text class="ma-0">
           <WidgetHttpResponseCodeWithMessage
-            :code="Number(selectedUser.code)"
-            :message="selectedUser.message"
+            :code="Number(selectedRequest.code)"
+            :message="selectedRequest.message"
             class="mr-2"
           />
-          <WidgetHttpMethod class="mr-2" :method="selectedUser.method" />
-          <span class="mr-2">{{ $display.datetime(selectedUser.start) }}</span>
-          <span>{{ selectedUser.route }}</span>
+          <WidgetHttpMethod class="mr-2" :method="selectedRequest.method" />
+          <span class="mr-2">{{ $display.datetime(selectedRequest.start) }}</span>
+          <span>{{ selectedRequest.route }}</span>
+          <p v-if="selectedRequest.error_uuid !== null" class="mt-4"><a :href="'/admin/error/' + selectedRequest.error_uuid">{{ $t('components.datatable_requests.link_to_error') }}</a></p>
         </v-card-text>
 
-        <v-card-title class="font-weight-bold">Paramètres</v-card-title>
-        <WidgetHttpJson class="mx-8" :json="selectedUser.params" />
+        <v-card-title class="font-weight-bold">{{ $t('globel.settings') }}</v-card-title>
+        <WidgetHttpJson class="mx-8" :json="selectedRequest.params" />
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <AppButtonText @click="dialog = false"> Fermer </AppButtonText>
+          <AppButtonText @click="dialog = false">{{ $t('global.close') }}</AppButtonText>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -81,14 +82,14 @@ export default {
   data() {
     return {
       headers: [
-        { text: 'Date', value: 'start' },
-        { text: 'Utilisateur', value: 'username' },
-        { text: 'Code', value: 'code' },
-        { text: 'Méthode', value: 'method' },
-        { text: 'Route', value: 'route' },
+        { text: this.$t('global.date'), value: 'start' },
+        { text: this.$t('global.user'), value: 'username' },
+        { text: this.$t('global.code'), value: 'code' },
+        { text: this.$t('global.method'), value: 'method' },
+        { text: this.$t('global.route'), value: 'route' },
       ],
       dialog: false,
-      selectedUser: {
+      selectedRequest: {
         user: {},
         ip: '',
         method: '',
@@ -102,7 +103,7 @@ export default {
   methods: {
     rowClick(e) {
       this.dialog = true
-      this.selectedUser = e
+      this.selectedRequest = e
     },
   },
 }
