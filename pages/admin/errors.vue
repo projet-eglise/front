@@ -19,7 +19,6 @@
         <AppWaitingSpinner v-if="knownErrorsLoading && known" />
       </div>
 
-      <!-- <p v-if="unknownErrors.length === 0 && !known" class="text-primary text-center text-lg mt-4">Aucune erreur ^^</p> -->
       <div
         v-if="!known"
         class="unknown-errors-unsee grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 col-span-full sm:col-auto"
@@ -28,7 +27,7 @@
       </div>
       <div v-if="unknownErrorsSeen.length !== 0 && !known" class="flex m-8 align-center">
         <div class="bg-[#AAAAAA] flex-auto h-px primary opacity-50"></div>
-        <span class="flex-none mx-8 uppercase text-primary"> Déjà vue</span>
+        <span class="flex-none mx-8 uppercase text-primary">{{ $t('global.already_seen') }}</span>
         <div class="bg-[#AAAAAA] flex-auto h-px primary opacity-50"></div>
       </div>
       <div
@@ -42,7 +41,6 @@
           v-for="error in unknownErrorsSeen"
           :key="error.uuid"
           :error="error"
-          @seen="console.log('error')"
         />
       </div>
     </div>

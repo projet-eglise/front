@@ -39,7 +39,9 @@
 declare namespace Cypress {
   interface Chainable<Subject = any> {
     login(isAdmin: boolean, email?: string, password?: string): Chainable<void>
-    // fake(what: string): string
+    urlInclude(url: string): Chainable<void>
+    urlEquals(url: string): Chainable<void>
+    shouldBeVisible(element: string, options?: object): Chainable<void>
   }
 }
 
@@ -61,17 +63,14 @@ Cypress.Commands.add('login', (isAdmin: boolean, email?: string, password?: stri
   cy.wait(1000)
 })
 
-// Cypress.Commands.add('fake', (what: string) => {
-//   const faker = require('@faker-js/faker')
-//   faker.locale = 'fr'
+Cypress.Commands.add('urlInclude', (url: string) => {
+  cy.url().should('include', url)
+})
 
-//   switch (what) {
-//     default:
-//     case 'firstname':
-//       // console.log(faker)
-//       return 'aaa'
-//       // return faker.faker.name.firstName()
-//       break
-//       return ''
-//   }
-// })
+Cypress.Commands.add('urlEquals', (url: string) => {
+  cy.url().should('equals', url)
+})
+
+Cypress.Commands.add('shouldBeVisible', (url: string, options: object = {}) => {
+  cy.get(url, options).should('be.visible')
+})

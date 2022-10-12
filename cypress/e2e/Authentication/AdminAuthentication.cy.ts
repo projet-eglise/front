@@ -9,7 +9,7 @@ describe('Test the administrator login portal.', () => {
 
     cy.get('#submit').click()
 
-    cy.url().should('include', '/admin/dashboard')
+    cy.urlInclude('/admin/dashboard')
   })
 
   it('Bad credentials gives error', () => {
@@ -18,9 +18,9 @@ describe('Test the administrator login portal.', () => {
 
     cy.get('#submit').click()
 
-    cy.get('.alert-widget .v-alert', { timeout: 1000 }).should('be.visible');
+    cy.shouldBeVisible('.alert-widget .v-alert', { timeout: 1000 })
 
-    cy.url().should('include', '/admin/login')
+    cy.urlInclude('/admin/login')
   })
 
   it('Not admin user gives error', () => {
@@ -29,9 +29,9 @@ describe('Test the administrator login portal.', () => {
 
     cy.get('#submit').click()
 
-    cy.get('.alert-widget .v-alert', { timeout: 1000 }).should('be.visible');
+    cy.shouldBeVisible('.alert-widget .v-alert', { timeout: 1000 })
 
-    cy.url().should('include', '/admin/login')
+    cy.urlInclude('/admin/login')
   })
 
   it('Reconnect after disconnect', () => {
@@ -40,7 +40,7 @@ describe('Test the administrator login portal.', () => {
 
     cy.get('#submit').click()
 
-    cy.url().should('include', '/admin/dashboard')
+    cy.urlInclude('/admin/dashboard')
 
     cy.get('a[href="/admin/logout"]:visible', { timeout: 5000 }).click()
 
@@ -49,6 +49,6 @@ describe('Test the administrator login portal.', () => {
 
     cy.get('#submit').click()
 
-    cy.url().should('include', '/admin/dashboard')
+    cy.urlInclude('/admin/dashboard')
   })
 })

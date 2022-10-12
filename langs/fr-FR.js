@@ -36,8 +36,14 @@ export default {
         to: 'Destinataire | Destinataires',
       },
     },
-    edit_roles: {
-
+    datatable_requests: {
+      link_to_error: "Lien vers l'erreur",
+    },
+    copy_clip_board: 'Cliquer pour copier',
+    widget_card_error: {
+      evolution_over_last_24_hours: 'Evolution sur les dernières 24 heures',
+      requests_number: 'Nombre de requêtes',
+      view_requests: 'Voir les requêtes',
     },
   },
   pages: {
@@ -46,38 +52,59 @@ export default {
       no_recipient: 'Aucun destinataire',
     },
     admin_christian_details: {
-      title: 'Détails de {name}'
+      title: 'Détails de {name}',
     },
     church: {
       join: {
         my_role_in_church: "Mon rôle dans l'Eglise",
-        disclaimer: "Choisissez votre rôle ainsi que les précision nécessaire pour finir de rejoindre votre Eglise.",
+        disclaimer: 'Choisissez votre rôle ainsi que les précision nécessaire pour finir de rejoindre votre Eglise.',
       },
     },
+    christian: {
+      church_plus_role: 'Eglise + rôle',
+      password_requests: 'Requêtes de mots de passe',
+      emails_history: 'Historique des mails',
+      api_call_history: "Historique des appels API",
+    },
+    error_details: {
+      hide_traces: "Cacher les traces",
+      show_traces: "Montrer les traces"
+    }
   },
   global: {
     add: 'Ajouter',
+    already_seen: 'Déjà vue',
     cancel: 'Annuler',
     chat: 'Tchat',
     christians: 'Chrétiens',
     churches: 'Eglises',
     close: 'Fermer',
-    date_and_hour: "Date et heure",
+    code: 'Code',
+    copied: 'Copié',
+    date: 'Date',
+    date_and_hour: 'Date et heure',
     dashboard: 'Tableau de bord',
     error: 'Erreur',
     error_has_occurred: 'Une erreur est survenue',
     errors: 'Erreurs',
     emails: 'Mails',
+    from_hours_to_hours: 'De {start}h à {end}h',
     home: 'Accueil',
     join: 'Rejoindre',
     known: 'Connu',
     logout: 'Déconnexion',
     logs: 'Logs',
     menu: 'Menu',
+    method: 'Méthode',
+    return: 'Retour',
+    request: 'Requête',
+    route: 'Route',
     send: 'Envoyer',
     services: 'Services',
     settings: 'Paramètres',
     unknown: 'Inconnu',
+    user: 'Utilisateur',
     users: 'Utilisateurs',
+    x_errors: 'Aucune erreur | Une erreur | {count} erreurs',
   },
 }

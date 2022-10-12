@@ -10,10 +10,10 @@ describe('Test of the error handling page.', () => {
 
   it('The button changes the display of the divs', () => {
     cy.get('.switch-known .choice-2').click()
-    cy.get('.known-errors').should('be.visible')
+    cy.shouldBeVisible('.known-errors')
 
     cy.get('.switch-known .choice-1').click()
-    cy.get('.unknown-errors-unsee').should('be.visible')
+    cy.shouldBeVisible('.unknown-errors-unsee')
   })
 
   it('View unknown errors tiles', () => {
@@ -29,17 +29,17 @@ describe('Test of the error handling page.', () => {
   it('Check card', () => {
     cy.get('.unknown-errors-unsee > div:first-child > *').should('have.length', 4)
     cy.get('.unknown-errors-unsee > div:first-child > div:first-child > *').should('have.length', 2)
-    cy.get('.unknown-errors-unsee > div:first-child > div:first-child > div:first-child > *').should('have.length', 3)
-    cy.get('.unknown-errors-unsee > div:first-child > div:first-child > div:last-child button > span > i').should('be.visible')
+    cy.get('.unknown-errors-unsee > div:first-child > div:first-child > div:first-child > *').should('have.length', 4)
+    cy.shouldBeVisible('.unknown-errors-unsee > div:first-child > div:first-child > div:last-child button > span > i')
 
     cy.get('.unknown-errors-unsee > div:first-child > div:nth-child(3) > div > *').should('have.length', 48)
     
-    cy.get('.unknown-errors-unsee > div:last-child > div:last-child a[href^="/admin/error/"]').should('be.visible')
+    cy.shouldBeVisible('.unknown-errors-unsee > div:last-child > div:last-child a[href^="/admin/error/"]')
   })
 
 
   it('View requests click', () => {
     cy.get('.unknown-errors-unsee > div:last-child > div:last-child a[href^="/admin/error/"]').click()
-    cy.url().should('include', '/admin/error/')
+    cy.urlInclude('/admin/error/')
   })
 })

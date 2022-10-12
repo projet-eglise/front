@@ -24,7 +24,7 @@ describe('Test the signin portal', () => {
 
     cy.get('#submit').click()
 
-    cy.url().should('include', '/church/add-or-join')
+    cy.urlInclude('/church/add-or-join')
   })
   
   it('Signin error open a toast', () => {
@@ -46,8 +46,8 @@ describe('Test the signin portal', () => {
 
     cy.get('#submit').click()
 
-    cy.get('.alert-widget .v-alert', { timeout: 1000 }).should('be.visible')
+    cy.shouldBeVisible('.alert-widget .v-alert', { timeout: 1000 })
 
-    cy.url().should('include', '/signin')
+    cy.urlInclude('/signin')
   })
 })

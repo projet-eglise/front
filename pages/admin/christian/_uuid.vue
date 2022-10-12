@@ -1,6 +1,8 @@
 <template>
   <div>
-    <AppTitlePageAdmin>{{ $t('pages.admin_christian_details.title', { name: christian_name }) }}</AppTitlePageAdmin>
+    <AppTitlePageAdminWithReturnButton to="/admin/christians">
+      {{ $t('pages.admin_christian_details.title', { name: christian_name }) }}
+    </AppTitlePageAdminWithReturnButton>
     <AppWaitingSpinner v-if="loading" />
     <div v-else class="main-container grid gap-4 grid-cols-3 col-span-full sm:col-auto">
       <div class="overview-tile bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full sm:col-auto">
@@ -18,7 +20,7 @@
           </div>
           <div class="flex-1 mx-8 flex flex-col justify-center">
             <span>{{ christian_name }}</span>
-            <span>Eglise + rôle</span>
+            <span>{{ $t('pages.christian.church_plus_role') }}</span>
           </div>
           <div class="flex-none">
             <AppButtonPhantom :email="christian.email" />
@@ -32,18 +34,23 @@
         >
       </div>
       <div class="churches-tile bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full col-span-2">
-        <h1 class="text-2xl mb-4 text-primary font-bold">Eglises</h1>
+        <h1 class="text-2xl mb-4 text-primary font-bold">{{ $t('global.churches') }}</h1>
       </div>
-      <div class="password-requests-tile  bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full sm:col-auto">
-        <h1 class="text-2xl mb-4 text-primary font-bold">Requêtes de mots de passe</h1>
-        <AppDatatablePasswordRequests class="password-requests-table" :requests="requests" :loading="loading" :items-per-page="3" />
+      <div class="password-requests-tile bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full sm:col-auto">
+        <h1 class="text-2xl mb-4 text-primary font-bold">{{ $t('pages.christian.password_requests') }}</h1>
+        <AppDatatablePasswordRequests
+          class="password-requests-table"
+          :requests="requests"
+          :loading="loading"
+          :items-per-page="3"
+        />
       </div>
       <div class="emails-history-tile bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full col-span-full sm:col-span-2">
-        <h1 class="text-2xl mb-4 text-primary font-bold">Historique des mails</h1>
+        <h1 class="text-2xl mb-4 text-primary font-bold">{{ $t('pages.christian.emails_history') }}</h1>
         <AppDatatableMailHistory class="emails-history-table" :emails="emails" :loading="loading" :items-per-page="3" />
       </div>
       <div class="requests-history-tile bg-[#FFFFFF] rounded p-4 flex flex-col col-span-full">
-        <h1 class="text-2xl mb-4 text-primary font-bold">Historique des appels API</h1>
+        <h1 class="text-2xl mb-4 text-primary font-bold">{{ $t('pages.christian.api_call_history') }}</h1>
         <AppDatatableRequests class="requests-history-table" :logs="logs" :loading="loading" :items-per-page="5" />
       </div>
     </div>

@@ -10,18 +10,18 @@ describe('Test the ghost mode.', () => {
   it('Return to administration available and work', () => {
     cy.get('.christians-table tbody tr:first-child td:nth-child(5) button.fa-ghost').click()
 
-    cy.url().should('include', '/dashboard')
-    cy.get('#go-to-admin-button').should('be.visible');
+    cy.urlInclude('/dashboard')
+    cy.shouldBeVisible('#go-to-admin-button');
 
     cy.get('a[href="/logout"]:visible', { timeout: 5000 }).click()
-    cy.url().should('include', '/login')
-    cy.get('#go-to-admin-button').should('be.visible');
+    cy.urlInclude('/login')
+    cy.shouldBeVisible('#go-to-admin-button');
 
     cy.login(false)
-    cy.url().should('include', '/church/add-or-join')
-    cy.get('#go-to-admin-button').should('be.visible');
+    cy.urlInclude('/church/add-or-join')
+    cy.shouldBeVisible('#go-to-admin-button');
     
     cy.get('#go-to-admin-button').click()
-    cy.url().should('include', '/admin/christians')
+    cy.urlInclude('/admin/christians')
   })
 })

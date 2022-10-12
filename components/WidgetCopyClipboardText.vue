@@ -12,7 +12,7 @@
           {{ label }}
         </span>
       </template>
-      <span>{{ copyText }}</span>
+      <span>{{ label }}</span>
     </v-tooltip>
     <span class="flex-auto"></span>
   </p>
@@ -45,7 +45,7 @@ export default {
   methods: {
     async copyCode() {
       await navigator.clipboard.writeText(this.toClip)
-      this.copyText = 'Copied!'
+      this.copyText = `${this.$t('global.copied')}!`
     },
     reset() {
       setTimeout(

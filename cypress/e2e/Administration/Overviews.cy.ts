@@ -6,11 +6,11 @@ describe('Test the tables of the administrator interface.', () => {
   it('Christians table test', () => {
     cy.get('a[href="/admin/christians"]:visible', { timeout: 5000 }).click()
 
-    cy.get('.christians-table > div > table').should('be.visible')
+    cy.shouldBeVisible('.christians-table > div > table')
     cy.get('.christians-table tbody tr:first-child td:not(.d-none)').should('have.length', 5)
 
     // Avatar
-    cy.get('.christians-table tbody tr:first-child td:nth-child(1) .v-avatar').should('be.visible')
+    cy.shouldBeVisible('.christians-table tbody tr:first-child td:nth-child(1) .v-avatar')
 
     // Name
     cy.get('.christians-table tbody tr:first-child td:nth-child(2)')
@@ -31,13 +31,13 @@ describe('Test the tables of the administrator interface.', () => {
       .should('match', /^\+\d{2} \d \d{2} \d{2} \d{2} \d{2}$/)
 
     // Ghost mode
-    cy.get('.christians-table tbody tr:first-child td:nth-child(5) button.fa-ghost').should('be.visible')
+    cy.shouldBeVisible('.christians-table tbody tr:first-child td:nth-child(5) button.fa-ghost')
   })
 
   it('Churches table test', () => {
     cy.get('a[href="/admin/churches"]:visible', { timeout: 5000 }).click()
 
-    cy.get('.churches-table > div > table').should('be.visible')
+    cy.shouldBeVisible('.churches-table > div > table')
     cy.get('.churches-table tbody tr:first-child td:not(.d-none)').should('have.length', 4)
 
     // Church name
@@ -60,7 +60,7 @@ describe('Test the tables of the administrator interface.', () => {
   it('Mailing table test', () => {
     cy.get('a[href="/admin/emails"]:visible', { timeout: 5000 }).click()
 
-    cy.get('.emails-table > div > table').should('be.visible')
+    cy.shouldBeVisible('.emails-table > div > table')
     cy.get('.emails-table tbody tr:first-child td:not(.d-none)').should('have.length', 5)
 
     // Code
@@ -94,7 +94,7 @@ describe('Test the tables of the administrator interface.', () => {
   it('Logs table test', () => {
     cy.get('a[href="/admin/logs"]:visible', { timeout: 5000 }).click()
 
-    cy.get('.logs-table > div > table').should('be.visible')
+    cy.shouldBeVisible('.logs-table > div > table')
     cy.get('.logs-table tbody tr:first-child td:not(.d-none)').should('have.length', 5)
 
     // Date
@@ -110,7 +110,7 @@ describe('Test the tables of the administrator interface.', () => {
     cy.get('.logs-table tbody tr:first-child td:nth-child(3) span span.v-chip')
 
     // Method
-    cy.get('.logs-table tbody tr:first-child td:nth-child(4) span').should('be.visible')
+    cy.shouldBeVisible('.logs-table tbody tr:first-child td:nth-child(4) span')
 
     // Route
     cy.get('.logs-table tbody tr:first-child td:nth-child(5)')
@@ -118,6 +118,6 @@ describe('Test the tables of the administrator interface.', () => {
       .should('match', /^\/([a-z]*)/)
 
     cy.get('.logs-table tbody tr:first-child').click()
-    cy.get('.request-details-modal', { timeout: 1000 }).should('be.visible')
+    cy.shouldBeVisible('.request-details-modal', { timeout: 1000 })
   })
 })

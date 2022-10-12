@@ -13,4 +13,7 @@ export default ($axios) => ({
   async unseen(uuid) {
     return await $axios.get(`${resource}/unseen-topic/${uuid}`)
   },
+  async errorWithRequestsAndTraces(uuid) {
+    return await $axios.get(`${resource}/error-with-requests-and-traces/${uuid}`)
+  },
 })
